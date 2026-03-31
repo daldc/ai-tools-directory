@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 2026 Marketing AI Tools Cheat Sheet</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+  :root {
+    --primary: #6C3CE1;
+    --primary-light: #EDE7FB;
+    --accent: #FF6B35;
+    --dark: #1A1A2E;
+    --gray-50: #F8F9FA;
+    --gray-100: #F1F3F5;
+    --gray-200: #E9ECEF;
+    --gray-500: #868E96;
+    --gray-700: #495057;
+    --gray-900: #212529;
+    --green: #2B8A3E;
+    --green-light: #EBFBEE;
+    --blue: #1971C2;
+    --blue-light: #E7F5FF;
+    --orange: #E67700;
+    --orange-light: #FFF9DB;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--gray-900);
+    background: #fff;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  @page {
+    size: letter;
+    margin: 0.5in;
+  }
+
+  .page {
+    max-width: 8.5in;
+    margin: 0 auto;
+    padding: 0.5in;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, var(--primary) 0%, #4A1FB8 100%);
+    color: #fff;
+    padding: 2rem 2.5rem;
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+
+  .header h1 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.25rem;
+  }
+
+  .header .subtitle {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    font-weight: 400;
+  }
+
+  .header .badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
+
+  /* INTRO */
+  .intro {
+    background: var(--gray-50);
+    border-left: 4px solid var(--primary);
+    padding: 1rem 1.25rem;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--gray-700);
+  }
+
+  .intro strong { color: var(--gray-900); }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+    font-size: 0.75rem;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .legend-dot.free { background: var(--green); }
+  .legend-dot.freemium { background: var(--blue); }
+  .legend-dot.paid { background: var(--orange); }
+
+  /* CATEGORY SECTION */
+  .category {
+    margin-bottom: 1.25rem;
+    page-break-inside: avoid;
+  }
+
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .category-icon {
+    font-size: 1.1rem;
+  }
+
+  .category-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .category-line {
+    flex: 1;
+    height: 1px;
+    background: var(--gray-200);
+  }
+
+  /* TOOL CARDS */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+  }
+
+  .tool-card {
+    border: 1px solid var(--gray-200);
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+    background: #fff;
+    transition: box-shadow 0.2s;
+    position: relative;
+  }
+
+  .tool-card:hover {
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .tool-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.35rem;
+  }
+
+  .tool-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--gray-900);
+  }
+
+  .pricing-tag {
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 12px;
+    white-space: nowrap;
+  }
+
+  .pricing-tag.free {
+    background: var(--green-light);
+    color: var(--green);
+  }
+
+  .pricing-tag.freemium {
+    background: var(--blue-light);
+    color: var(--blue);
+  }
+
+  .pricing-tag.paid {
+    background: var(--orange-light);
+    color: var(--orange);
+  }
+
+  .tool-usecase {
+    font-size: 0.78rem;
+    color: var(--gray-700);
+    margin-bottom: 0.3rem;
+    line-height: 1.4;
+  }
+
+  .tool-pricing-detail {
+    font-size: 0.72rem;
+    color: var(--gray-500);
+    margin-bottom: 0.3rem;
+  }
+
+  .tool-verdict {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--primary);
+    background: var(--primary-light);
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    display: inline-block;
+  }
+
+  /* BOTTOM BANNER */
+  .cta-banner {
+    background: linear-gradient(135deg, var(--dark) 0%, #2D2D4E 100%);
+    color: #fff;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+
+  .cta-banner h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+  }
+
+  .cta-banner p {
+    font-size: 0.82rem;
+    opacity: 0.8;
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-link {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 0.5rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+  }
+
+  .footer {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.7rem;
+    color: var(--gray-500);
+  }
+
+  /* PRINT */
+  @media print {
+    body { background: #fff; }
+    .page { padding: 0; max-width: none; }
+    .tool-card:hover { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="badge">Free Download — 2026 Edition</div>
+    <h1>The Marketing AI Tools Cheat Sheet</h1>
+    <div class="subtitle">15 essential AI tools every marketer should know — with pricing, use cases, and honest recommendations.</div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="intro">
+    <strong>How to use this:</strong> Each tool is rated by real-world marketing value, not hype. Pricing is current as of Q1 2026. 
+    Tools marked with a verdict are ones we've tested hands-on. <strong>Want weekly updates?</strong> These tools change fast — subscribe to the AI Tools Directory newsletter to stay current.
+  </div>
+
+  <!-- LEGEND -->
+  <div class="legend">
+    <div class="legend-item"><span class="legend-dot free"></span> Free or generous free tier</div>
+    <div class="legend-item"><span class="legend-dot freemium"></span> Freemium (free + paid plans)</div>
+    <div class="legend-item"><span class="legend-dot paid"></span> Paid only</div>
+  </div>
+
+  <!-- CONTENT CREATION -->
+  <div class="category">
+    <div class="category-header">
+      <span class="category-icon">✍️</span>
+      <span class="category-title">Content Creation & Copy</span>
+      <span class="category-line"></span>
+    </div>
+    <div class="tools-grid">
+
+      <div class="tool-card">
+        <div class="tool-top">
+          <span class="tool-name">ChatGPT (GPT-4o)</span>
+          <span class="pricing-tag freemium">Freemium</span>
+        </div>
+        <div class="tool-usecase">Blog posts, email copy, brainstorming, ad variations, landing page copy. The Swiss Army knife.</div>
+        <div class="tool-pricing-detail">Free tier available · Plus $20/mo · Team $25/user/mo</div>
+        <div class="tool-verdict">🏆 Best all-rounder for marketing teams</div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-top">
+          <span class="tool-name">Jasper</span>
+          <span class="pricing-tag paid">Paid</span>
+        </div>
+        <div class="tool-usecase">Brand-voice content at scale. Campaign briefs → full asset suites. Built specifically for marketing teams.</div>
+        <div class="tool-pricing-detail">Creator $49/mo · Pro $69/mo · Business custom</div>
+        <div class="tool-verdict">Best for brand-consistent content at scale</div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-top">
+          <span class="tool-name">Claude</span>
+          <span class="pricing-tag freemium">Freemium</span>
+        </div>
+        <div class="tool-usecase">Long-form content, research synthesis, strategy docs. Excels at nuanced writing with less "AI voice."</div>
+        <div class="tool-pricing-detail">Free tier · Pro $20/mo · Team $25/user/mo</div>
+        <div class="tool-verdict">Best for long-form & strategy writing</div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-top">
+          <span class="tool-name">Copy.ai</span>
+          <span class="pricing-tag freemium">Freemium</span>
+        </div>
+        <div class="tool-usecase">Sales copy, GTM workflows, automated content pipelines. Strong workflow automation layer.</div>
+        <div class="tool-pricing-detail">Free (2,000 words/mo) · Starter $49/mo · Advanced $249/mo</div>
+        <div class="tool-verdict">Best for sales-focused copy workflows</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- VISUAL & DESIGN -->
+  <div class="category">
+    <div class="category-header">
+      <span class="category-icon">🎨</span>
+      <span class="category-title">Visual & Design</span>
+      <span class="category-line"></span>
+    </div>
+    <div class="tools-grid">
+
+      <div class="tool-card">
+        <div class="tool-top">
+          <span class="tool-name">Canva Magic Studio</span>
+          <span class="pricing-tag freemium">Freemium</span>
+        </div>
+        <div class="tool-usecase">Social graphics, presentations, video clips. AI image gen + background removal + Magic Write built in.</div>
+        <div class="tool-pricing-detail">Free tier · Pro $13/mo · Teams $10/user/mo</div>
+        <div class="tool-verdict">🏆 Best for non-designers who need pro visuals</div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-top">
+          <span class="tool-name">Midjourney</span>
+          <span class="pricing-tag paid">Paid</span>
+        </div>
+        <div class="tool-usecase">Hero images, ad creatives, mood boards, concept art. Highest aesthetic quality for marketing imagery.</div>
+        <div class="tool-pricing-detail">Basic $10/mo · Standard $30/mo · Pro $60/mo</div>
+        <div class="tool-verdict">Best image quality for brand visuals</div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-top">
+          <span class="tool-name">Adobe Firefly</span>
+          <span class="pricing-tag freemium">Freemium</span>
+        </div>
+        <div class="tool-usecase">Commercially safe image generation, text effects, generative fill. Deep Adobe CC integration.</div>
+        <div class="tool-pricing-detail">Free (25 credits/mo) · Premium $5/mo · Included in CC plans</div>
+        <div class="tool-verdict">Best for teams already in Adobe ecosystem</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SEO & ANALYTICS -->
+  <div class="category">
+    <div class="category-header">
+      <span class="category-icon">📊</span>
+      <span class="category-title">SEO & Analytics</span>
+      <span class="category-line"></span>
+    </div>
+    <div class="tools-grid">
+
+      <div class="tool-card">
+        <div class="tool-top">
+          <span class="tool-name">Surfer SEO</span>
+          <span class="pricing-tag paid">Paid</span>
+        </div>
+        <div class="tool-usecase">Content optimization, SERP analysis, AI-assisted article writing with real-time SEO scoring.</div>
+        <div class="tool-pricing-detail">Essential $89/mo · Scale $129/mo · Enterprise custom</div>
+        <div class="tool-verdict">🏆 Best for content-driven SEO</div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-top">
+          <span class="tool-name">Clearscope</span>
+          <span class="pricing-tag paid">Paid</span>
+        </div>
+        <div class="tool-usecase">Content grading, keyword research, competitive content analysis. Enterprise-grade SEO content platform.</div>
+        <div class="tool-pricing-detail">Essentials $189/mo · Business $399/mo · Enterprise custom</div>
+        <div class="tool-verdict">Best for enterprise content teams</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SOCIAL MEDIA & SCHEDULING -->
+  <div class="category">
+    <div class="category-header">
+      <span class="category-icon">📱</span>
+      <span class="category-title">Social Media & Scheduling</span>
+      <span class="category-line"></span>
+    </div>
+    <div class="tools-grid">
+
+      <div class="tool-card">
+        <div class="tool-top">
+          <span class="tool-name">Buffer AI Assistant</span>
+          <span class="pricing-tag freemium">Freemium</span>
+        </div>
+        <div class="tool-usecase">AI-generated social posts, repurposing content across platforms, optimal scheduling suggestions.</div>
+        <div class="tool-pricing-detail">Free (3 channels) · Essentials $6/ch/mo · Team $12/ch/mo</div>
+        <div class="tool-verdict">Best value for small teams & solopreneurs</div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-top">
+          <span class="tool-name">Lately</span>
+          <span class="pricing-tag paid">Paid</span>
+        </div>
+        <div class="tool-usecase">Turns long-form content into dozens of social posts. Learns your brand voice from historical performance.</div>
+        <div class="tool-pricing-detail">Starter $49/mo · Pro $119/mo · Enterprise custom</div>
+        <div class="tool-verdict">Best for repurposing long-form → social</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- EMAIL & AUTOMATION -->
+  <div class="category">
+    <div class="category-header">
+      <span class="category-icon">📧</span>
+      <span class="category-title">Email & Automation</span>
+      <span class="category-line"></span>
+    </div>
+    <div class="tools-grid">
+
+      <div class="tool-card">
+        <div class="tool-top">
+          <span class="tool-name">Klaviyo AI</span>
+          <span class="pricing-tag freemium">Freemium</span>
+        </div>
+        <div class="tool-usecase">Predictive analytics, AI subject lines, smart send times, automated segment building for e-commerce.</div>
+        <div class="tool-pricing-detail">Free (250 contacts) · Email from $20/mo · SMS add-on</div>
+        <div class="tool-verdict">🏆 Best for e-commerce email marketing</div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-top">
+          <span class="tool-name">Seventh Sense</span>
+          <span class="pricing-tag paid">Paid</span>
+        </div>
+        <div class="tool-usecase">AI send-time optimization for HubSpot & Marketo. Personalizes delivery timing per recipient.</div>
+        <div class="tool-pricing-detail">HubSpot from $80/mo · Marketo from $450/mo</div>
+        <div class="tool-verdict">Best add-on for HubSpot email teams</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- VIDEO & AUDIO -->
+  <div class="category">
+    <div class="category-header">
+      <span class="category-icon">🎬</span>
+      <span class="category-title">Video & Audio</span>
+      <span class="category-line"></span>
+    </div>
+    <div class="tools-grid">
+
+      <div class="tool-card">
+        <div class="tool-top">
+          <span class="tool-name">Descript</span>
+          <span class="pricing-tag freemium">Freemium</span>
+        </div>
+        <div class="tool-usecase">Video editing by editing text. Auto-captions, filler word removal, screen recording, clip generation.</div>
+        <div class="tool-pricing-detail">Free (1 hr/mo) · Hobbyist $24/mo · Business $33/mo</div>
+        <div class="tool-verdict">🏆 Best for marketers who create video/podcast content</div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-top">
+          <span class="tool-name">Synthesia</span>
+          <span class="pricing-tag paid">Paid</span>
+        </div>
+        <div class="tool-usecase">AI avatar videos for training, product demos, personalized outreach. No camera or studio needed.</div>
+        <div class="tool-pricing-detail">Starter $22/mo · Creator $67/mo · Enterprise custom</div>
+        <div class="tool-verdict">Best for scalable video without production</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CTA BANNER -->
+  <div class="cta-banner">
+    <h3>This cheat sheet is already outdated. 😅</h3>
+    <p>AI tools change weekly. Get the latest picks, pricing updates, and new tool drops delivered to your inbox every Tuesday.</p>
+    <a href="#" class="cta-link">Subscribe to the AI Tools Directory →</a>
+  </div>
+
+  <div class="footer">
+    © 2026 AI Tools Directory · Updated Q1 2026 · Share freely, credit appreciated.
+  </div>
+
+</div>
+
+</body>
+</html>
