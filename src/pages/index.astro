@@ -1,0 +1,203 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ToolCard from '../components/ToolCard.astro';
+import CategoryCard from '../components/CategoryCard.astro';
+import Newsletter from '../components/Newsletter.astro';
+import { tools, categories, getFeaturedTools } from '../utils/tools';
+
+const featured = getFeaturedTools();
+---
+
+<BaseLayout title="AI Tools Directory — Find the Right AI Tool" description="Curated directory of 95+ AI tools with honest reviews. No hype, no fluff — just the tools that actually work.">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-badge">🔍 95+ Tools Reviewed</span>
+        <h1 class="hero-title">
+          Find the <span class="hero-gradient">right AI tool</span><br />without the noise
+        </h1>
+        <p class="hero-subtitle">
+          Curated, honestly reviewed AI tools across {categories.length} categories.
+          No affiliate games. No hype. Just tools that actually work.
+        </p>
+        <div class="hero-actions">
+          <a href="/tools" class="btn-primary">Browse All Tools →</a>
+          <a href="/categories" class="btn-secondary">View Categories</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="hero-stat-num">{tools.length}</span>
+            <span class="hero-stat-label">Tools Reviewed</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">{categories.length}</span>
+            <span class="hero-stat-label">Categories</span>
+          </div>
+          <div class="hero-stat">
+            <span class="hero-stat-num">100%</span>
+            <span class="hero-stat-label">Hand-Curated</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Browse by Category</h2>
+      <p class="section-subtitle">Find the perfect tool for your use case</p>
+      <div class="categories-grid">
+        {categories.map(cat => (
+          <CategoryCard category={cat} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Tools -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">⭐ Editor's Picks</h2>
+      <p class="section-subtitle">The tools we keep coming back to</p>
+      <div class="tools-grid">
+        {featured.map(tool => (
+          <ToolCard tool={tool} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="section">
+    <div class="container">
+      <Newsletter />
+    </div>
+  </section>
+
+  <!-- All Tools Preview -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header-flex">
+        <div>
+          <h2 class="section-title">Recently Added</h2>
+          <p class="section-subtitle">Latest tools in the directory</p>
+        </div>
+        <a href="/tools" class="btn-secondary">View All {tools.length} Tools →</a>
+      </div>
+      <div class="tools-grid">
+        {tools.slice(-6).reverse().map(tool => (
+          <ToolCard tool={tool} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+  .hero {
+    padding: 5rem 0 3rem;
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(99, 102, 241, 0.12);
+    color: #818cf8;
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-size: 3.25rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.03em;
+  }
+
+  .hero-gradient {
+    background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    color: var(--color-text-muted);
+    font-size: 1.25rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-stat-num {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--color-accent);
+  }
+
+  .hero-stat-label {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+  }
+
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .section-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .section-header-flex .section-title,
+  .section-header-flex .section-subtitle {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 640px) {
+    .hero-title { font-size: 2.25rem; }
+    .hero-subtitle { font-size: 1rem; }
+    .hero-stats { gap: 1.5rem; }
+    .hero-stat-num { font-size: 1.25rem; }
+    .categories-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  }
+</style>

@@ -1,0 +1,79 @@
+[
+  {
+    "slug": "ai-assistants",
+    "name": "AI Assistants",
+    "description": "General-purpose AI chatbots and assistants for everyday tasks",
+    "icon": "🤖",
+    "color": "#6366f1"
+  },
+  {
+    "slug": "coding-development",
+    "name": "Coding & Development",
+    "description": "AI tools for writing, reviewing, and debugging code",
+    "icon": "💻",
+    "color": "#8b5cf6"
+  },
+  {
+    "slug": "image-design",
+    "name": "Image & Design",
+    "description": "AI image generation, editing, and design tools",
+    "icon": "🎨",
+    "color": "#ec4899"
+  },
+  {
+    "slug": "video-audio",
+    "name": "Video & Audio",
+    "description": "AI video generation, editing, music, and voice tools",
+    "icon": "🎬",
+    "color": "#f43f5e"
+  },
+  {
+    "slug": "writing-content",
+    "name": "Writing & Content",
+    "description": "AI writing assistants, content generators, and SEO tools",
+    "icon": "✍️",
+    "color": "#f97316"
+  },
+  {
+    "slug": "productivity-automation",
+    "name": "Productivity & Automation",
+    "description": "AI-powered workflow automation and productivity tools",
+    "icon": "⚡",
+    "color": "#eab308"
+  },
+  {
+    "slug": "data-analytics",
+    "name": "Data & Analytics",
+    "description": "AI data analysis, visualization, and predictive analytics",
+    "icon": "📊",
+    "color": "#22c55e"
+  },
+  {
+    "slug": "marketing-sales",
+    "name": "Marketing & Sales",
+    "description": "AI tools for marketing automation, sales intelligence, and outreach",
+    "icon": "📈",
+    "color": "#06b6d4"
+  },
+  {
+    "slug": "customer-support",
+    "name": "Customer Support",
+    "description": "AI chatbots, help desk automation, and customer service tools",
+    "icon": "💬",
+    "color": "#3b82f6"
+  },
+  {
+    "slug": "research-education",
+    "name": "Research & Education",
+    "description": "AI tools for academic research, learning, and education",
+    "icon": "🔬",
+    "color": "#a855f7"
+  },
+  {
+    "slug": "ai-infrastructure",
+    "name": "AI Infrastructure",
+    "description": "Frameworks, APIs, and platforms for building AI applications",
+    "icon": "🏗️",
+    "color": "#64748b"
+  }
+]

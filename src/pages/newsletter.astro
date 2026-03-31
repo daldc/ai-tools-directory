@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Newsletter from '../components/Newsletter.astro';
+---
+
+<BaseLayout title="Newsletter — AI Tools Directory" description="Get the best AI tools in your inbox every week. Curated picks, honest reviews, and zero spam.">
+  <section class="section">
+    <div class="container">
+      <div class="newsletter-page">
+        <h1 class="page-title">The Weekly AI Tool Drop</h1>
+        <p class="page-desc">
+          Every week, we send a curated roundup of the best AI tools worth knowing about.
+          Honest reviews, new discoveries, and practical tips — delivered straight to your inbox.
+        </p>
+
+        <div class="what-you-get">
+          <h2>What you'll get:</h2>
+          <div class="benefits-grid">
+            <div class="benefit">
+              <span class="benefit-icon">🔍</span>
+              <h3>Curated Tool Picks</h3>
+              <p>3-5 hand-picked AI tools every week, reviewed and rated</p>
+            </div>
+            <div class="benefit">
+              <span class="benefit-icon">💡</span>
+              <h3>Practical Tips</h3>
+              <p>How to actually get value from AI tools (not just hype)</p>
+            </div>
+            <div class="benefit">
+              <span class="benefit-icon">🚫</span>
+              <h3>No Fluff</h3>
+              <p>We skip the overhyped and focus on tools that actually work</p>
+            </div>
+            <div class="benefit">
+              <span class="benefit-icon">⚡</span>
+              <h3>5-Min Read</h3>
+              <p>Quick, actionable, and worth your time every single week</p>
+            </div>
+          </div>
+        </div>
+
+        <Newsletter />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .newsletter-page {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .page-title {
+    font-size: 2.75rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .page-desc {
+    color: var(--color-text-muted);
+    font-size: 1.25rem;
+    line-height: 1.6;
+    margin-bottom: 3rem;
+  }
+
+  .what-you-get {
+    text-align: left;
+    margin-bottom: 3rem;
+  }
+
+  .what-you-get h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 540px) {
+    .benefits-grid { grid-template-columns: 1fr; }
+    .page-title { font-size: 2rem; }
+  }
+
+  .benefit {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+
+  .benefit-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .benefit h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.375rem;
+  }
+
+  .benefit p {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+</style>

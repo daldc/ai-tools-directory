@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CategoryCard from '../components/CategoryCard.astro';
+import { categories } from '../utils/tools';
+---
+
+<BaseLayout title="Categories — AI Tools Directory" description="Browse AI tools by category: assistants, coding, image, video, writing, productivity, data, marketing, support, research, and infrastructure.">
+  <section class="section">
+    <div class="container">
+      <h1 class="section-title">Categories</h1>
+      <p class="section-subtitle">Browse {categories.length} categories of AI tools</p>
+      <div class="categories-page-grid">
+        {categories.map(cat => (
+          <CategoryCard category={cat} />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .categories-page-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.25rem;
+  }
+</style>

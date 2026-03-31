@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Newsletter from '../components/Newsletter.astro';
+import { tools, categories } from '../utils/tools';
+---
+
+<BaseLayout title="About — AI Tools Directory" description="Why we built this directory and how we review AI tools.">
+  <section class="section">
+    <div class="container">
+      <div class="about-content">
+        <h1 class="about-title">No hype. No affiliate games.<br/>Just honest AI tool reviews.</h1>
+
+        <div class="about-body">
+          <p>
+            There are thousands of AI tools launching every week. Most "directories" are just SEO farms
+            stuffed with affiliate links. We built this one differently.
+          </p>
+
+          <h2>How We're Different</h2>
+          <p>
+            Every tool in this directory is hand-reviewed. We actually use these tools (or at least
+            thoroughly test them) before writing a single word. You'll find honest pros and cons,
+            real pricing information, and our genuine assessment of whether a tool is worth your time.
+          </p>
+
+          <h2>Our Review Process</h2>
+          <ul>
+            <li><strong>Hands-on testing</strong> — We sign up, use the tool, and form real opinions</li>
+            <li><strong>No pay-to-play</strong> — Tools can't buy better ratings or placement</li>
+            <li><strong>Updated regularly</strong> — AI moves fast, and our reviews stay current</li>
+            <li><strong>Honest ratings</strong> — A 3.5 means "decent but not essential." We don't inflate scores.</li>
+          </ul>
+
+          <h2>Who Is This For?</h2>
+          <p>
+            Professionals who want to use AI effectively without wading through hype. Whether you're a
+            marketer, developer, designer, or business owner — we help you find the right tools without
+            the noise.
+          </p>
+
+          <h2>The Numbers</h2>
+          <div class="about-stats">
+            <div class="about-stat">
+              <span class="about-stat-num">{tools.length}</span>
+              <span>Tools Reviewed</span>
+            </div>
+            <div class="about-stat">
+              <span class="about-stat-num">{categories.length}</span>
+              <span>Categories</span>
+            </div>
+            <div class="about-stat">
+              <span class="about-stat-num">0</span>
+              <span>Paid Placements</span>
+            </div>
+          </div>
+
+          <h2>Stay Updated</h2>
+          <p>
+            We send a weekly newsletter with the best new AI tools, honest takes, and tips for getting
+            more out of AI. No spam, no fluff.
+          </p>
+        </div>
+
+        <Newsletter />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-content {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .about-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+  }
+
+  .about-body {
+    margin-bottom: 3rem;
+  }
+
+  .about-body h2 {
+    font-size: 1.375rem;
+    font-weight: 700;
+    margin: 2rem 0 0.75rem;
+  }
+
+  .about-body p {
+    color: var(--color-text-muted);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .about-body ul {
+    color: var(--color-text-muted);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .about-body li {
+    margin-bottom: 0.5rem;
+  }
+
+  .about-stats {
+    display: flex;
+    gap: 3rem;
+    margin: 1.5rem 0;
+    flex-wrap: wrap;
+  }
+
+  .about-stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .about-stat-num {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--color-accent);
+  }
+
+  .about-stat span:last-child {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 640px) {
+    .about-title { font-size: 1.75rem; }
+  }
+</style>

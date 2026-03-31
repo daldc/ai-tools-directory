@@ -1,0 +1,53 @@
+---
+import type { Category } from '../utils/tools';
+import { getToolsByCategory, categoryNameToSlug } from '../utils/tools';
+
+interface Props {
+  category: Category;
+}
+
+const { category } = Astro.props;
+const toolCount = getToolsByCategory(category.name).length;
+const slug = categoryNameToSlug(category.name);
+---
+
+<a href={`/category/${slug}`} class="card category-card">
+  <span class="category-icon">{category.icon}</span>
+  <h3 class="category-name">{category.name}</h3>
+  <p class="category-desc">{category.description}</p>
+  <span class="category-count">{toolCount} tools →</span>
+</a>
+
+<style>
+  .category-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .category-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .category-name {
+    font-size: 1.0625rem;
+    font-weight: 700;
+  }
+
+  .category-desc {
+    color: var(--color-text-muted);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+  }
+
+  .category-count {
+    color: var(--color-accent);
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+</style>

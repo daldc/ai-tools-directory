@@ -1,0 +1,86 @@
+---
+import type { Tool } from '../utils/tools';
+import { categoryNameToSlug } from '../utils/tools';
+
+interface Props {
+  tool: Tool;
+}
+
+const { tool } = Astro.props;
+const stars = '★'.repeat(Math.floor(tool.rating)) + (tool.rating % 1 >= 0.5 ? '½' : '');
+const badgeClass = tool.pricingModel === 'free' ? 'badge-free' : tool.pricingModel === 'freemium' ? 'badge-freemium' : 'badge-paid';
+const catSlug = categoryNameToSlug(tool.category);
+---
+
+<a href={`/tool/${tool.slug}`} class="card tool-card">
+  <div class="tool-card-header">
+    <div>
+      <h3 class="tool-card-name">{tool.name}</h3>
+      <a href={`/category/${catSlug}`} class="tool-card-category">{tool.category}</a>
+    </div>
+    <span class={`badge ${badgeClass}`}>{tool.pricingModel}</span>
+  </div>
+  <p class="tool-card-desc">{tool.description}</p>
+  <div class="tool-card-footer">
+    <span class="stars">{stars} <span class="rating-num">{tool.rating}</span></span>
+    <span class="tool-card-pricing">{tool.pricing}</span>
+  </div>
+</a>
+
+<style>
+  .tool-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .tool-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .tool-card-name {
+    font-size: 1.125rem;
+    font-weight: 700;
+  }
+
+  .tool-card-category {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
+  .tool-card-category:hover {
+    color: var(--color-accent);
+  }
+
+  .tool-card-desc {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .tool-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .rating-num {
+    color: var(--color-text-muted);
+    font-size: 0.75rem;
+    margin-left: 0.25rem;
+  }
+
+  .tool-card-pricing {
+    color: var(--color-text-muted);
+    font-size: 0.75rem;
+  }
+</style>

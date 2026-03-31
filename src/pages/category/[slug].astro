@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ToolCard from '../../components/ToolCard.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import { categories, tools, categoryNameToSlug, getToolsByCategory } from '../../utils/tools';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return categories.map(cat => ({
+    params: { slug: categoryNameToSlug(cat.name) },
+    props: { category: cat },
+  }));
+};
+
+const { category } = Astro.props;
+const catTools = getToolsByCategory(category.name).sort((a, b) => b.rating - a.rating);
+---
+
+<BaseLayout title={`${category.name} — AI Tools Directory`} description={`Browse ${catTools.length} curated ${category.name.toLowerCase()} tools with honest reviews and pricing.`}>
+  <section class="section">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="/">Home</a> / <a href="/categories">Categories</a> / <span>{category.name}</span>
+      </nav>
+
+      <div class="cat-header">
+        <span class="cat-icon">{category.icon}</span>
+        <h1 class="section-title">{category.name}</h1>
+        <p class="section-subtitle">{category.description} — {catTools.length} tools</p>
+      </div>
+
+      <div class="tools-grid">
+        {catTools.map(tool => (
+          <ToolCard tool={tool} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <Newsletter compact />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .breadcrumb {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+  .breadcrumb a { color: var(--color-text-muted); }
+  .breadcrumb a:hover { color: var(--color-accent); }
+  .cat-header { margin-bottom: 2rem; }
+  .cat-icon { font-size: 3rem; margin-bottom: 0.5rem; display: block; }
+</style>

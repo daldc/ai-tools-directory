@@ -1,0 +1,298 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import ToolCard from '../../components/ToolCard.astro';
+import { tools, getToolBySlug, getToolsByCategory, categoryNameToSlug } from '../../utils/tools';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return tools.map(tool => ({
+    params: { slug: tool.slug },
+    props: { tool },
+  }));
+};
+
+const { tool } = Astro.props;
+const catSlug = categoryNameToSlug(tool.category);
+const related = getToolsByCategory(tool.category).filter(t => t.slug !== tool.slug).slice(0, 3);
+const stars = '★'.repeat(Math.floor(tool.rating)) + (tool.rating % 1 >= 0.5 ? '½' : '');
+const badgeClass = tool.pricingModel === 'free' ? 'badge-free' : tool.pricingModel === 'freemium' ? 'badge-freemium' : 'badge-paid';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": tool.name,
+  "description": tool.description,
+  "url": tool.url,
+  "applicationCategory": tool.category,
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": tool.rating,
+    "bestRating": 5,
+    "ratingCount": 1
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": tool.pricingModel === 'free' ? '0' : undefined,
+    "priceCurrency": "USD",
+    "description": tool.pricing
+  }
+};
+---
+
+<BaseLayout title={`${tool.name} — AI Tools Directory`} description={tool.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <section class="tool-detail">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb">
+        <a href="/">Home</a> / <a href="/categories">Categories</a> / <a href={`/category/${catSlug}`}>{tool.category}</a> / <span>{tool.name}</span>
+      </nav>
+
+      <div class="tool-hero">
+        <div class="tool-hero-main">
+          <div class="tool-title-row">
+            <h1 class="tool-name">{tool.name}</h1>
+            {tool.featured && <span class="featured-badge">⭐ Editor's Pick</span>}
+          </div>
+          <p class="tool-desc">{tool.description}</p>
+          <div class="tool-meta">
+            <span class="stars">{stars} <span class="rating-value">{tool.rating}/5</span></span>
+            <span class={`badge ${badgeClass}`}>{tool.pricingModel}</span>
+            <a href={`/category/${catSlug}`} class="tool-category-link">{tool.category}</a>
+          </div>
+          <div class="tool-actions">
+            <a href={tool.url} target="_blank" rel="noopener noreferrer" class="btn-primary">
+              Visit {tool.name} ↗
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-content">
+        <div class="tool-main">
+          <!-- Pricing -->
+          <div class="detail-card">
+            <h2>💰 Pricing</h2>
+            <p class="pricing-text">{tool.pricing}</p>
+          </div>
+
+          <!-- Features -->
+          <div class="detail-card">
+            <h2>✨ Key Features</h2>
+            <ul class="feature-list">
+              {tool.features.map((f: string) => (
+                <li>{f}</li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Pros & Cons -->
+          <div class="pros-cons">
+            <div class="detail-card pros">
+              <h2>👍 Pros</h2>
+              <ul>
+                {tool.pros.map((p: string) => (
+                  <li class="pro-item">✓ {p}</li>
+                ))}
+              </ul>
+            </div>
+            <div class="detail-card cons">
+              <h2>👎 Cons</h2>
+              <ul>
+                {tool.cons.map((c: string) => (
+                  <li class="con-item">✗ {c}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <aside class="tool-sidebar">
+          <Newsletter compact />
+        </aside>
+      </div>
+
+      <!-- Related Tools -->
+      {related.length > 0 && (
+        <section class="related">
+          <h2 class="section-title">More in {tool.category}</h2>
+          <div class="tools-grid">
+            {related.map(t => (
+              <ToolCard tool={t} />
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .tool-detail {
+    padding: 2rem 0;
+  }
+
+  .breadcrumb {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .breadcrumb a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--color-accent);
+  }
+
+  .tool-hero {
+    margin-bottom: 3rem;
+  }
+
+  .tool-title-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .tool-name {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .featured-badge {
+    background: rgba(245, 158, 11, 0.15);
+    color: #fbbf24;
+    padding: 0.375rem 0.875rem;
+    border-radius: 9999px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+  }
+
+  .tool-desc {
+    color: var(--color-text-muted);
+    font-size: 1.125rem;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+    max-width: 720px;
+  }
+
+  .tool-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .rating-value {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    margin-left: 0.25rem;
+  }
+
+  .tool-category-link {
+    color: var(--color-accent);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .tool-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .tool-content {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  @media (max-width: 768px) {
+    .tool-content {
+      grid-template-columns: 1fr;
+    }
+    .tool-name { font-size: 1.75rem; }
+  }
+
+  .detail-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .detail-card h2 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .pricing-text {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+
+  .feature-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .feature-list li {
+    background: rgba(99, 102, 241, 0.1);
+    color: #818cf8;
+    padding: 0.375rem 0.875rem;
+    border-radius: 8px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+  }
+
+  .pros-cons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 640px) {
+    .pros-cons { grid-template-columns: 1fr; }
+  }
+
+  .pros-cons ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .pro-item {
+    color: #4ade80;
+    font-size: 0.875rem;
+  }
+
+  .con-item {
+    color: #f87171;
+    font-size: 0.875rem;
+  }
+
+  .related {
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .related .section-title {
+    margin-bottom: 1.5rem;
+  }
+</style>
