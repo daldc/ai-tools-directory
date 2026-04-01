@@ -1,0 +1,42 @@
+---
+/**
+ * GumroadOverlay — Uses Gumroad's JS overlay for in-page checkout.
+ * The user stays on your site while the purchase modal opens.
+ * 
+ * Prerequisites:
+ *   - Gumroad JS loaded in Layout (see Layout.astro changes)
+ *   - Valid product short code from your Gumroad dashboard
+ */
+interface Props {
+  productCode?: string;
+  text?: string;
+  class?: string;
+}
+
+const {
+  productCode = "REPLACE_ME",
+  text = "Download Free Cheat Sheet",
+  class: className = "",
+} = Astro.props;
+---
+
+<a
+  class={`gumroad-button inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-medium text-base bg-gradient-to-r from-brand-teal to-brand-amber text-surface-950 hover:shadow-xl hover:shadow-brand-teal/25 hover:-translate-y-0.5 transition-all duration-200 ${className}`}
+  href={`https://aitoolsdir.gumroad.com/l/${productCode}`}
+  data-gumroad-overlay
+>
+  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+    <polyline points="7 10 12 15 17 10"></polyline>
+    <line x1="12" y1="15" x2="12" y2="3"></line>
+  </svg>
+  {text}
+</a>
+
+<!--
+  SETUP:
+  1. Replace "REPLACE_ME" with your Gumroad product's short code
+     (found in your product URL: gumroad.com/l/SHORT_CODE)
+  2. Make sure the Gumroad JS script is in your Layout.astro <head>
+  3. The `data-gumroad-overlay` attribute triggers the overlay behavior
+-->
