@@ -1,0 +1,141 @@
+---
+/**
+ * NewsletterSignup — Beehiiv-powered email signup component.
+ * 
+ * Two modes:
+ *   1. Iframe embed (default) — paste your Beehiiv embed URL, zero backend needed
+ *   2. Custom form — better UX, requires API proxy (see docs/beehiiv-setup-guide.md)
+ * 
+ * Usage:
+ *   <NewsletterSignup />
+ *   <NewsletterSignup embedUrl="https://embeds.beehiiv.com/your-id" />
+ *   <NewsletterSignup mode="custom" />
+ */
+interface Props {
+  mode?: "embed" | "custom";
+  embedUrl?: string;
+  heading?: string;
+  subheading?: string;
+  compact?: boolean;
+}
+
+const {
+  mode = "embed",
+  embedUrl = "",
+  heading = "Stay ahead of the curve",
+  subheading = "Get weekly updates on the best new AI tools, tips for marketers, and exclusive guides delivered to your inbox.",
+  compact = false,
+} = Astro.props;
+
+const hasEmbed = embedUrl.length > 0;
+---
+
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-brand-teal/5 via-transparent to-brand-amber/5 rounded-3xl"></div>
+  <div class="relative border border-surface-700/50 rounded-3xl p-8 md:p-12">
+    <div class="max-w-2xl mx-auto text-center">
+      {!compact && (
+        <>
+          <h2 class="font-display font-bold text-3xl md:text-4xl text-white mb-4">
+            {heading}
+          </h2>
+          <p class="text-zinc-400 text-lg mb-8 leading-relaxed">
+            {subheading}
+          </p>
+        </>
+      )}
+
+      {mode === "embed" && hasEmbed ? (
+        <!-- Beehiiv iframe embed — replace embedUrl with your real one -->
+        <div class="newsletter-embed max-w-md mx-auto">
+          <iframe
+            src={embedUrl}
+            data-test-id="beehiiv-embed"
+            width="100%"
+            height="320"
+            frameborder="0"
+            scrolling="no"
+            style="border-radius: 12px; margin: 0; background-color: transparent;"
+          ></iframe>
+        </div>
+      ) : (
+        <!-- Custom form fallback — works without Beehiiv embed URL -->
+        <div id="newsletter-form-container" class="max-w-md mx-auto">
+          <form id="newsletter-form" class="flex gap-3">
+            <input
+              type="email"
+              name="email"
+              placeholder="your@email.com"
+              required
+              class="flex-1 px-4 py-3 rounded-xl bg-surface-800 border border-surface-700 text-white placeholder-zinc-600 text-sm focus:outline-none focus:border-brand-teal/50 focus:ring-1 focus:ring-brand-teal/20 transition-all"
+            />
+            <button
+              type="submit"
+              id="newsletter-submit"
+              class="btn-primary whitespace-nowrap"
+            >
+              Subscribe
+            </button>
+          </form>
+          <p class="text-zinc-600 text-xs mt-3">Free forever. No spam. Unsubscribe anytime.</p>
+
+          <!-- Success state (hidden by default) -->
+          <div id="newsletter-success" class="hidden">
+            <div class="flex items-center justify-center gap-2 text-brand-teal">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+              <span class="font-medium">You're in! Check your inbox.</span>
+            </div>
+          </div>
+
+          <!-- Error state (hidden by default) -->
+          <div id="newsletter-error" class="hidden mt-2">
+            <p class="text-red-400 text-xs">Something went wrong. Please try again.</p>
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  // Custom form handler — connects to Beehiiv API via your serverless proxy
+  // Replace PROXY_URL with your API endpoint (e.g., /api/subscribe or a Netlify/Vercel function)
+  const PROXY_URL = "/api/subscribe"; 
+
+  const form = document.getElementById("newsletter-form");
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const email = form.querySelector('input[name="email"]').value;
+      const btn = document.getElementById("newsletter-submit");
+      const success = document.getElementById("newsletter-success");
+      const error = document.getElementById("newsletter-error");
+
+      btn.disabled = true;
+      btn.textContent = "Subscribing...";
+      error.classList.add("hidden");
+
+      try {
+        const res = await fetch(PROXY_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        });
+
+        if (res.ok) {
+          form.classList.add("hidden");
+          success.classList.remove("hidden");
+        } else {
+          throw new Error("Failed");
+        }
+      } catch (err) {
+        error.classList.remove("hidden");
+        btn.disabled = false;
+        btn.textContent = "Subscribe";
+      }
+    });
+  }
+</script>

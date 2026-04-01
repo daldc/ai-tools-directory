@@ -1,0 +1,46 @@
+---
+interface Props {
+  productUrl?: string;
+  text?: string;
+  variant?: "primary" | "outline";
+  class?: string;
+}
+
+const {
+  productUrl = "https://aitoolsdir.gumroad.com/l/REPLACE_ME",
+  text = "Get it free →",
+  variant = "primary",
+  class: className = "",
+} = Astro.props;
+
+const baseClasses = "gumroad-button inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-sm transition-all duration-200 cursor-pointer";
+const variantClasses = variant === "primary"
+  ? "bg-gradient-to-r from-brand-teal to-brand-teal/80 text-surface-950 hover:shadow-lg hover:shadow-brand-teal/20 hover:-translate-y-0.5"
+  : "border border-surface-700 text-white hover:border-brand-teal/50 hover:text-brand-teal";
+---
+
+<a
+  href={productUrl}
+  class={`${baseClasses} ${variantClasses} ${className}`}
+  data-gumroad-product-id
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+    <line x1="3" y1="6" x2="21" y2="6"></line>
+    <path d="M16 10a4 4 0 0 1-8 0"></path>
+  </svg>
+  {text}
+</a>
+
+<!-- 
+  SETUP: After creating your Gumroad account:
+  1. Replace the default productUrl with your real product link
+  2. To enable Gumroad's overlay checkout (instead of redirect), 
+     add the Gumroad JS to your Layout and use data-gumroad-overlay:
+     
+     <script src="https://gumroad.com/js/gumroad.js" is:inline></script>
+     
+     Then add class="gumroad-button" to the link (already included above).
+-->
