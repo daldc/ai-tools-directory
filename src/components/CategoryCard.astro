@@ -1,0 +1,24 @@
+---
+interface Props {
+  name: string;
+  slug: string;
+  description: string;
+  icon: string;
+  count: number;
+}
+
+const { name, slug, description, icon, count } = Astro.props;
+---
+
+<a href={`/categories/${slug}`} class="card-glow block p-6 group">
+  <div class="flex items-center gap-3 mb-3">
+    <span class="text-2xl">{icon}</span>
+    <span class="text-xs text-zinc-600 font-medium">{count} tools</span>
+  </div>
+  <h3 class="font-display font-semibold text-white mb-2 group-hover:text-brand-teal transition-colors">
+    {name}
+  </h3>
+  <p class="text-zinc-500 text-sm leading-relaxed line-clamp-2">
+    {description}
+  </p>
+</a>

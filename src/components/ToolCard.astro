@@ -1,0 +1,54 @@
+---
+import StarRating from "./StarRating.astro";
+import type { Tool } from "../data/tools";
+
+interface Props {
+  tool: Tool;
+}
+
+const { tool } = Astro.props;
+
+const pricingBadgeClass = {
+  free: "badge-free",
+  freemium: "badge-freemium",
+  paid: "badge-paid",
+}[tool.pricing];
+
+const pricingLabel = {
+  free: "Free",
+  freemium: tool.priceStarting ? `From ${tool.priceStarting}` : "Freemium",
+  paid: tool.priceStarting ? `From ${tool.priceStarting}` : "Paid",
+}[tool.pricing];
+---
+
+<a href={`/tools/${tool.slug}`} class="card-glow block p-6 group">
+  <div class="flex items-start justify-between mb-4">
+    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-surface-800 to-surface-700 flex items-center justify-center border border-surface-700/50">
+      <span class="font-display font-bold text-brand-teal text-lg">
+        {tool.name.charAt(0)}
+      </span>
+    </div>
+    <span class={`badge ${pricingBadgeClass}`}>{pricingLabel}</span>
+  </div>
+
+  <h3 class="font-display font-semibold text-white text-lg mb-2 group-hover:text-brand-teal transition-colors">
+    {tool.name}
+  </h3>
+
+  <p class="text-zinc-500 text-sm leading-relaxed mb-4 line-clamp-2">
+    {tool.description}
+  </p>
+
+  <div class="flex items-center justify-between">
+    <StarRating rating={tool.rating} />
+    <span class="text-xs text-zinc-600 font-medium">{tool.category}</span>
+  </div>
+
+  <div class="flex flex-wrap gap-1.5 mt-4">
+    {tool.tags.slice(0, 3).map((tag) => (
+      <span class="text-[10px] px-2 py-0.5 rounded-full bg-surface-800 text-zinc-500 border border-surface-700/30">
+        {tag}
+      </span>
+    ))}
+  </div>
+</a>

@@ -1,0 +1,119 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ToolCard from "../components/ToolCard.astro";
+import CategoryCard from "../components/CategoryCard.astro";
+import Newsletter from "../components/Newsletter.astro";
+import { tools, categories, getToolsByCategory } from "../data/tools";
+
+const featuredTools = tools.filter((t) => t.rating >= 4.6).slice(0, 8);
+const categoryData = categories.map((cat) => ({
+  ...cat,
+  count: getToolsByCategory(cat.name).length,
+}));
+---
+
+<Layout title="AI Tools Directory" description="Discover the best AI tools for marketing professionals. 100+ curated tools with ratings, pricing, and expert reviews.">
+
+  <!-- Hero -->
+  <section class="relative min-h-[85vh] flex items-center overflow-hidden">
+    <div class="gradient-mesh w-[600px] h-[600px] -top-40 -right-40 bg-brand-teal/8" style="animation: float 8s ease-in-out infinite;" aria-hidden="true"></div>
+    <div class="gradient-mesh w-[400px] h-[400px] top-1/2 -left-40 bg-brand-amber/6" style="animation: float 10s ease-in-out infinite 2s;" aria-hidden="true"></div>
+
+    <div class="max-w-7xl mx-auto px-6 py-24 relative z-10">
+      <div class="max-w-4xl">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-surface-700/50 bg-surface-900/50 text-xs text-zinc-400 mb-8">
+          <span class="w-2 h-2 rounded-full bg-brand-teal animate-pulse"></span>
+          100+ tools curated for marketers
+        </div>
+
+        <h1 class="font-display font-bold text-5xl md:text-7xl lg:text-8xl text-white leading-[0.95] mb-8 tracking-tight">
+          Find the<br />
+          <span class="text-gradient">perfect AI tool</span><br />
+          for your workflow
+        </h1>
+
+        <p class="text-xl md:text-2xl text-zinc-400 max-w-2xl leading-relaxed mb-10 font-light">
+          The most comprehensive directory of AI tools for marketing professionals.
+          Honest reviews, real pricing, zero fluff.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="/browse" class="btn-primary text-base px-8 py-4">
+            Browse All Tools →
+          </a>
+          <a href="/categories" class="btn-secondary text-base px-8 py-4">
+            Explore Categories
+          </a>
+        </div>
+      </div>
+
+      <div class="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2">
+        <div class="space-y-4">
+          <div class="card-glow p-4 w-52" style="transform: rotate(3deg); animation: float 6s ease-in-out infinite;">
+            <div class="text-3xl font-display font-bold text-brand-teal">103+</div>
+            <div class="text-xs text-zinc-500 mt-1">AI Tools Reviewed</div>
+          </div>
+          <div class="card-glow p-4 w-52" style="transform: rotate(-2deg); animation: float 7s ease-in-out infinite 1s;">
+            <div class="text-3xl font-display font-bold text-brand-amber">11</div>
+            <div class="text-xs text-zinc-500 mt-1">Categories</div>
+          </div>
+          <div class="card-glow p-4 w-52" style="transform: rotate(1deg); animation: float 8s ease-in-out infinite 0.5s;">
+            <div class="text-3xl font-display font-bold text-brand-coral">Free</div>
+            <div class="text-xs text-zinc-500 mt-1">Always Updated</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Tools -->
+  <section class="max-w-7xl mx-auto px-6 py-20">
+    <div class="flex items-end justify-between mb-12">
+      <div>
+        <h2 class="font-display font-bold text-3xl md:text-4xl text-white mb-3">
+          Top-rated tools
+        </h2>
+        <p class="text-zinc-500 text-lg">The highest-rated AI tools in our directory</p>
+      </div>
+      <a href="/browse" class="hidden md:inline-flex btn-secondary text-sm">
+        View All →
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {featuredTools.map((tool) => (
+        <ToolCard tool={tool} />
+      ))}
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="max-w-7xl mx-auto px-6 py-20">
+    <div class="text-center mb-12">
+      <h2 class="font-display font-bold text-3xl md:text-4xl text-white mb-3">
+        Browse by category
+      </h2>
+      <p class="text-zinc-500 text-lg max-w-xl mx-auto">
+        Find the right tool for every part of your marketing stack
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {categoryData.map((cat) => (
+        <CategoryCard
+          name={cat.name}
+          slug={cat.slug}
+          description={cat.description}
+          icon={cat.icon}
+          count={cat.count}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="max-w-4xl mx-auto px-6 py-20">
+    <Newsletter />
+  </section>
+
+</Layout>

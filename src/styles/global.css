@@ -1,0 +1,135 @@
+@import url("https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&f[]=general-sans@200,300,400,500,600,700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-teal: #0ff0e0;
+  --brand-teal-dark: #0cc8b8;
+  --brand-amber: #f5a623;
+  --brand-amber-light: #ffd580;
+  --brand-coral: #ff6b6b;
+  --surface-950: #09090b;
+  --surface-900: #18181b;
+  --surface-850: #1e1e22;
+  --surface-800: #27272a;
+  --surface-700: #3f3f46;
+  --noise-opacity: 0.03;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-surface-950 text-zinc-300 font-body;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: rgba(15, 240, 224, 0.25);
+    color: #fff;
+  }
+}
+
+@layer components {
+  .noise-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: var(--noise-opacity);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+  }
+
+  .gradient-mesh {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+  }
+
+  .card-glow {
+    @apply relative overflow-hidden rounded-2xl border border-surface-700/50 bg-surface-900/80 backdrop-blur-sm;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-glow:hover {
+    @apply border-brand-teal/30 shadow-lg;
+    box-shadow: 0 0 30px rgba(15, 240, 224, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium tracking-wide;
+  }
+
+  .badge-free {
+    @apply bg-emerald-500/15 text-emerald-400 border border-emerald-500/20;
+  }
+
+  .badge-freemium {
+    @apply bg-brand-amber/15 text-brand-amber border border-brand-amber/20;
+  }
+
+  .badge-paid {
+    @apply bg-brand-coral/15 text-brand-coral border border-brand-coral/20;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-display font-semibold text-sm tracking-wide;
+    @apply bg-brand-teal text-surface-950 hover:bg-brand-teal-dark;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 0 24px rgba(15, 240, 224, 0.3);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-display font-semibold text-sm tracking-wide;
+    @apply border border-surface-700 text-zinc-300 hover:border-brand-teal/50 hover:text-brand-teal;
+    transition: all 0.2s ease;
+  }
+
+  .star-filled {
+    color: var(--brand-amber);
+  }
+
+  .star-empty {
+    color: #3f3f46;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, var(--brand-teal) 0%, var(--brand-amber) 100%);
+  }
+
+  .category-chip {
+    @apply px-4 py-2 rounded-full text-sm font-medium border border-surface-700 text-zinc-400;
+    @apply hover:border-brand-teal/50 hover:text-brand-teal hover:bg-brand-teal/5;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .category-chip.active {
+    @apply border-brand-teal/50 text-brand-teal bg-brand-teal/10;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}

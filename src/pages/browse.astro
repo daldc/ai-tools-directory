@@ -1,0 +1,173 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ToolCard from "../components/ToolCard.astro";
+import Newsletter from "../components/Newsletter.astro";
+import { tools, categories } from "../data/tools";
+
+const allTools = [...tools].sort((a, b) => b.rating - a.rating);
+---
+
+<Layout title="Browse AI Tools" description="Browse 100+ curated AI tools for marketing professionals. Filter by category, pricing, and rating.">
+
+  <section class="max-w-7xl mx-auto px-6 pt-12 pb-6">
+    <h1 class="font-display font-bold text-4xl md:text-5xl text-white mb-3">
+      Browse Tools
+    </h1>
+    <p class="text-zinc-400 text-lg mb-10">
+      {allTools.length} tools across {categories.length} categories
+    </p>
+
+    <div class="space-y-6 mb-10">
+      <div class="relative max-w-md">
+        <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search tools..."
+          class="w-full pl-11 pr-4 py-3 rounded-xl bg-surface-900 border border-surface-700 text-white placeholder-zinc-600 text-sm focus:outline-none focus:border-brand-teal/50 focus:ring-1 focus:ring-brand-teal/20 transition-all"
+        />
+      </div>
+
+      <div class="flex flex-wrap gap-2" id="category-filters">
+        <button class="category-chip active" data-category="all">All</button>
+        {categories.map((cat) => (
+          <button class="category-chip" data-category={cat.slug}>
+            <span class="mr-1">{cat.icon}</span> {cat.name}
+          </button>
+        ))}
+      </div>
+
+      <div class="flex flex-wrap gap-3">
+        <select id="pricing-filter" class="px-4 py-2 rounded-xl bg-surface-900 border border-surface-700 text-sm text-zinc-400 focus:outline-none focus:border-brand-teal/50">
+          <option value="all">All Pricing</option>
+          <option value="free">Free</option>
+          <option value="freemium">Freemium</option>
+          <option value="paid">Paid</option>
+        </select>
+        <select id="sort-select" class="px-4 py-2 rounded-xl bg-surface-900 border border-surface-700 text-sm text-zinc-400 focus:outline-none focus:border-brand-teal/50">
+          <option value="rating">Sort by Rating</option>
+          <option value="name">Sort by Name</option>
+          <option value="category">Sort by Category</option>
+          <option value="pricing">Sort by Pricing</option>
+        </select>
+      </div>
+    </div>
+
+    <p id="results-count" class="text-sm text-zinc-600 mb-6"></p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" id="tools-grid">
+      {allTools.map((tool) => (
+        <div
+          class="tool-item"
+          data-name={tool.name.toLowerCase()}
+          data-category={categories.find((c) => c.name === tool.category)?.slug}
+          data-pricing={tool.pricing}
+          data-rating={tool.rating}
+          data-tags={tool.tags.join(",").toLowerCase()}
+          data-description={tool.description.toLowerCase()}
+        >
+          <ToolCard tool={tool} />
+        </div>
+      ))}
+    </div>
+
+    <div id="no-results" class="hidden text-center py-20">
+      <p class="text-zinc-500 text-lg">No tools match your filters.</p>
+      <button id="clear-filters" class="btn-secondary mt-4 text-sm">Clear Filters</button>
+    </div>
+  </section>
+
+  <section class="max-w-4xl mx-auto px-6 py-20">
+    <Newsletter />
+  </section>
+
+</Layout>
+
+<script>
+  const searchInput = document.getElementById("search-input") as HTMLInputElement;
+  const categoryBtns = document.querySelectorAll<HTMLButtonElement>("[data-category]");
+  const pricingFilter = document.getElementById("pricing-filter") as HTMLSelectElement;
+  const sortSelect = document.getElementById("sort-select") as HTMLSelectElement;
+  const toolsGrid = document.getElementById("tools-grid")!;
+  const resultsCount = document.getElementById("results-count")!;
+  const noResults = document.getElementById("no-results")!;
+
+  let activeCategory = "all";
+
+  function filterAndSort() {
+    const search = searchInput.value.toLowerCase().trim();
+    const pricing = pricingFilter.value;
+    const sort = sortSelect.value;
+    const items = Array.from(toolsGrid.querySelectorAll<HTMLElement>(".tool-item"));
+
+    let visible = 0;
+    items.forEach((item) => {
+      const name = item.dataset.name || "";
+      const cat = item.dataset.category || "";
+      const pr = item.dataset.pricing || "";
+      const tags = item.dataset.tags || "";
+      const desc = item.dataset.description || "";
+
+      const matchSearch = !search || name.includes(search) || tags.includes(search) || desc.includes(search);
+      const matchCategory = activeCategory === "all" || cat === activeCategory;
+      const matchPricing = pricing === "all" || pr === pricing;
+
+      if (matchSearch && matchCategory && matchPricing) {
+        item.style.display = "";
+        visible++;
+      } else {
+        item.style.display = "none";
+      }
+    });
+
+    const visibleItems = items.filter((i) => i.style.display !== "none");
+    visibleItems.sort((a, b) => {
+      switch (sort) {
+        case "rating":
+          return parseFloat(b.dataset.rating || "0") - parseFloat(a.dataset.rating || "0");
+        case "name":
+          return (a.dataset.name || "").localeCompare(b.dataset.name || "");
+        case "category":
+          return (a.dataset.category || "").localeCompare(b.dataset.category || "");
+        case "pricing": {
+          const order: Record<string, number> = { free: 0, freemium: 1, paid: 2 };
+          return (order[a.dataset.pricing || ""] ?? 3) - (order[b.dataset.pricing || ""] ?? 3);
+        }
+        default:
+          return 0;
+      }
+    });
+    visibleItems.forEach((item) => toolsGrid.appendChild(item));
+
+    resultsCount.textContent = `Showing ${visible} of ${items.length} tools`;
+    noResults.classList.toggle("hidden", visible > 0);
+    toolsGrid.classList.toggle("hidden", visible === 0);
+  }
+
+  searchInput.addEventListener("input", filterAndSort);
+  pricingFilter.addEventListener("change", filterAndSort);
+  sortSelect.addEventListener("change", filterAndSort);
+
+  categoryBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      categoryBtns.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      activeCategory = btn.dataset.category || "all";
+      filterAndSort();
+    });
+  });
+
+  document.getElementById("clear-filters")?.addEventListener("click", () => {
+    searchInput.value = "";
+    pricingFilter.value = "all";
+    sortSelect.value = "rating";
+    categoryBtns.forEach((b) => b.classList.remove("active"));
+    document.querySelector('[data-category="all"]')?.classList.add("active");
+    activeCategory = "all";
+    filterAndSort();
+  });
+
+  filterAndSort();
+</script>

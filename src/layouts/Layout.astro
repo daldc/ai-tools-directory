@@ -1,0 +1,121 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = "Discover the best AI tools for marketing professionals. Curated directory of 100+ tools across 11 categories with ratings, pricing, and expert reviews.",
+  canonicalUrl,
+  ogImage = "/og-image.png",
+} = Astro.props;
+
+const siteName = "AI Tools Directory";
+const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{fullTitle}</title>
+
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content={siteName} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://api.fontshare.com" />
+  </head>
+  <body>
+    <div class="noise-overlay" aria-hidden="true"></div>
+
+    <nav class="fixed top-0 w-full z-50 border-b border-surface-800/50 bg-surface-950/80 backdrop-blur-xl">
+      <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3 group">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-teal to-brand-amber flex items-center justify-center">
+            <span class="text-surface-950 font-display font-bold text-sm">AI</span>
+          </div>
+          <span class="font-display font-semibold text-lg text-white group-hover:text-brand-teal transition-colors">
+            ToolsDir
+          </span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+          <a href="/" class="text-sm text-zinc-400 hover:text-brand-teal transition-colors font-medium">Home</a>
+          <a href="/browse" class="text-sm text-zinc-400 hover:text-brand-teal transition-colors font-medium">Browse Tools</a>
+          <a href="/categories" class="text-sm text-zinc-400 hover:text-brand-teal transition-colors font-medium">Categories</a>
+        </div>
+
+        <a href="/browse" class="btn-primary text-xs px-4 py-2">
+          Explore Tools →
+        </a>
+      </div>
+    </nav>
+
+    <main class="pt-16">
+      <slot />
+    </main>
+
+    <footer class="border-t border-surface-800/50 mt-32">
+      <div class="max-w-7xl mx-auto px-6 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+          <div class="md:col-span-2">
+            <a href="/" class="flex items-center gap-3 mb-4">
+              <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-teal to-brand-amber flex items-center justify-center">
+                <span class="text-surface-950 font-display font-bold text-sm">AI</span>
+              </div>
+              <span class="font-display font-semibold text-lg text-white">ToolsDir</span>
+            </a>
+            <p class="text-zinc-500 text-sm max-w-md leading-relaxed">
+              A curated directory of the best AI tools for marketing professionals.
+              Updated regularly with honest reviews and pricing info.
+            </p>
+          </div>
+
+          <div>
+            <h4 class="font-display font-semibold text-white text-sm mb-4">Navigation</h4>
+            <ul class="space-y-2">
+              <li><a href="/" class="text-sm text-zinc-500 hover:text-brand-teal transition-colors">Home</a></li>
+              <li><a href="/browse" class="text-sm text-zinc-500 hover:text-brand-teal transition-colors">Browse Tools</a></li>
+              <li><a href="/categories" class="text-sm text-zinc-500 hover:text-brand-teal transition-colors">Categories</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-display font-semibold text-white text-sm mb-4">Categories</h4>
+            <ul class="space-y-2">
+              <li><a href="/categories/ai-assistants" class="text-sm text-zinc-500 hover:text-brand-teal transition-colors">AI Assistants</a></li>
+              <li><a href="/categories/coding-development" class="text-sm text-zinc-500 hover:text-brand-teal transition-colors">Coding & Dev</a></li>
+              <li><a href="/categories/image-design" class="text-sm text-zinc-500 hover:text-brand-teal transition-colors">Image & Design</a></li>
+              <li><a href="/categories/marketing" class="text-sm text-zinc-500 hover:text-brand-teal transition-colors">Marketing</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="border-t border-surface-800/50 mt-12 pt-8 text-center">
+          <p class="text-zinc-600 text-xs">
+            &copy; {new Date().getFullYear()} AI Tools Directory. Built for marketers who want to work smarter.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  @import "../styles/global.css";
+</style>
