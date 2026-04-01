@@ -10,7 +10,6 @@ products/utm-builder-template/
 ├── gumroad-listing.md           ← Sales copy, description, tags, settings
 ├── deliverable/                 ← Files the customer receives
 │   ├── UTM-Builder-Template.xlsx   ← The main template (5 tabs)
-│   ├── UTM-Builder-Template.csv    ← Fallback CSV version
 │   └── README.md                   ← User guide (included in download)
 └── assets/                      ← Marketing/preview materials
     └── product-preview.html        ← Product preview page (for screenshots)
