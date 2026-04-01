@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Guide: Top 10 AI Marketing Tools for 2026</title>
+  <meta name="description" content="Download the free guide to the top 10 AI tools every marketer needs in 2026. Ratings, pricing, and use cases included.">
+  <meta property="og:title" content="Top 10 AI Marketing Tools for 2026 — Free Guide">
+  <meta property="og:description" content="The definitive guide to AI tools for marketing professionals. Free PDF download.">
+  <meta property="og:type" content="website">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --border: #1e1e2e;
+      --accent: #6c5ce7;
+      --accent-glow: rgba(108, 92, 231, 0.3);
+      --text: #e8e8f0;
+      --text-muted: #8888a0;
+      --success: #00d2d3;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .hero {
+      position: relative;
+      padding: 80px 24px 60px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(108, 92, 231, 0.15);
+      border: 1px solid rgba(108, 92, 231, 0.3);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    h1 span {
+      background: linear-gradient(135deg, var(--accent), var(--success));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 540px;
+      margin: 0 auto 40px;
+      position: relative;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Form card */
+    .form-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 48px 40px;
+      max-width: 520px;
+      margin: 0 auto 80px;
+      position: relative;
+    }
+
+    .form-card h2 {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+
+    .form-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 28px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text-muted);
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 14px 16px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus {
+      border-color: var(--accent);
+    }
+
+    .form-group input::placeholder {
+      color: #555568;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 8px;
+    }
+
+    .btn:hover {
+      background: #5a4bd4;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px var(--accent-glow);
+    }
+
+    .form-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 14px;
+    }
+
+    /* What's inside */
+    .features {
+      margin-bottom: 80px;
+    }
+
+    .features h2 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 40px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+    }
+
+    .feature-item .icon {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+
+    .feature-item h3 {
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+
+    .feature-item p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* Tools preview */
+    .tools-preview {
+      margin-bottom: 80px;
+    }
+
+    .tools-preview h2 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+
+    .tools-preview > p {
+      text-align: center;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    .tool-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .tool-chip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .tool-chip .num {
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 700;
+      min-width: 20px;
+    }
+
+    /* Social proof */
+    .social-proof {
+      text-align: center;
+      margin-bottom: 80px;
+      padding: 40px 24px;
+      background: var(--surface);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .social-proof .stat-row {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .social-proof .stat {
+      text-align: center;
+    }
+
+    .social-proof .stat .number {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--success));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .social-proof .stat .label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding: 60px 20px 40px; }
+      .form-card { padding: 32px 24px; }
+      .social-proof .stat-row { gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="badge">Free PDF Guide</div>
+    <h1>Top 10 <span>AI Marketing Tools</span><br>for 2026</h1>
+    <p class="subtitle">Ratings, pricing, key features, and use cases — everything you need to pick the right AI tools for your marketing stack.</p>
+  </section>
+
+  <!-- Email Capture Form -->
+  <div class="container">
+    <div class="form-card">
+      <h2>Get the Free Guide</h2>
+      <p>Enter your email and we'll send you the PDF instantly. No spam, just tools.</p>
+
+      <!-- 
+        EMAIL CAPTURE INTEGRATION:
+        Replace this form with your Beehiiv embed or connect to your email provider.
+        Beehiiv embed: https://app.beehiiv.com/settings/publication/embed
+        After submission, redirect to the PDF download or serve it inline.
+      -->
+      <form id="lead-form" action="#" method="POST">
+        <div class="form-group">
+          <label for="name">First Name</label>
+          <input type="text" id="name" name="name" placeholder="Alex" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="alex@company.com" required>
+        </div>
+        <button type="submit" class="btn">Download Free Guide →</button>
+      </form>
+      <p class="form-note">No spam. Unsubscribe anytime. We respect your inbox.</p>
+    </div>
+
+    <!-- What's Inside -->
+    <section class="features">
+      <h2>What's Inside</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="icon">🏆</div>
+          <h3>Curated Top 10</h3>
+          <p>Hand-picked from our database of 95+ AI tools. Only the most impactful tools for marketing professionals made the cut.</p>
+        </div>
+        <div class="feature-item">
+          <div class="icon">💰</div>
+          <h3>Pricing Breakdown</h3>
+          <p>Real pricing tiers from free to enterprise. Know exactly what you're getting into before you commit.</p>
+        </div>
+        <div class="feature-item">
+          <div class="icon">🎯</div>
+          <h3>Use Case Matching</h3>
+          <p>"Best for" recommendations so you can skip the tools that aren't right for your role, team size, or budget.</p>
+        </div>
+        <div class="feature-item">
+          <div class="icon">⭐</div>
+          <h3>Honest Ratings</h3>
+          <p>Community-driven ratings and reviews. Pros and cons for every tool — no sponsored picks.</p>
+        </div>
+        <div class="feature-item">
+          <div class="icon">📊</div>
+          <h3>Comparison Table</h3>
+          <p>Side-by-side comparison of all 10 tools so you can make the right decision in minutes, not hours.</p>
+        </div>
+        <div class="feature-item">
+          <div class="icon">🗺️</div>
+          <h3>Stack Recommendations</h3>
+          <p>Pre-built tool stacks for solo marketers, growth teams, and enterprise — based on real-world usage.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tools Preview -->
+    <section class="tools-preview">
+      <h2>Tools Featured in the Guide</h2>
+      <p>From SEO to ad creative to email optimization — the tools that matter.</p>
+      <div class="tool-list">
+        <div class="tool-chip"><span class="num">01</span> Jasper</div>
+        <div class="tool-chip"><span class="num">02</span> HubSpot AI</div>
+        <div class="tool-chip"><span class="num">03</span> Surfer SEO</div>
+        <div class="tool-chip"><span class="num">04</span> Semrush AI</div>
+        <div class="tool-chip"><span class="num">05</span> AdCreative.ai</div>
+        <div class="tool-chip"><span class="num">06</span> Copy.ai</div>
+        <div class="tool-chip"><span class="num">07</span> Canva AI</div>
+        <div class="tool-chip"><span class="num">08</span> Anyword</div>
+        <div class="tool-chip"><span class="num">09</span> Seventh Sense</div>
+        <div class="tool-chip"><span class="num">10</span> OwlyWriter AI</div>
+      </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section class="social-proof">
+      <div class="stat-row">
+        <div class="stat">
+          <div class="number">95+</div>
+          <div class="label">AI Tools Reviewed</div>
+        </div>
+        <div class="stat">
+          <div class="number">11</div>
+          <div class="label">Categories Covered</div>
+        </div>
+        <div class="stat">
+          <div class="number">2026</div>
+          <div class="label">Updated for This Year</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      © 2026 <a href="https://aitoolsdirectory.org">AI Tools Directory</a>. All rights reserved.<br>
+      <a href="https://aitools.beehiiv.com">Newsletter</a> · <a href="https://aitools.gumroad.com">Gumroad Store</a>
+    </p>
+  </footer>
+
+  <script>
+    // Placeholder form handler — replace with Beehiiv or your email provider's JS
+    document.getElementById('lead-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+
+      // TODO: Replace with actual Beehiiv API call or embed form
+      // Example Beehiiv API integration:
+      // fetch('https://api.beehiiv.com/v2/publications/YOUR_PUB_ID/subscriptions', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_KEY' },
+      //   body: JSON.stringify({ email, utm_source: 'lead-magnet', utm_medium: 'top-10-guide' })
+      // })
+
+      alert(`Thanks, ${name}! Check your email for the download link.`);
+    });
+  </script>
+
+</body>
+</html>
