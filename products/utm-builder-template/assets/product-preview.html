@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UTM Builder & Campaign Naming Convention Template</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    min-height: 100vh;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 50%, #1a1a2e 100%);
+    padding: 80px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(16, 185, 129, 0.06) 0%, transparent 50%);
+    animation: float 20s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(1deg); }
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+
+  .badge {
+    display: inline-block;
+    background: rgba(59, 130, 246, 0.15);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    color: #60a5fa;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  h1 {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    font-size: 20px;
+    color: #94a3b8;
+    max-width: 650px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+  }
+
+  .price-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 12px 28px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+  }
+
+  .price { font-size: 36px; font-weight: 800; color: #10b981; }
+  .price-note { font-size: 14px; color: #6ee7b7; }
+
+  /* Spreadsheet preview */
+  .preview-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .laptop-frame {
+    background: #1e293b;
+    border-radius: 16px;
+    padding: 12px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
+
+  .laptop-bar {
+    display: flex;
+    gap: 6px;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+  }
+
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-red { background: #ef4444; }
+  .dot-yellow { background: #eab308; }
+  .dot-green { background: #22c55e; }
+
+  .spreadsheet {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 12px;
+    color: #1e293b;
+  }
+
+  .sheet-tabs {
+    display: flex;
+    background: #f1f5f9;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  .sheet-tab {
+    padding: 8px 16px;
+    font-size: 11px;
+    font-weight: 600;
+    border-right: 1px solid #e2e8f0;
+    color: #64748b;
+  }
+
+  .sheet-tab.active {
+    background: #fff;
+    color: #1e293b;
+    border-bottom: 2px solid #3b82f6;
+  }
+
+  .sheet-header {
+    background: #1B2A4A;
+    color: white;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.5px;
+  }
+
+  .sheet-subheader {
+    background: #E8F0FE;
+    color: #2D5F9A;
+    padding: 6px 16px;
+    font-size: 11px;
+    font-style: italic;
+    text-align: center;
+  }
+
+  table { width: 100%; border-collapse: collapse; }
+
+  th {
+    background: #1B2A4A;
+    color: white;
+    padding: 8px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 7px 10px;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+  }
+
+  tr:nth-child(even) td { background: #f8fafc; }
+  td.input { background: #FFF9E6 !important; }
+  td.url { color: #2563eb; font-size: 10px; }
+
+  /* Features */
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 0 20px;
+  }
+
+  .feature {
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 28px;
+  }
+
+  .feature-icon { font-size: 28px; margin-bottom: 12px; }
+  .feature h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: #f1f5f9; }
+  .feature p { font-size: 14px; color: #94a3b8; line-height: 1.5; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: #64748b;
+    font-size: 13px;
+  }
+
+  .footer a { color: #60a5fa; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-content">
+    <div class="badge">Google Sheets Template</div>
+    <h1>UTM Builder &<br>Campaign Naming Convention</h1>
+    <p class="subtitle">Stop guessing at UTM parameters. Build consistent, trackable campaign URLs in seconds — with auto-generated links and GA4 alignment built in.</p>
+    <div class="price-tag">
+      <span class="price">$19</span>
+      <span class="price-note">One-time purchase<br>Use forever</span>
+    </div>
+  </div>
+</div>
+
+<div class="preview-container" style="margin-top: -20px;">
+  <div class="laptop-frame">
+    <div class="laptop-bar">
+      <div class="dot dot-red"></div>
+      <div class="dot dot-yellow"></div>
+      <div class="dot dot-green"></div>
+    </div>
+    <div class="spreadsheet">
+      <div class="sheet-header">UTM BUILDER & LINK TAGGER</div>
+      <div class="sheet-subheader">Fill in the yellow columns → Tagged URL auto-generates in column G</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Base URL</th>
+            <th>utm_source</th>
+            <th>utm_medium</th>
+            <th>utm_campaign</th>
+            <th>utm_content</th>
+            <th style="min-width: 280px">Tagged URL ✨</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="input">https://example.com</td>
+            <td class="input">google</td>
+            <td class="input">cpc</td>
+            <td class="input">spring-sale-2026</td>
+            <td class="input">banner-728x90</td>
+            <td class="url">https://example.com?utm_source=google&utm_medium=cpc&utm_campaign=spring-sale-2026&utm_content=banner-728x90</td>
+          </tr>
+          <tr>
+            <td class="input">https://example.com/landing</td>
+            <td class="input">facebook</td>
+            <td class="input">paid-social</td>
+            <td class="input">spring-sale-2026</td>
+            <td class="input">carousel-ad-v1</td>
+            <td class="url">https://example.com/landing?utm_source=facebook&utm_medium=paid-social&utm_campaign=spring-sale-2026&utm_content=carousel-ad-v1</td>
+          </tr>
+          <tr>
+            <td class="input">https://example.com/blog</td>
+            <td class="input">linkedin</td>
+            <td class="input">organic-social</td>
+            <td class="input">thought-leadership</td>
+            <td class="input"></td>
+            <td class="url">https://example.com/blog?utm_source=linkedin&utm_medium=organic-social&utm_campaign=thought-leadership</td>
+          </tr>
+          <tr>
+            <td class="input">https://example.com/promo</td>
+            <td class="input">newsletter</td>
+            <td class="input">email</td>
+            <td class="input">april-digest</td>
+            <td class="input">cta-button</td>
+            <td class="url">https://example.com/promo?utm_source=newsletter&utm_medium=email&utm_campaign=april-digest&utm_content=cta-button</td>
+          </tr>
+          <tr>
+            <td class="input">https://example.com</td>
+            <td class="input">tiktok</td>
+            <td class="input">paid-social</td>
+            <td class="input">brand-awareness</td>
+            <td class="input">video-15s</td>
+            <td class="url">https://example.com?utm_source=tiktok&utm_medium=paid-social&utm_campaign=brand-awareness&utm_content=video-15s</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="sheet-tabs">
+        <div class="sheet-tab active">UTM Builder</div>
+        <div class="sheet-tab">Naming Convention</div>
+        <div class="sheet-tab">GA4 Channel Mapping</div>
+        <div class="sheet-tab">Bulk URL Builder</div>
+        <div class="sheet-tab">Quick Start Guide</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="features">
+  <div class="feature">
+    <div class="feature-icon">📊</div>
+    <h3>Auto-Generated URLs</h3>
+    <p>Fill in source, medium, and campaign — the tagged URL builds itself. No more manual string concatenation or copy-paste errors.</p>
+  </div>
+  <div class="feature">
+    <div class="feature-icon">📋</div>
+    <h3>Naming Convention Framework</h3>
+    <p>14 channel-specific examples covering Google Ads, Facebook, LinkedIn, TikTok, email, affiliates, and more. Your team stays consistent.</p>
+  </div>
+  <div class="feature">
+    <div class="feature-icon">🎯</div>
+    <h3>GA4 Channel Alignment</h3>
+    <p>Know exactly which utm_medium values map to each GA4 channel group. No more traffic showing up as "Other."</p>
+  </div>
+  <div class="feature">
+    <div class="feature-icon">⚡</div>
+    <h3>Bulk URL Builder</h3>
+    <p>Launching across 10 channels? Enter your base URL once and generate all tagged URLs simultaneously.</p>
+  </div>
+  <div class="feature">
+    <div class="feature-icon">✅</div>
+    <h3>Dropdown Menus</h3>
+    <p>Pre-built dropdown lists for sources and mediums prevent typos and keep your tracking clean from day one.</p>
+  </div>
+  <div class="feature">
+    <div class="feature-icon">🚀</div>
+    <h3>5-Minute Setup</h3>
+    <p>Works in Google Sheets (free) or Excel. Open it, start tagging. Quick Start Guide included for your whole team.</p>
+  </div>
+</div>
+
+<div class="footer">
+  <p>Built by <a href="https://aitoolsdirectory.com">AI Tools Directory</a> — helping marketers work smarter.</p>
+</div>
+
+</body>
+</html>
