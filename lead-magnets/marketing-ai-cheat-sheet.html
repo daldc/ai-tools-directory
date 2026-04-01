@@ -5,33 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The 2026 Marketing AI Tools Cheat Sheet</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  @import url("https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=general-sans@400,500,600,700&display=swap");
 
   :root {
-    --primary: #6C3CE1;
-    --primary-light: #EDE7FB;
-    --accent: #FF6B35;
-    --dark: #1A1A2E;
-    --gray-50: #F8F9FA;
-    --gray-100: #F1F3F5;
-    --gray-200: #E9ECEF;
-    --gray-500: #868E96;
-    --gray-700: #495057;
-    --gray-900: #212529;
-    --green: #2B8A3E;
-    --green-light: #EBFBEE;
-    --blue: #1971C2;
-    --blue-light: #E7F5FF;
-    --orange: #E67700;
-    --orange-light: #FFF9DB;
+    --brand-teal: #0ff0e0;
+    --brand-teal-dark: #0cc8b8;
+    --brand-teal-muted: rgba(15, 240, 224, 0.12);
+    --brand-amber: #f5a623;
+    --brand-amber-muted: rgba(245, 166, 35, 0.12);
+    --brand-coral: #ff6b6b;
+    --brand-coral-muted: rgba(255, 107, 107, 0.12);
+    --surface-950: #09090b;
+    --surface-900: #18181b;
+    --surface-850: #1e1e22;
+    --surface-800: #27272a;
+    --surface-700: #3f3f46;
+    --text-primary: #fafafa;
+    --text-secondary: #a1a1aa;
+    --text-muted: #71717a;
+    --emerald: #34d399;
+    --emerald-muted: rgba(52, 211, 153, 0.12);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    color: var(--gray-900);
-    background: #fff;
+    font-family: 'General Sans', -apple-system, sans-serif;
+    color: var(--text-secondary);
+    background: var(--surface-950);
     line-height: 1.5;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
@@ -39,7 +40,7 @@
 
   @page {
     size: letter;
-    margin: 0.5in;
+    margin: 0.4in;
   }
 
   .page {
@@ -50,94 +51,126 @@
 
   /* HEADER */
   .header {
-    background: linear-gradient(135deg, var(--primary) 0%, #4A1FB8 100%);
-    color: #fff;
-    padding: 2rem 2.5rem;
+    background: var(--surface-900);
+    border: 1px solid var(--surface-700);
     border-radius: 16px;
-    margin-bottom: 1.5rem;
+    padding: 2.25rem 2.5rem;
+    margin-bottom: 1.25rem;
     position: relative;
     overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -40px;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(15, 240, 224, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
   }
 
   .header::after {
     content: '';
     position: absolute;
-    top: -50%;
-    right: -10%;
-    width: 300px;
-    height: 300px;
-    background: rgba(255,255,255,0.05);
+    bottom: -60px;
+    left: 20%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(245, 166, 35, 0.06) 0%, transparent 70%);
     border-radius: 50%;
   }
 
+  .header-badge {
+    display: inline-block;
+    background: var(--brand-teal-muted);
+    color: var(--brand-teal);
+    font-family: 'General Sans', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 0.3rem 0.85rem;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.85rem;
+    border: 1px solid rgba(15, 240, 224, 0.15);
+    position: relative;
+    z-index: 1;
+  }
+
   .header h1 {
-    font-size: 1.75rem;
-    font-weight: 800;
+    font-family: 'Clash Display', sans-serif;
+    font-size: 1.85rem;
+    font-weight: 600;
     letter-spacing: -0.03em;
-    margin-bottom: 0.25rem;
+    color: var(--text-primary);
+    margin-bottom: 0.35rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header h1 span {
+    background: linear-gradient(135deg, var(--brand-teal) 0%, var(--brand-amber) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .header .subtitle {
-    font-size: 0.95rem;
-    opacity: 0.85;
+    font-size: 0.88rem;
+    color: var(--text-muted);
     font-weight: 400;
-  }
-
-  .header .badge {
-    display: inline-block;
-    background: var(--accent);
-    color: #fff;
-    font-size: 0.7rem;
-    font-weight: 700;
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.75rem;
+    max-width: 480px;
+    position: relative;
+    z-index: 1;
   }
 
   /* INTRO */
   .intro {
-    background: var(--gray-50);
-    border-left: 4px solid var(--primary);
-    padding: 1rem 1.25rem;
-    border-radius: 0 8px 8px 0;
-    margin-bottom: 1.5rem;
-    font-size: 0.85rem;
-    color: var(--gray-700);
+    background: var(--surface-900);
+    border-left: 3px solid var(--brand-teal);
+    padding: 0.85rem 1.15rem;
+    border-radius: 0 10px 10px 0;
+    margin-bottom: 1.15rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    border: 1px solid var(--surface-700);
+    border-left: 3px solid var(--brand-teal);
   }
 
-  .intro strong { color: var(--gray-900); }
+  .intro strong { color: var(--text-primary); }
 
   /* LEGEND */
   .legend {
     display: flex;
     gap: 1.25rem;
     flex-wrap: wrap;
-    margin-bottom: 1.25rem;
-    font-size: 0.75rem;
+    margin-bottom: 1.15rem;
+    font-size: 0.72rem;
+    color: var(--text-muted);
   }
 
   .legend-item {
     display: flex;
     align-items: center;
-    gap: 0.35rem;
+    gap: 0.4rem;
   }
 
   .legend-dot {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     display: inline-block;
   }
 
-  .legend-dot.free { background: var(--green); }
-  .legend-dot.freemium { background: var(--blue); }
-  .legend-dot.paid { background: var(--orange); }
+  .legend-dot.free { background: var(--emerald); }
+  .legend-dot.freemium { background: var(--brand-teal); }
+  .legend-dot.paid { background: var(--brand-amber); }
 
   /* CATEGORY SECTION */
   .category {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.15rem;
     page-break-inside: avoid;
   }
 
@@ -149,147 +182,180 @@
   }
 
   .category-icon {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .category-title {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--primary);
+    font-family: 'Clash Display', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--brand-teal);
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
   }
 
   .category-line {
     flex: 1;
     height: 1px;
-    background: var(--gray-200);
+    background: var(--surface-700);
   }
 
   /* TOOL CARDS */
   .tools-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.65rem;
+    gap: 0.6rem;
   }
 
   .tool-card {
-    border: 1px solid var(--gray-200);
-    border-radius: 10px;
-    padding: 0.85rem 1rem;
-    background: #fff;
-    transition: box-shadow 0.2s;
+    border: 1px solid var(--surface-700);
+    border-radius: 12px;
+    padding: 0.8rem 0.95rem;
+    background: var(--surface-900);
     position: relative;
+    transition: all 0.2s;
   }
 
   .tool-card:hover {
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border-color: rgba(15, 240, 224, 0.2);
+    box-shadow: 0 0 20px rgba(15, 240, 224, 0.04);
   }
 
   .tool-top {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.3rem;
   }
 
   .tool-name {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--gray-900);
+    font-family: 'Clash Display', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
   }
 
   .pricing-tag {
-    font-size: 0.65rem;
+    font-family: 'General Sans', sans-serif;
+    font-size: 0.6rem;
     font-weight: 600;
-    padding: 0.15rem 0.5rem;
-    border-radius: 12px;
+    padding: 0.15rem 0.55rem;
+    border-radius: 10px;
     white-space: nowrap;
+    letter-spacing: 0.02em;
   }
 
   .pricing-tag.free {
-    background: var(--green-light);
-    color: var(--green);
+    background: var(--emerald-muted);
+    color: var(--emerald);
+    border: 1px solid rgba(52, 211, 153, 0.15);
   }
 
   .pricing-tag.freemium {
-    background: var(--blue-light);
-    color: var(--blue);
+    background: var(--brand-teal-muted);
+    color: var(--brand-teal);
+    border: 1px solid rgba(15, 240, 224, 0.15);
   }
 
   .pricing-tag.paid {
-    background: var(--orange-light);
-    color: var(--orange);
+    background: var(--brand-amber-muted);
+    color: var(--brand-amber);
+    border: 1px solid rgba(245, 166, 35, 0.15);
   }
 
   .tool-usecase {
-    font-size: 0.78rem;
-    color: var(--gray-700);
-    margin-bottom: 0.3rem;
-    line-height: 1.4;
+    font-size: 0.74rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+    line-height: 1.45;
   }
 
   .tool-pricing-detail {
-    font-size: 0.72rem;
-    color: var(--gray-500);
+    font-size: 0.68rem;
+    color: var(--text-muted);
     margin-bottom: 0.3rem;
   }
 
   .tool-verdict {
-    font-size: 0.72rem;
+    font-family: 'General Sans', sans-serif;
+    font-size: 0.68rem;
     font-weight: 600;
-    color: var(--primary);
-    background: var(--primary-light);
-    padding: 0.2rem 0.5rem;
+    color: var(--brand-teal);
+    background: var(--brand-teal-muted);
+    padding: 0.2rem 0.55rem;
     border-radius: 6px;
     display: inline-block;
+    border: 1px solid rgba(15, 240, 224, 0.1);
   }
 
-  /* BOTTOM BANNER */
+  /* CTA BANNER */
   .cta-banner {
-    background: linear-gradient(135deg, var(--dark) 0%, #2D2D4E 100%);
-    color: #fff;
+    background: var(--surface-900);
+    border: 1px solid var(--surface-700);
     padding: 1.5rem 2rem;
-    border-radius: 12px;
-    margin-top: 1.5rem;
+    border-radius: 14px;
+    margin-top: 1.25rem;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--brand-teal), var(--brand-amber), var(--brand-coral));
   }
 
   .cta-banner h3 {
-    font-size: 1.1rem;
-    font-weight: 700;
+    font-family: 'Clash Display', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
     margin-bottom: 0.35rem;
   }
 
   .cta-banner p {
-    font-size: 0.82rem;
-    opacity: 0.8;
+    font-size: 0.78rem;
+    color: var(--text-muted);
     margin-bottom: 0.75rem;
   }
 
   .cta-link {
     display: inline-block;
-    background: var(--accent);
-    color: #fff;
-    font-size: 0.85rem;
-    font-weight: 700;
+    background: var(--brand-teal);
+    color: var(--surface-950);
+    font-family: 'Clash Display', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
     padding: 0.5rem 1.5rem;
-    border-radius: 8px;
+    border-radius: 10px;
     text-decoration: none;
+    letter-spacing: 0.02em;
   }
 
   .footer {
     text-align: center;
-    margin-top: 1rem;
-    font-size: 0.7rem;
-    color: var(--gray-500);
+    margin-top: 0.85rem;
+    font-size: 0.65rem;
+    color: var(--text-muted);
   }
 
-  /* PRINT */
+  .footer span {
+    background: linear-gradient(135deg, var(--brand-teal), var(--brand-amber));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
+  }
+
   @media print {
-    body { background: #fff; }
+    body { background: var(--surface-950); }
     .page { padding: 0; max-width: none; }
-    .tool-card:hover { box-shadow: none; }
+    .tool-card:hover { box-shadow: none; border-color: var(--surface-700); }
   }
 </style>
 </head>
@@ -297,27 +363,23 @@
 
 <div class="page">
 
-  <!-- HEADER -->
   <div class="header">
-    <div class="badge">Free Download — 2026 Edition</div>
-    <h1>The Marketing AI Tools Cheat Sheet</h1>
+    <div class="header-badge">Free Download — 2026 Edition</div>
+    <h1>The Marketing <span>AI Tools</span> Cheat Sheet</h1>
     <div class="subtitle">15 essential AI tools every marketer should know — with pricing, use cases, and honest recommendations.</div>
   </div>
 
-  <!-- INTRO -->
   <div class="intro">
-    <strong>How to use this:</strong> Each tool is rated by real-world marketing value, not hype. Pricing is current as of Q1 2026. 
-    Tools marked with a verdict are ones we've tested hands-on. <strong>Want weekly updates?</strong> These tools change fast — subscribe to the AI Tools Directory newsletter to stay current.
+    <strong>How to use this:</strong> Each tool is rated by real-world marketing value, not hype. Pricing is current as of Q1 2026.
+    Tools marked with a verdict are ones we've tested hands-on. <strong>Want weekly updates?</strong> Subscribe to the AI Tools Directory newsletter to stay current.
   </div>
 
-  <!-- LEGEND -->
   <div class="legend">
     <div class="legend-item"><span class="legend-dot free"></span> Free or generous free tier</div>
     <div class="legend-item"><span class="legend-dot freemium"></span> Freemium (free + paid plans)</div>
     <div class="legend-item"><span class="legend-dot paid"></span> Paid only</div>
   </div>
 
-  <!-- CONTENT CREATION -->
   <div class="category">
     <div class="category-header">
       <span class="category-icon">✍️</span>
@@ -325,7 +387,6 @@
       <span class="category-line"></span>
     </div>
     <div class="tools-grid">
-
       <div class="tool-card">
         <div class="tool-top">
           <span class="tool-name">ChatGPT (GPT-4o)</span>
@@ -335,7 +396,6 @@
         <div class="tool-pricing-detail">Free tier available · Plus $20/mo · Team $25/user/mo</div>
         <div class="tool-verdict">🏆 Best all-rounder for marketing teams</div>
       </div>
-
       <div class="tool-card">
         <div class="tool-top">
           <span class="tool-name">Jasper</span>
@@ -345,7 +405,6 @@
         <div class="tool-pricing-detail">Creator $49/mo · Pro $69/mo · Business custom</div>
         <div class="tool-verdict">Best for brand-consistent content at scale</div>
       </div>
-
       <div class="tool-card">
         <div class="tool-top">
           <span class="tool-name">Claude</span>
@@ -355,7 +414,6 @@
         <div class="tool-pricing-detail">Free tier · Pro $20/mo · Team $25/user/mo</div>
         <div class="tool-verdict">Best for long-form & strategy writing</div>
       </div>
-
       <div class="tool-card">
         <div class="tool-top">
           <span class="tool-name">Copy.ai</span>
@@ -365,11 +423,9 @@
         <div class="tool-pricing-detail">Free (2,000 words/mo) · Starter $49/mo · Advanced $249/mo</div>
         <div class="tool-verdict">Best for sales-focused copy workflows</div>
       </div>
-
     </div>
   </div>
 
-  <!-- VISUAL & DESIGN -->
   <div class="category">
     <div class="category-header">
       <span class="category-icon">🎨</span>
@@ -377,7 +433,6 @@
       <span class="category-line"></span>
     </div>
     <div class="tools-grid">
-
       <div class="tool-card">
         <div class="tool-top">
           <span class="tool-name">Canva Magic Studio</span>
@@ -387,7 +442,6 @@
         <div class="tool-pricing-detail">Free tier · Pro $13/mo · Teams $10/user/mo</div>
         <div class="tool-verdict">🏆 Best for non-designers who need pro visuals</div>
       </div>
-
       <div class="tool-card">
         <div class="tool-top">
           <span class="tool-name">Midjourney</span>
@@ -397,7 +451,6 @@
         <div class="tool-pricing-detail">Basic $10/mo · Standard $30/mo · Pro $60/mo</div>
         <div class="tool-verdict">Best image quality for brand visuals</div>
       </div>
-
       <div class="tool-card">
         <div class="tool-top">
           <span class="tool-name">Adobe Firefly</span>
@@ -407,11 +460,9 @@
         <div class="tool-pricing-detail">Free (25 credits/mo) · Premium $5/mo · Included in CC plans</div>
         <div class="tool-verdict">Best for teams already in Adobe ecosystem</div>
       </div>
-
     </div>
   </div>
 
-  <!-- SEO & ANALYTICS -->
   <div class="category">
     <div class="category-header">
       <span class="category-icon">📊</span>
@@ -419,7 +470,6 @@
       <span class="category-line"></span>
     </div>
     <div class="tools-grid">
-
       <div class="tool-card">
         <div class="tool-top">
           <span class="tool-name">Surfer SEO</span>
@@ -429,7 +479,6 @@
         <div class="tool-pricing-detail">Essential $89/mo · Scale $129/mo · Enterprise custom</div>
         <div class="tool-verdict">🏆 Best for content-driven SEO</div>
       </div>
-
       <div class="tool-card">
         <div class="tool-top">
           <span class="tool-name">Clearscope</span>
@@ -439,11 +488,9 @@
         <div class="tool-pricing-detail">Essentials $189/mo · Business $399/mo · Enterprise custom</div>
         <div class="tool-verdict">Best for enterprise content teams</div>
       </div>
-
     </div>
   </div>
 
-  <!-- SOCIAL MEDIA & SCHEDULING -->
   <div class="category">
     <div class="category-header">
       <span class="category-icon">📱</span>
@@ -451,7 +498,6 @@
       <span class="category-line"></span>
     </div>
     <div class="tools-grid">
-
       <div class="tool-card">
         <div class="tool-top">
           <span class="tool-name">Buffer AI Assistant</span>
@@ -461,7 +507,6 @@
         <div class="tool-pricing-detail">Free (3 channels) · Essentials $6/ch/mo · Team $12/ch/mo</div>
         <div class="tool-verdict">Best value for small teams & solopreneurs</div>
       </div>
-
       <div class="tool-card">
         <div class="tool-top">
           <span class="tool-name">Lately</span>
@@ -471,11 +516,9 @@
         <div class="tool-pricing-detail">Starter $49/mo · Pro $119/mo · Enterprise custom</div>
         <div class="tool-verdict">Best for repurposing long-form → social</div>
       </div>
-
     </div>
   </div>
 
-  <!-- EMAIL & AUTOMATION -->
   <div class="category">
     <div class="category-header">
       <span class="category-icon">📧</span>
@@ -483,7 +526,6 @@
       <span class="category-line"></span>
     </div>
     <div class="tools-grid">
-
       <div class="tool-card">
         <div class="tool-top">
           <span class="tool-name">Klaviyo AI</span>
@@ -493,7 +535,6 @@
         <div class="tool-pricing-detail">Free (250 contacts) · Email from $20/mo · SMS add-on</div>
         <div class="tool-verdict">🏆 Best for e-commerce email marketing</div>
       </div>
-
       <div class="tool-card">
         <div class="tool-top">
           <span class="tool-name">Seventh Sense</span>
@@ -503,11 +544,9 @@
         <div class="tool-pricing-detail">HubSpot from $80/mo · Marketo from $450/mo</div>
         <div class="tool-verdict">Best add-on for HubSpot email teams</div>
       </div>
-
     </div>
   </div>
 
-  <!-- VIDEO & AUDIO -->
   <div class="category">
     <div class="category-header">
       <span class="category-icon">🎬</span>
@@ -515,7 +554,6 @@
       <span class="category-line"></span>
     </div>
     <div class="tools-grid">
-
       <div class="tool-card">
         <div class="tool-top">
           <span class="tool-name">Descript</span>
@@ -525,7 +563,6 @@
         <div class="tool-pricing-detail">Free (1 hr/mo) · Hobbyist $24/mo · Business $33/mo</div>
         <div class="tool-verdict">🏆 Best for marketers who create video/podcast content</div>
       </div>
-
       <div class="tool-card">
         <div class="tool-top">
           <span class="tool-name">Synthesia</span>
@@ -535,11 +572,9 @@
         <div class="tool-pricing-detail">Starter $22/mo · Creator $67/mo · Enterprise custom</div>
         <div class="tool-verdict">Best for scalable video without production</div>
       </div>
-
     </div>
   </div>
 
-  <!-- CTA BANNER -->
   <div class="cta-banner">
     <h3>This cheat sheet is already outdated. 😅</h3>
     <p>AI tools change weekly. Get the latest picks, pricing updates, and new tool drops delivered to your inbox every Tuesday.</p>
@@ -547,7 +582,7 @@
   </div>
 
   <div class="footer">
-    © 2026 AI Tools Directory · Updated Q1 2026 · Share freely, credit appreciated.
+    © 2026 <span>AI Tools Directory</span> · Updated Q1 2026 · Share freely, credit appreciated.
   </div>
 
 </div>
