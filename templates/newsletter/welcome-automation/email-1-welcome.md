@@ -31,7 +31,7 @@ I put together a guide covering 15 AI tools every marketer should know — with 
 
 The full directory has 100+ tools across 11 categories. Searchable, filterable, no login required.
 
-👉 **[Browse the AI Tools Directory →](https://ai-tools-directory-nine-ashy.vercel.app/browse?utm_source=beehiiv&utm_medium=email&utm_campaign=welcome-sequence&utm_content=email-1-directory)**
+👉 **[Browse the AI Tools Directory →](https://aitoolsdirectory.com/browse?utm_source=beehiiv&utm_medium=email&utm_campaign=welcome-sequence&utm_content=email-1-directory)**
 
 Over the next few days, I'll send you a couple more emails with my best tool recommendations and a resource that saves my team hours every week. After that, you'll just get the regular Tuesday newsletter.
 
