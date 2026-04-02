@@ -1,8 +1,20 @@
 ---
+/**
+ * Newsletter — inline newsletter signup that POSTs to /api/subscribe (Beehiiv).
+ *
+ * Props:
+ *   utmSource  — override the default UTM source tag (default: "ai_tools_directory")
+ *   utmCampaign — override the default UTM campaign tag (default: "signup_form")
+ */
+interface Props {
+  utmSource?: string;
+  utmCampaign?: string;
+}
 
+const { utmSource = "ai_tools_directory", utmCampaign = "signup_form" } = Astro.props;
 ---
 
-<section class="relative overflow-hidden">
+<section class="relative overflow-hidden" data-utm-source={utmSource} data-utm-campaign={utmCampaign}>
   <div class="absolute inset-0 bg-gradient-to-br from-brand-teal/5 via-transparent to-brand-amber/5 rounded-3xl"></div>
   <div class="relative border border-surface-700/50 rounded-3xl p-8 md:p-12">
     <div class="max-w-2xl mx-auto text-center">
@@ -13,19 +25,95 @@
         Get weekly updates on the best new AI tools, tips for marketers, and exclusive guides delivered to your inbox.
       </p>
 
-      <div id="beehiiv-embed" class="max-w-md mx-auto">
-        <form class="flex gap-3" onsubmit="return false;">
+      <div class="max-w-md mx-auto">
+        <!-- Signup form -->
+        <form id="newsletter-inline-form" class="flex gap-3">
           <input
             type="email"
+            name="email"
             placeholder="your@email.com"
+            required
             class="flex-1 px-4 py-3 rounded-xl bg-surface-800 border border-surface-700 text-white placeholder-zinc-600 text-sm focus:outline-none focus:border-brand-teal/50 focus:ring-1 focus:ring-brand-teal/20 transition-all"
           />
-          <button type="submit" class="btn-primary whitespace-nowrap">
+          <button
+            type="submit"
+            id="newsletter-inline-btn"
+            class="btn-primary whitespace-nowrap"
+          >
             Subscribe
           </button>
         </form>
-        <p class="text-zinc-600 text-xs mt-3">Free forever. No spam. Unsubscribe anytime.</p>
+        <p id="newsletter-inline-hint" class="text-zinc-600 text-xs mt-3">Free forever. No spam. Unsubscribe anytime.</p>
+
+        <!-- Success state -->
+        <div id="newsletter-inline-success" class="hidden">
+          <div class="flex items-center justify-center gap-2 text-brand-teal">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            <span class="font-medium">You're in! Check your inbox.</span>
+          </div>
+        </div>
+
+        <!-- Error state -->
+        <div id="newsletter-inline-error" class="hidden mt-2">
+          <p class="text-red-400 text-xs"></p>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<script is:inline>
+(function () {
+  const form = document.getElementById("newsletter-inline-form");
+  if (!form) return;
+
+  const section = form.closest("section");
+  const utmSource = section?.dataset.utmSource || "ai_tools_directory";
+  const utmCampaign = section?.dataset.utmCampaign || "signup_form";
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = form.querySelector('input[name="email"]').value;
+    const btn = document.getElementById("newsletter-inline-btn");
+    const hint = document.getElementById("newsletter-inline-hint");
+    const success = document.getElementById("newsletter-inline-success");
+    const errorEl = document.getElementById("newsletter-inline-error");
+    const errorMsg = errorEl?.querySelector("p");
+
+    btn.disabled = true;
+    btn.textContent = "Subscribing...";
+    errorEl.classList.add("hidden");
+
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          utm_source: utmSource,
+          utm_medium: "website",
+          utm_campaign: utmCampaign,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        form.classList.add("hidden");
+        hint.classList.add("hidden");
+        success.classList.remove("hidden");
+      } else {
+        throw new Error(data.error || "Signup failed");
+      }
+    } catch (err) {
+      errorMsg.textContent = err.message || "Something went wrong. Please try again.";
+      errorEl.classList.remove("hidden");
+      btn.disabled = false;
+      btn.textContent = "Subscribe";
+    }
+  });
+})();
+</script>

@@ -1,15 +1,15 @@
 ---
 /**
  * NewsletterSignup — Beehiiv-powered email signup component.
- * 
+ *
  * Two modes:
- *   1. Iframe embed (default) — paste your Beehiiv embed URL, zero backend needed
- *   2. Custom form — better UX, requires API proxy (see docs/beehiiv-setup-guide.md)
- * 
+ *   1. Iframe embed — paste your Beehiiv embed URL, zero backend needed
+ *   2. Custom form (default) — better UX, uses /api/subscribe proxy
+ *
  * Usage:
  *   <NewsletterSignup />
  *   <NewsletterSignup embedUrl="https://embeds.beehiiv.com/your-id" />
- *   <NewsletterSignup mode="custom" />
+ *   <NewsletterSignup utmSource="gumroad" utmCampaign="cheatsheet_upsell" />
  */
 interface Props {
   mode?: "embed" | "custom";
@@ -17,20 +17,24 @@ interface Props {
   heading?: string;
   subheading?: string;
   compact?: boolean;
+  utmSource?: string;
+  utmCampaign?: string;
 }
 
 const {
-  mode = "embed",
+  mode = "custom",
   embedUrl = "",
   heading = "Stay ahead of the curve",
   subheading = "Get weekly updates on the best new AI tools, tips for marketers, and exclusive guides delivered to your inbox.",
   compact = false,
+  utmSource = "ai_tools_directory",
+  utmCampaign = "signup_form",
 } = Astro.props;
 
-const hasEmbed = embedUrl.length > 0;
+const hasEmbed = mode === "embed" && embedUrl.length > 0;
 ---
 
-<section class="relative overflow-hidden">
+<section class="relative overflow-hidden" data-utm-source={utmSource} data-utm-campaign={utmCampaign}>
   <div class="absolute inset-0 bg-gradient-to-br from-brand-teal/5 via-transparent to-brand-amber/5 rounded-3xl"></div>
   <div class="relative border border-surface-700/50 rounded-3xl p-8 md:p-12">
     <div class="max-w-2xl mx-auto text-center">
@@ -45,8 +49,7 @@ const hasEmbed = embedUrl.length > 0;
         </>
       )}
 
-      {mode === "embed" && hasEmbed ? (
-        <!-- Beehiiv iframe embed — replace embedUrl with your real one -->
+      {hasEmbed ? (
         <div class="newsletter-embed max-w-md mx-auto">
           <iframe
             src={embedUrl}
@@ -59,9 +62,8 @@ const hasEmbed = embedUrl.length > 0;
           ></iframe>
         </div>
       ) : (
-        <!-- Custom form fallback — works without Beehiiv embed URL -->
-        <div id="newsletter-form-container" class="max-w-md mx-auto">
-          <form id="newsletter-form" class="flex gap-3">
+        <div class="newsletter-signup-container max-w-md mx-auto">
+          <form class="newsletter-signup-form flex gap-3">
             <input
               type="email"
               name="email"
@@ -71,16 +73,14 @@ const hasEmbed = embedUrl.length > 0;
             />
             <button
               type="submit"
-              id="newsletter-submit"
-              class="btn-primary whitespace-nowrap"
+              class="newsletter-signup-btn btn-primary whitespace-nowrap"
             >
               Subscribe
             </button>
           </form>
-          <p class="text-zinc-600 text-xs mt-3">Free forever. No spam. Unsubscribe anytime.</p>
+          <p class="newsletter-signup-hint text-zinc-600 text-xs mt-3">Free forever. No spam. Unsubscribe anytime.</p>
 
-          <!-- Success state (hidden by default) -->
-          <div id="newsletter-success" class="hidden">
+          <div class="newsletter-signup-success hidden">
             <div class="flex items-center justify-center gap-2 text-brand-teal">
               <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
@@ -90,9 +90,8 @@ const hasEmbed = embedUrl.length > 0;
             </div>
           </div>
 
-          <!-- Error state (hidden by default) -->
-          <div id="newsletter-error" class="hidden mt-2">
-            <p class="text-red-400 text-xs">Something went wrong. Please try again.</p>
+          <div class="newsletter-signup-error hidden mt-2">
+            <p class="text-red-400 text-xs"></p>
           </div>
         </div>
       )}
@@ -101,41 +100,54 @@ const hasEmbed = embedUrl.length > 0;
 </section>
 
 <script is:inline>
-  // Custom form handler — connects to Beehiiv API via your serverless proxy
-  // Replace PROXY_URL with your API endpoint (e.g., /api/subscribe or a Netlify/Vercel function)
-  const PROXY_URL = "/api/subscribe"; 
-
-  const form = document.getElementById("newsletter-form");
-  if (form) {
-    form.addEventListener("submit", async (e) => {
+(function () {
+  document.querySelectorAll(".newsletter-signup-form").forEach(function (form) {
+    form.addEventListener("submit", async function (e) {
       e.preventDefault();
+      const container = form.closest(".newsletter-signup-container");
+      const section = form.closest("section");
+      const utmSource = section?.dataset.utmSource || "ai_tools_directory";
+      const utmCampaign = section?.dataset.utmCampaign || "signup_form";
+
       const email = form.querySelector('input[name="email"]').value;
-      const btn = document.getElementById("newsletter-submit");
-      const success = document.getElementById("newsletter-success");
-      const error = document.getElementById("newsletter-error");
+      const btn = container.querySelector(".newsletter-signup-btn");
+      const hint = container.querySelector(".newsletter-signup-hint");
+      const success = container.querySelector(".newsletter-signup-success");
+      const errorEl = container.querySelector(".newsletter-signup-error");
+      const errorMsg = errorEl?.querySelector("p");
 
       btn.disabled = true;
       btn.textContent = "Subscribing...";
-      error.classList.add("hidden");
+      errorEl.classList.add("hidden");
 
       try {
-        const res = await fetch(PROXY_URL, {
+        const res = await fetch("/api/subscribe", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email }),
+          body: JSON.stringify({
+            email,
+            utm_source: utmSource,
+            utm_medium: "website",
+            utm_campaign: utmCampaign,
+          }),
         });
+
+        const data = await res.json();
 
         if (res.ok) {
           form.classList.add("hidden");
+          if (hint) hint.classList.add("hidden");
           success.classList.remove("hidden");
         } else {
-          throw new Error("Failed");
+          throw new Error(data.error || "Signup failed");
         }
       } catch (err) {
-        error.classList.remove("hidden");
+        if (errorMsg) errorMsg.textContent = err.message || "Something went wrong. Please try again.";
+        errorEl.classList.remove("hidden");
         btn.disabled = false;
         btn.textContent = "Subscribe";
       }
     });
-  }
+  });
+})();
 </script>
