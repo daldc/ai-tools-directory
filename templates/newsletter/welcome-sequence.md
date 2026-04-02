@@ -1,5 +1,7 @@
 # Welcome Email Sequence — The AI Marketing Stack
 
+> **Note:** The Beehiiv automation-ready templates are in [`welcome-automation/`](./welcome-automation/). The sequence below is the original content draft for reference.
+
 Three emails. Spaced out. Each one delivers value, not just "thanks for subscribing."
 
 ---
