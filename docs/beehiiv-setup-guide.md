@@ -2,31 +2,32 @@
 
 > **Time estimate:** ~15 minutes  
 > **Prerequisites:** Email address  
-> **Status:** Manual steps required (account creation needs human login)
+> **Status:** Manual steps required (account creation needs human login)  
+> **Branding:** See [beehiiv-branding-config.md](./beehiiv-branding-config.md) for full color palette, logo specs, and email templates
 
 ## 1. Create Your Beehiiv Account
 
 1. Go to [beehiiv.com](https://www.beehiiv.com) and click **Start for free**
 2. Sign up with your email
 3. Choose the **Launch** plan (free — up to 2,500 subscribers, more than enough to start)
-4. Publication name: **AI Tools Directory** (or "ToolsDir Weekly")
+4. Publication name: **The AI Marketing Stack**
 
 ## 2. Configure Publication Settings
 
 1. **Settings → General:**
-   - Publication name: "AI Tools Directory"
-   - Description: "Weekly AI tool recommendations, tips, and guides for marketing professionals"
+   - Publication name: "The AI Marketing Stack"
+   - Description: "Honest AI tool reviews, pricing breakdowns, and templates for marketing teams. Every Tuesday."
    - Website URL: Your AI Tools Directory URL
    - Logo: Upload the site logo
    - Favicon: Upload matching favicon
    
 2. **Settings → Publication Details:**
-   - From name: "Dallas at AI Tools Directory" (personal = higher open rates)
+   - From name: "Dallas" (personal = higher open rates, see branding doc for rationale)
    - Reply-to email: your email
    - Sender email: Will be `@mail.beehiiv.com` on free plan (custom domain available on paid)
 
 3. **Settings → Design:**
-   - Primary color: `#2DD4BF` (brand-teal)
+   - Primary color: `#0ff0e0` (brand-teal — see [branding config](./beehiiv-branding-config.md) for full palette)
    - Background: Dark theme if available, or keep default
    - Font: Clean sans-serif (Inter or similar)
 
