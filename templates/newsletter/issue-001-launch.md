@@ -13,7 +13,7 @@ That's why I built the **AI Tools Directory**. After 11 years in marketing analy
 
 Whether you're a marketing manager exploring AI for the first time or an ops lead looking to automate reporting, this directory respects your time.
 
-👉 **[Browse the Full Directory →](https://ai-tools-directory-nine-ashy.vercel.app/browse)**
+👉 **[Browse the Full Directory →](https://aitoolsdirectory.com/browse)**
 
 ---
 
