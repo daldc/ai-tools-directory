@@ -10,7 +10,7 @@
 export const SITE_URL =
   import.meta.env.SITE_URL ||
   import.meta.env.PUBLIC_SITE_URL ||
-  "https://ai-tools-directory-nine-ashy.vercel.app";
+  "https://marketingstackai.com";
 
 /** Browse page URL (for use in templates and emails) */
 export const BROWSE_URL = `${SITE_URL}/browse`;
