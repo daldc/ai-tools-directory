@@ -1,0 +1,12 @@
+{
+  "name": "marketing-report-template",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Generator for the Marketing Report Template XLSX",
+  "scripts": {
+    "generate": "node generate-template.js"
+  },
+  "dependencies": {
+    "exceljs": "^4.4.0"
+  }
+}

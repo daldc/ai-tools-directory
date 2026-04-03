@@ -6,3 +6,4 @@ dist/
 .env
 .env.local
 .env.production
+products/marketing-report-template/node_modules/
