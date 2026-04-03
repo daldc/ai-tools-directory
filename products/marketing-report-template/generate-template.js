@@ -5,6 +5,7 @@
  * Output: deliverable/Marketing-Report-Template.xlsx
  */
 const ExcelJS = require('exceljs');
+const fs = require('fs');
 const path = require('path');
 
 const OUTPUT = path.join(__dirname, 'deliverable', 'Marketing-Report-Template.xlsx');
@@ -95,20 +96,24 @@ async function main() {
   const kpiHeaders = ['', 'Metric', 'Current Period', 'Previous Period', 'Change', '% Change', 'Status'];
   setRow(ws1, 6, kpiHeaders, { font: { ...headerFont, size: 10 }, fill: headerFill });
 
-  const kpis = [
-    ['Total Spend', '$0', '$0', '$0', '0%', '🟢'],
-    ['Total Revenue', '$0', '$0', '$0', '0%', '🟢'],
-    ['ROAS', '0.0x', '0.0x', '0.0x', '0%', '🟡'],
-    ['Total Conversions', '0', '0', '0', '0%', '🟢'],
-    ['Avg. CPA', '$0', '$0', '$0', '0%', '🔴'],
-    ['Website Sessions', '0', '0', '0', '0%', '🟢'],
-    ['Conversion Rate', '0%', '0%', '0pp', '0%', '🟡'],
+  const kpiNames = [
+    'Total Spend', 'Total Revenue', 'ROAS', 'Total Conversions',
+    'Avg. CPA', 'Website Sessions', 'Conversion Rate',
   ];
 
-  kpis.forEach((kpi, i) => {
+  kpiNames.forEach((name, i) => {
     const r = 7 + i;
-    setRow(ws1, r, ['', ...kpi], { font: bodyFont, fill: i % 2 === 0 ? whiteFill : altRowFill });
+    const fill = i % 2 === 0 ? whiteFill : altRowFill;
+    // Cols: B=Metric, C=Current, D=Previous, E=Change, F=% Change, G=Status
+    setRow(ws1, r, ['', name, 0, 0, '', '', ''], { font: bodyFont, fill });
     ws1.getCell(r, 2).font = { ...bodyFont, bold: true };
+    // Change = Current - Previous
+    ws1.getCell(r, 5).value = { formula: `C${r}-D${r}` };
+    // % Change = (Current - Previous) / Previous
+    ws1.getCell(r, 6).value = { formula: `IF(D${r}=0,0,(C${r}-D${r})/D${r})` };
+    ws1.getCell(r, 6).numFmt = '0.0%';
+    // Status: auto based on % change
+    ws1.getCell(r, 7).value = { formula: `IF(F${r}>=0.05,"🟢",IF(F${r}>=-0.05,"🟡","🔴"))` };
   });
 
   // Narrative section
@@ -173,20 +178,42 @@ async function main() {
   channels.forEach((ch, i) => {
     const r = 6 + i;
     const fill = i % 2 === 0 ? whiteFill : altRowFill;
-    setRow(ws2, r, ['', ch, '$0', '0', '0', '0.0%', '0', '0.0%', '$0', '0.0x', ''], { font: bodyFont, fill });
+    setRow(ws2, r, ['', ch, 0, 0, 0, '', 0, '', 0, '', ''], { font: bodyFont, fill });
     ws2.getCell(r, 2).font = { ...bodyFont, bold: true };
-    // CTR formula hint
-    ws2.getCell(r, 6).note = 'Formula: Clicks ÷ Impressions × 100';
-    ws2.getCell(r, 8).note = 'Formula: Conversions ÷ Clicks × 100';
-    ws2.getCell(r, 10).note = 'Formula: Revenue ÷ Spend';
+    // Spend, Impressions, Clicks, Conversions, Revenue are input cells (cols C,D,E,G,I)
+    ws2.getCell(r, 3).numFmt = '$#,##0.00';
+    ws2.getCell(r, 9).numFmt = '$#,##0.00';
+    // CTR = Clicks / Impressions (col F = E/D)
+    ws2.getCell(r, 6).value = { formula: `IF(D${r}=0,0,E${r}/D${r})` };
+    ws2.getCell(r, 6).numFmt = '0.00%';
+    // Conv Rate = Conversions / Clicks (col H = G/E)
+    ws2.getCell(r, 8).value = { formula: `IF(E${r}=0,0,G${r}/E${r})` };
+    ws2.getCell(r, 8).numFmt = '0.00%';
+    // ROAS = Revenue / Spend (col J = I/C)
+    ws2.getCell(r, 10).value = { formula: `IF(C${r}=0,0,I${r}/C${r})` };
+    ws2.getCell(r, 10).numFmt = '0.00"x"';
   });
 
   // Totals row
   const totRow = 6 + channels.length;
-  setRow(ws2, totRow, ['', 'TOTAL', '$0', '0', '0', '0.0%', '0', '0.0%', '$0', '0.0x', ''], {
+  const lastDataRow = totRow - 1;
+  setRow(ws2, totRow, ['', 'TOTAL', '', '', '', '', '', '', '', '', ''], {
     font: { ...bodyFont, bold: true, size: 11 },
     fill: { type: 'pattern', pattern: 'solid', fgColor: { argb: C.lightBlue } },
   });
+  ws2.getCell(totRow, 3).value = { formula: `SUM(C6:C${lastDataRow})` };
+  ws2.getCell(totRow, 3).numFmt = '$#,##0.00';
+  ws2.getCell(totRow, 4).value = { formula: `SUM(D6:D${lastDataRow})` };
+  ws2.getCell(totRow, 5).value = { formula: `SUM(E6:E${lastDataRow})` };
+  ws2.getCell(totRow, 6).value = { formula: `IF(D${totRow}=0,0,E${totRow}/D${totRow})` };
+  ws2.getCell(totRow, 6).numFmt = '0.00%';
+  ws2.getCell(totRow, 7).value = { formula: `SUM(G6:G${lastDataRow})` };
+  ws2.getCell(totRow, 8).value = { formula: `IF(E${totRow}=0,0,G${totRow}/E${totRow})` };
+  ws2.getCell(totRow, 8).numFmt = '0.00%';
+  ws2.getCell(totRow, 9).value = { formula: `SUM(I6:I${lastDataRow})` };
+  ws2.getCell(totRow, 9).numFmt = '$#,##0.00';
+  ws2.getCell(totRow, 10).value = { formula: `IF(C${totRow}=0,0,I${totRow}/C${totRow})` };
+  ws2.getCell(totRow, 10).numFmt = '0.00"x"';
 
   // Channel mix section
   const mixStart = totRow + 3;
@@ -201,9 +228,27 @@ async function main() {
 
   channels.forEach((ch, i) => {
     const r = mixStart + 2 + i;
+    const dataRow = 6 + i; // corresponding row in the performance table above
     const fill = i % 2 === 0 ? whiteFill : altRowFill;
-    setRow(ws2, r, ['', ch, '0%', '$0', '0%', '$0', '0%', '—', '', '', ''], { font: bodyFont, fill });
+    setRow(ws2, r, ['', ch, '', '', '', '', '', '', '', '', ''], { font: bodyFont, fill });
     ws2.getCell(r, 2).font = { ...bodyFont, bold: true };
+    // % of Total Spend = channel spend / total spend
+    ws2.getCell(r, 3).value = { formula: `IF(C${totRow}=0,0,C${dataRow}/C${totRow})` };
+    ws2.getCell(r, 3).numFmt = '0.0%';
+    // CPA = Spend / Conversions
+    ws2.getCell(r, 4).value = { formula: `IF(G${dataRow}=0,0,C${dataRow}/G${dataRow})` };
+    ws2.getCell(r, 4).numFmt = '$#,##0.00';
+    // % of Total Conversions
+    ws2.getCell(r, 5).value = { formula: `IF(G${totRow}=0,0,G${dataRow}/G${totRow})` };
+    ws2.getCell(r, 5).numFmt = '0.0%';
+    // Cost per Click = Spend / Clicks
+    ws2.getCell(r, 6).value = { formula: `IF(E${dataRow}=0,0,C${dataRow}/E${dataRow})` };
+    ws2.getCell(r, 6).numFmt = '$#,##0.00';
+    // % of Revenue
+    ws2.getCell(r, 7).value = { formula: `IF(I${totRow}=0,0,I${dataRow}/I${totRow})` };
+    ws2.getCell(r, 7).numFmt = '0.0%';
+    // Efficiency Score = ROAS relative to average
+    ws2.getCell(r, 8).value = { formula: `IF(J${totRow}=0,"—",IF(C${dataRow}=0,"—",TEXT(I${dataRow}/C${dataRow}/IF(I${totRow}/C${totRow}=0,1,I${totRow}/C${totRow})*100,"0")&"%"))` };
   });
 
   // ── Tab 3: KPI Dashboard ──
@@ -229,30 +274,49 @@ async function main() {
   setRow(ws3, 5, dashHeaders, { font: { ...headerFont, size: 10 }, fill: headerFill });
   ws3.getRow(5).height = 28;
 
-  const dashKpis = [
-    ['Total Marketing Spend', '$0', '$0', '$0', '0%', '🟢', '→ Flat'],
-    ['Total Revenue', '$0', '$0', '$0', '0%', '🟢', '↑ Up'],
-    ['Return on Ad Spend (ROAS)', '0.0x', '0.0x', '0.0x', '0%', '🟡', '→ Flat'],
-    ['Total Conversions', '0', '0', '0', '0%', '🟢', '↑ Up'],
-    ['Cost Per Acquisition (CPA)', '$0', '$0', '$0', '0%', '🔴', '↓ Down'],
-    ['Website Sessions', '0', '0', '0', '0%', '🟢', '↑ Up'],
-    ['Conversion Rate', '0%', '0%', '0pp', '0%', '🟡', '→ Flat'],
-    ['Email Subscribers (net new)', '0', '0', '0', '0%', '🟢', '↑ Up'],
-    ['Customer Acq. Cost (CAC)', '$0', '$0', '$0', '0%', '🟡', '→ Flat'],
-    ['Customer LTV', '$0', '$0', '$0', '0%', '🟢', '→ Flat'],
-    ['Marketing Qualified Leads', '0', '0', '0', '0%', '🟢', '↑ Up'],
-    ['Sales Qualified Leads', '0', '0', '0', '0%', '🟡', '→ Flat'],
+  const dashKpiNames = [
+    'Total Marketing Spend',
+    'Total Revenue',
+    'Return on Ad Spend (ROAS)',
+    'Total Conversions',
+    'Cost Per Acquisition (CPA)',
+    'Website Sessions',
+    'Conversion Rate',
+    'Email Subscribers (net new)',
+    'Customer Acq. Cost (CAC)',
+    'Customer LTV',
+    'Marketing Qualified Leads',
+    'Sales Qualified Leads',
   ];
 
-  dashKpis.forEach((kpi, i) => {
+  // Formats for Target/Actual columns per KPI
+  const dashFmts = [
+    '$#,##0.00', '$#,##0.00', '0.00"x"', '#,##0', '$#,##0.00',
+    '#,##0', '0.00%', '#,##0', '$#,##0.00', '$#,##0.00', '#,##0', '#,##0',
+  ];
+
+  dashKpiNames.forEach((kpiName, i) => {
     const r = 6 + i;
     const fill = i % 2 === 0 ? whiteFill : altRowFill;
-    setRow(ws3, r, ['', ...kpi], { font: bodyFont, fill });
+    // Columns: B=KPI, C=Target, D=Actual, E=Variance, F=% to Target, G=Status, H=Trend
+    setRow(ws3, r, ['', kpiName, 0, 0, '', '', '', ''], { font: bodyFont, fill });
     ws3.getCell(r, 2).font = { ...bodyFont, bold: true };
+    ws3.getCell(r, 3).numFmt = dashFmts[i]; // Target
+    ws3.getCell(r, 4).numFmt = dashFmts[i]; // Actual
+    // Variance = Actual - Target
+    ws3.getCell(r, 5).value = { formula: `D${r}-C${r}` };
+    ws3.getCell(r, 5).numFmt = dashFmts[i];
+    // % to Target = Actual / Target
+    ws3.getCell(r, 6).value = { formula: `IF(C${r}=0,0,D${r}/C${r})` };
+    ws3.getCell(r, 6).numFmt = '0.0%';
+    // Status: conditional on % to Target
+    ws3.getCell(r, 7).value = { formula: `IF(F${r}>=1,"🟢",IF(F${r}>=0.8,"🟡","🔴"))` };
+    // Trend left as manual input
+    ws3.getCell(r, 8).value = '';
   });
 
   // Notes section
-  const noteStart = 6 + dashKpis.length + 2;
+  const noteStart = 6 + dashKpiNames.length + 2;
   ws3.mergeCells(`B${noteStart}:H${noteStart}`);
   ws3.getCell(`B${noteStart}`).value = 'DASHBOARD NOTES';
   ws3.getCell(`B${noteStart}`).font = { ...subHeaderFont, size: 12 };
@@ -295,12 +359,25 @@ async function main() {
     'Website Sessions', 'Conversion Rate', 'Email Subscribers', 'New Customers',
   ];
 
+  // Month columns: C=Jan(col3), D=Feb(col4), ... N=Dec(col14), O=YTD Total(col15), P=YoY Change(col16)
+  const monthCols = ['C','D','E','F','G','H','I','J','K','L','M','N'];
+  // Rate metrics that shouldn't be summed for YTD (use average instead)
+  const rateMetrics = ['ROAS', 'CPA', 'Conversion Rate'];
+
   trendMetrics.forEach((metric, i) => {
     const r = 6 + i;
     const fill = i % 2 === 0 ? whiteFill : altRowFill;
-    const vals = ['', metric, ...months.map(() => ''), '', ''];
+    const vals = ['', metric, ...months.map(() => 0), '', ''];
     setRow(ws4, r, vals, { font: bodyFont, fill });
     ws4.getCell(r, 2).font = { ...bodyFont, bold: true };
+    // YTD Total (col O / col 15) = SUM or AVERAGE of months
+    if (rateMetrics.includes(metric)) {
+      ws4.getCell(r, 15).value = { formula: `AVERAGE(C${r}:N${r})` };
+    } else {
+      ws4.getCell(r, 15).value = { formula: `SUM(C${r}:N${r})` };
+    }
+    // YoY Change (col P / col 16) left for manual input (needs prior year data)
+    ws4.getCell(r, 16).value = '';
   });
 
   // MoM change section
@@ -314,10 +391,24 @@ async function main() {
 
   trendMetrics.forEach((metric, i) => {
     const r = momStart + 2 + i;
+    const dataRow = 6 + i; // corresponding row in the values table above
     const fill = i % 2 === 0 ? whiteFill : altRowFill;
-    const vals = ['', metric, ...months.map(() => ''), '', ''];
+    const vals = ['', metric, '', ...months.slice(1).map(() => ''), '', '', ''];
     setRow(ws4, r, vals, { font: bodyFont, fill });
     ws4.getCell(r, 2).font = { ...bodyFont, bold: true };
+    // Jan (col C) has no prior month — leave blank
+    ws4.getCell(r, 3).value = '';
+    // Feb-Dec: MoM % change = (current - previous) / previous
+    for (let m = 1; m < 12; m++) {
+      const col = m + 3; // D=4 for Feb, E=5 for Mar, etc.
+      const curCol = monthCols[m];
+      const prevCol = monthCols[m - 1];
+      ws4.getCell(r, col).value = { formula: `IF(${prevCol}${dataRow}=0,0,(${curCol}${dataRow}-${prevCol}${dataRow})/${prevCol}${dataRow})` };
+      ws4.getCell(r, col).numFmt = '0.0%';
+    }
+    // YTD and YoY columns blank for MoM section
+    ws4.getCell(r, 15).value = '';
+    ws4.getCell(r, 16).value = '';
   });
 
   // Annotations
@@ -532,6 +623,9 @@ async function main() {
     ws6.getCell(`B${r}`).alignment = { wrapText: true };
     ws6.getRow(r).height = 22;
   });
+
+  // Ensure output directory exists
+  fs.mkdirSync(path.dirname(OUTPUT), { recursive: true });
 
   // Write file
   await wb.xlsx.writeFile(OUTPUT);
