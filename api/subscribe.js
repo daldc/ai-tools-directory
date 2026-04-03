@@ -22,7 +22,7 @@ function isRateLimited(ip) {
 export default async function handler(req, res) {
   // CORS
   const origin = req.headers.origin || '';
-  const allowed = ['https://marketingstackai.com', 'https://ai-tools-directory-nine-ashy.vercel.app'];
+  const allowed = ['https://marketingstackai.com', 'https://www.marketingstackai.com'];
   if (allowed.includes(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
     res.setHeader('Vary', 'Origin');
