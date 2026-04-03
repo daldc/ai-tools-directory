@@ -26,6 +26,18 @@ The `.xlsx` file contains 6 tabs:
 5. **Recommendations** — Structured framework for actionable insights: observation → data evidence → recommendation → expected impact → priority level
 6. **Setup & Instructions** — Configuration guide, metric definitions glossary, and customization tips
 
+## Regenerating the Template
+
+The `.xlsx` file is generated from code (not hand-edited). To regenerate after making changes:
+
+```bash
+cd products/marketing-report-template
+npm install
+node generate-template.js
+```
+
+This outputs `deliverable/Marketing-Report-Template.xlsx` with all formulas and formatting.
+
 ## Packaging for Gumroad
 
 1. Zip the `deliverable/` folder contents together
