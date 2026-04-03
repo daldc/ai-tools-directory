@@ -13,14 +13,88 @@
  */
 
 import type { APIRoute } from "astro";
+import { SITE_URL } from "../../config/site";
 
 export const prerender = false;
 
-export const POST: APIRoute = async ({ request }) => {
-  const headers = {
+/**
+ * Simple in-memory rate limiter.
+ * Tracks request timestamps per IP and enforces a sliding window.
+ */
+const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
+const RATE_LIMIT_MAX_REQUESTS = 5; // max 5 requests per window per IP
+const requestLog = new Map<string, number[]>();
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const timestamps = requestLog.get(ip) || [];
+  const recent = timestamps.filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+
+  if (recent.length >= RATE_LIMIT_MAX_REQUESTS) {
+    requestLog.set(ip, recent);
+    return true;
+  }
+
+  recent.push(now);
+  requestLog.set(ip, recent);
+  return false;
+}
+
+// Periodically clean up stale entries to prevent memory leaks
+setInterval(() => {
+  const now = Date.now();
+  for (const [ip, timestamps] of requestLog.entries()) {
+    const recent = timestamps.filter((t) => now - t < RATE_LIMIT_WINDOW_MS);
+    if (recent.length === 0) {
+      requestLog.delete(ip);
+    } else {
+      requestLog.set(ip, recent);
+    }
+  }
+}, 5 * 60 * 1000); // Clean up every 5 minutes
+
+/**
+ * Get allowed origins for CORS based on SITE_URL.
+ * Same-origin requests don't need CORS headers, but we restrict
+ * to our own domain(s) for any cross-origin scenarios.
+ */
+function getAllowedOrigin(requestOrigin: string | null): string | null {
+  if (!requestOrigin) return null;
+
+  const allowed = [
+    SITE_URL.replace(/\/$/, ""),
+    // Add additional allowed origins here if needed (e.g., staging)
+  ].filter(Boolean);
+
+  return allowed.includes(requestOrigin) ? requestOrigin : null;
+}
+
+function getCorsHeaders(requestOrigin: string | null): Record<string, string> {
+  const headers: Record<string, string> = {
     "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
   };
+
+  const allowedOrigin = getAllowedOrigin(requestOrigin);
+  if (allowedOrigin) {
+    headers["Access-Control-Allow-Origin"] = allowedOrigin;
+    headers["Vary"] = "Origin";
+  }
+
+  return headers;
+}
+
+export const POST: APIRoute = async ({ request, clientAddress }) => {
+  const origin = request.headers.get("Origin");
+  const headers = getCorsHeaders(origin);
+
+  // Rate limiting
+  const ip = clientAddress || request.headers.get("x-forwarded-for") || "unknown";
+  if (isRateLimited(ip)) {
+    return new Response(
+      JSON.stringify({ error: "Too many requests. Please try again later." }),
+      { status: 429, headers }
+    );
+  }
 
   try {
     const body = await request.json();
@@ -90,13 +164,21 @@ export const POST: APIRoute = async ({ request }) => {
 };
 
 /** Handle CORS preflight */
-export const OPTIONS: APIRoute = async () => {
+export const OPTIONS: APIRoute = async ({ request }) => {
+  const origin = request.headers.get("Origin");
+  const allowedOrigin = getAllowedOrigin(origin);
+
+  if (!allowedOrigin) {
+    return new Response(null, { status: 403 });
+  }
+
   return new Response(null, {
     status: 204,
     headers: {
-      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Origin": allowedOrigin,
       "Access-Control-Allow-Methods": "POST, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type",
+      Vary: "Origin",
     },
   });
 };

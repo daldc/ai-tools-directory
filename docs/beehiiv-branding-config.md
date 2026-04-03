@@ -29,7 +29,7 @@ Configure in **Settings → General** in the Beehiiv dashboard.
 |---------|-------|
 | **Publication name** | The AI Marketing Stack |
 | **Description** | Honest AI tool reviews, pricing breakdowns, and templates for marketing teams. One email per week. |
-| **Website URL** | `https://ai-tools-directory-nine-ashy.vercel.app` *(update when custom domain is live)* |
+| **Website URL** | `https://aitoolsdirectory.com` |
 | **Publication handle** | `ai-marketing-stack` (for `ai-marketing-stack.beehiiv.com`) |
 | **Send day** | Tuesday |
 | **Send time** | 8:00 AM MT / 10:00 AM ET |
@@ -169,7 +169,8 @@ The logo should communicate:
   <tr>
     <td style="padding:24px 20px 16px 20px;text-align:center;">
       <!-- Logo -->
-      <img src="{{logo_url}}" alt="The AI Marketing Stack" 
+      <!-- Replace with your hosted logo URL -->
+      <img src="YOUR_LOGO_URL" alt="The AI Marketing Stack" 
            width="280" style="max-width:280px;height:auto;" />
     </td>
   </tr>
@@ -183,7 +184,7 @@ The logo should communicate:
     <td style="padding:16px 20px 8px 20px;text-align:center;">
       <!-- Issue label -->
       <span style="font-size:13px;color:#52525b;font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;">
-        Issue #{{issue_number}} · {{date}}
+        Issue #XX · Month DD, YYYY
       </span>
     </td>
   </tr>
@@ -247,11 +248,11 @@ In Beehiiv's editor, you can customize the header under **Settings → Design �
   </tr>
   <tr>
     <td style="padding:12px 20px;text-align:center;">
-      <a href="{{directory_url}}" style="color:#0ff0e0;text-decoration:none;font-size:13px;font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;">
+      <a href="https://aitoolsdirectory.com/browse" style="color:#0ff0e0;text-decoration:none;font-size:13px;font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;">
         Browse Directory
       </a>
       <span style="color:#3f3f46;margin:0 8px;">·</span>
-      <a href="{{cheat_sheet_url}}" style="color:#0ff0e0;text-decoration:none;font-size:13px;font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;">
+      <a href="https://dallasc.gumroad.com/l/ai-tools-cheatsheet" style="color:#0ff0e0;text-decoration:none;font-size:13px;font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;">
         Free Cheat Sheet
       </a>
     </td>
@@ -260,7 +261,7 @@ In Beehiiv's editor, you can customize the header under **Settings → Design �
     <td style="padding:8px 20px 16px 20px;text-align:center;">
       <p style="margin:0;font-size:13px;color:#52525b;font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;">
         Was this forwarded to you? 
-        <a href="{{subscribe_url}}" style="color:#0ff0e0;text-decoration:none;">Subscribe here →</a>
+        <a href="https://aitoolsdirectory.com/subscribe" style="color:#0ff0e0;text-decoration:none;">Subscribe here →</a>
       </p>
     </td>
   </tr>
@@ -269,8 +270,8 @@ In Beehiiv's editor, you can customize the header under **Settings → Design �
       <div style="border-top:1px solid #27272a;margin:0 0 12px 0;"></div>
       <p style="margin:0;font-size:11px;color:#3f3f46;font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;">
         You're receiving this because you signed up at theaimarketingstack.com<br/>
-        <a href="{{unsubscribe_url}}" style="color:#52525b;text-decoration:underline;">Unsubscribe</a> · 
-        <a href="{{preferences_url}}" style="color:#52525b;text-decoration:underline;">Manage preferences</a>
+        <a href="{{unsubscribe_url}}" style="color:#a1a1aa;text-decoration:underline;">Unsubscribe</a> · 
+        <a href="{{manage_subscription_url}}" style="color:#a1a1aa;text-decoration:underline;">Manage preferences</a>
       </p>
       <p style="margin:8px 0 0 0;font-size:11px;color:#3f3f46;font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;">
         © 2026 The AI Marketing Stack

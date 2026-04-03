@@ -32,7 +32,7 @@ If you haven't grabbed it yet, here are 15 AI tools every marketer should know �
 **The full directory:**
 103+ tools across 11 categories. Searchable, filterable, no login required.
 
-👉 **[Browse the Directory →](https://ai-tools-directory-nine-ashy.vercel.app/browse)**
+👉 **[Browse the Directory →](https://aitoolsdirectory.com/browse)**
 
 Talk soon,
 Dallas
@@ -49,7 +49,7 @@ Dallas
 Most "best AI tools" lists are just the same 10 names recycled. Here are three that don't get enough attention but consistently deliver for marketing teams:
 
 **1. Clearscope** — *SEO content optimization*
-Not as flashy as Surfer, but the grading system is what sold me. Your writers get a letter grade (A-F) for how well their content covers a topic. Simple, effective, hard to argue with. $189/mo for Essentials.
+Not as flashy as Surfer, but the grading system is what sold me. Your writers get a letter grade (A-F) for how well their content covers a topic. Simple, effective, hard to argue with. $129/mo for Essentials.
 
 **2. Seventh Sense** — *Email send-time optimization*
 If you're on HubSpot or Marketo and sending emails at the same time to everyone, you're leaving opens on the table. Seventh Sense learns when each contact is most likely to engage and staggers delivery. Starts at $80/mo for HubSpot.
@@ -58,7 +58,7 @@ If you're on HubSpot or Marketo and sending emails at the same time to everyone,
 Edit video by editing a text transcript. Delete a sentence, the video cuts. Add a word, it generates it in your voice. If your team creates any video or podcast content, this changes the workflow. Free tier available.
 
 All three are in the directory with full reviews:
-👉 **[Browse All Tools →](https://ai-tools-directory-nine-ashy.vercel.app/browse)**
+👉 **[Browse All Tools →](https://aitoolsdirectory.com/browse)**
 
 — Dallas
 
@@ -83,6 +83,6 @@ Okay, let's talk about the other side — tools that get a lot of buzz but might
 
 More honest takes every Tuesday.
 
-👉 **[Browse the Directory →](https://ai-tools-directory-nine-ashy.vercel.app/browse)**
+👉 **[Browse the Directory →](https://aitoolsdirectory.com/browse)**
 
 — Dallas

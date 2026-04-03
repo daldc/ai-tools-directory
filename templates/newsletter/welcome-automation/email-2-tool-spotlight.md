@@ -16,7 +16,7 @@ Most "best AI tools" lists recycle the same 10 names. Here are three that don't 
 
 Not as flashy as Surfer, but the grading system is what sold me. Your writers get a letter grade (A–F) for how well their content covers a topic. Simple, effective, hard to argue with.
 
-💰 **$189/mo** for Essentials
+💰 **$129/mo** for Essentials
 
 ### 2. Seventh Sense — *Email Send-Time Optimization*
 
@@ -34,11 +34,11 @@ Edit video by editing a text transcript. Delete a sentence, the video cuts. Add 
 
 All three are in the directory with full breakdowns — plus 100+ other tools across analytics, content, SEO, email, and more.
 
-👉 **[Browse the Full Directory →](https://ai-tools-directory-nine-ashy.vercel.app/browse?utm_source=beehiiv&utm_medium=email&utm_campaign=welcome-sequence&utm_content=email-2-directory)**
+👉 **[Browse the Full Directory →](https://aitoolsdirectory.com/browse?utm_source=beehiiv&utm_medium=email&utm_campaign=welcome-sequence&utm_content=email-2-directory)**
 
 You can filter by category, pricing model, or just search for what you need. No login, no paywall.
 
-Tomorrow's your last onboarding email — I'll share a template my team uses every week that might save you some serious time.
+In a few days you'll get your last onboarding email — I'll share a template my team uses every week that might save you some serious time.
 
 — Dallas
 
