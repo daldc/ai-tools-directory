@@ -1,0 +1,304 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import GumroadOverlay from "../../components/GumroadOverlay.astro";
+---
+
+<Layout
+  title="UTM Builder & Campaign Naming Convention Template"
+  description="Professional UTM Builder & Campaign Naming Convention template for Google Sheets. Auto-generates tagged URLs, includes GA4 channel mapping, bulk builder, and 14 channel examples. $19 one-time purchase."
+>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="gradient-mesh w-[500px] h-[500px] -top-32 -right-32 bg-brand-teal/8" style="animation: float 8s ease-in-out infinite;" aria-hidden="true"></div>
+    <div class="gradient-mesh w-[300px] h-[300px] top-1/2 -left-32 bg-brand-amber/6" style="animation: float 10s ease-in-out infinite 2s;" aria-hidden="true"></div>
+
+    <div class="max-w-5xl mx-auto px-6 pt-20 pb-12 relative z-10 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-teal/20 bg-brand-teal/5 text-xs text-brand-teal mb-6">
+        Google Sheets Template
+      </div>
+
+      <h1 class="font-display font-bold text-4xl md:text-6xl text-white leading-tight mb-6 tracking-tight">
+        UTM Builder &<br />
+        <span class="text-gradient">Campaign Naming Convention</span>
+      </h1>
+
+      <p class="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed mb-8">
+        Stop guessing at UTM parameters. Build consistent, trackable campaign URLs in seconds — with auto-generated links and GA4 alignment built in.
+      </p>
+
+      <div class="inline-flex items-center gap-4 bg-surface-900/80 border border-surface-700/50 rounded-2xl px-8 py-4 mb-8">
+        <span class="font-display font-bold text-4xl text-brand-teal">$19</span>
+        <div class="text-left">
+          <div class="text-sm text-zinc-300 font-medium">One-time purchase</div>
+          <div class="text-xs text-zinc-500">Use forever. No subscription.</div>
+        </div>
+      </div>
+
+      <div class="flex justify-center">
+        <GumroadOverlay productCode="utm-builder" text="Buy Template — $19" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Spreadsheet Preview -->
+  <section class="max-w-5xl mx-auto px-6 pb-16">
+    <div class="bg-surface-850 rounded-2xl border border-surface-700/50 p-3 shadow-2xl">
+      <!-- Window chrome -->
+      <div class="flex items-center gap-2 px-3 py-2 mb-2">
+        <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+        <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+        <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+        <span class="ml-3 text-xs text-zinc-600 font-mono">UTM-Builder-Template.xlsx</span>
+      </div>
+
+      <!-- Spreadsheet -->
+      <div class="bg-white rounded-lg overflow-x-auto">
+        <div class="bg-[#1B2A4A] text-white text-center py-2.5 px-4 font-bold text-sm tracking-wide">
+          UTM BUILDER & LINK TAGGER
+        </div>
+        <div class="bg-[#E8F0FE] text-[#2D5F9A] text-center py-1.5 px-4 text-xs italic">
+          Fill in the yellow columns &rarr; Tagged URL auto-generates in column G
+        </div>
+        <table class="w-full text-xs text-[#1e293b]" style="border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th class="bg-[#1B2A4A] text-white px-3 py-2 text-left font-semibold whitespace-nowrap">Base URL</th>
+              <th class="bg-[#1B2A4A] text-white px-3 py-2 text-left font-semibold whitespace-nowrap">utm_source</th>
+              <th class="bg-[#1B2A4A] text-white px-3 py-2 text-left font-semibold whitespace-nowrap">utm_medium</th>
+              <th class="bg-[#1B2A4A] text-white px-3 py-2 text-left font-semibold whitespace-nowrap">utm_campaign</th>
+              <th class="bg-[#1B2A4A] text-white px-3 py-2 text-left font-semibold whitespace-nowrap">utm_content</th>
+              <th class="bg-[#1B2A4A] text-white px-3 py-2 text-left font-semibold whitespace-nowrap">utm_term</th>
+              <th class="bg-[#1B2A4A] text-white px-3 py-2 text-left font-semibold whitespace-nowrap min-w-[280px]">Tagged URL</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="px-3 py-1.5 bg-[#FFF9E6] border-b border-gray-200">https://example.com</td>
+              <td class="px-3 py-1.5 bg-[#FFF9E6] border-b border-gray-200">google</td>
+              <td class="px-3 py-1.5 bg-[#FFF9E6] border-b border-gray-200">cpc</td>
+              <td class="px-3 py-1.5 bg-[#FFF9E6] border-b border-gray-200">spring-sale-2026</td>
+              <td class="px-3 py-1.5 bg-[#FFF9E6] border-b border-gray-200">banner-728x90</td>
+              <td class="px-3 py-1.5 bg-[#FFF9E6] border-b border-gray-200">marketing tools</td>
+              <td class="px-3 py-1.5 border-b border-gray-200 text-blue-600 text-[10px]">https://example.com?utm_source=google&utm_medium=cpc&utm_campaign=spring-sale-2026&...</td>
+            </tr>
+            <tr>
+              <td class="px-3 py-1.5 bg-[#FFF9E6] border-b border-gray-200">https://example.com/landing</td>
+              <td class="px-3 py-1.5 bg-[#FFF9E6] border-b border-gray-200">facebook</td>
+              <td class="px-3 py-1.5 bg-[#FFF9E6] border-b border-gray-200">paid-social</td>
+              <td class="px-3 py-1.5 bg-[#FFF9E6] border-b border-gray-200">spring-sale-2026</td>
+              <td class="px-3 py-1.5 bg-[#FFF9E6] border-b border-gray-200">carousel-ad-v1</td>
+              <td class="px-3 py-1.5 bg-[#FFF9E6] border-b border-gray-200"></td>
+              <td class="px-3 py-1.5 border-b border-gray-200 text-blue-600 text-[10px]">https://example.com/landing?utm_source=facebook&utm_medium=paid-social&...</td>
+            </tr>
+            <tr>
+              <td class="px-3 py-1.5 bg-[#FFF9E6] border-b border-gray-200">https://example.com/blog</td>
+              <td class="px-3 py-1.5 bg-[#FFF9E6] border-b border-gray-200">linkedin</td>
+              <td class="px-3 py-1.5 bg-[#FFF9E6] border-b border-gray-200">organic-social</td>
+              <td class="px-3 py-1.5 bg-[#FFF9E6] border-b border-gray-200">thought-leadership</td>
+              <td class="px-3 py-1.5 bg-[#FFF9E6] border-b border-gray-200"></td>
+              <td class="px-3 py-1.5 bg-[#FFF9E6] border-b border-gray-200"></td>
+              <td class="px-3 py-1.5 border-b border-gray-200 text-blue-600 text-[10px]">https://example.com/blog?utm_source=linkedin&utm_medium=organic-social&...</td>
+            </tr>
+            <tr>
+              <td class="px-3 py-1.5 bg-[#FFF9E6]">https://example.com/promo</td>
+              <td class="px-3 py-1.5 bg-[#FFF9E6]">newsletter</td>
+              <td class="px-3 py-1.5 bg-[#FFF9E6]">email</td>
+              <td class="px-3 py-1.5 bg-[#FFF9E6]">april-digest</td>
+              <td class="px-3 py-1.5 bg-[#FFF9E6]">cta-button</td>
+              <td class="px-3 py-1.5 bg-[#FFF9E6]"></td>
+              <td class="px-3 py-1.5 text-blue-600 text-[10px]">https://example.com/promo?utm_source=newsletter&utm_medium=email&...</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Sheet tabs -->
+        <div class="flex border-t border-gray-200 bg-gray-50">
+          <div class="px-4 py-2 text-[11px] font-semibold text-[#1e293b] bg-white border-b-2 border-blue-500 border-r border-gray-200">UTM Builder</div>
+          <div class="px-4 py-2 text-[11px] font-medium text-gray-500 border-r border-gray-200">Naming Convention</div>
+          <div class="px-4 py-2 text-[11px] font-medium text-gray-500 border-r border-gray-200">GA4 Channel Mapping</div>
+          <div class="px-4 py-2 text-[11px] font-medium text-gray-500 border-r border-gray-200">Bulk URL Builder</div>
+          <div class="px-4 py-2 text-[11px] font-medium text-gray-500">Quick Start Guide</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's Included -->
+  <section class="max-w-5xl mx-auto px-6 py-16">
+    <div class="text-center mb-12">
+      <h2 class="font-display font-bold text-3xl md:text-4xl text-white mb-3">
+        5 tabs. Every UTM scenario covered.
+      </h2>
+      <p class="text-zinc-500 text-lg max-w-xl mx-auto">
+        Everything you need to build, organize, and standardize UTM tracking across your marketing team.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="card-glow p-6">
+        <div class="w-10 h-10 rounded-xl bg-brand-teal/10 border border-brand-teal/20 flex items-center justify-center text-brand-teal text-lg mb-4">1</div>
+        <h3 class="font-display font-semibold text-lg text-white mb-2">UTM Builder</h3>
+        <p class="text-sm text-zinc-400 leading-relaxed">
+          Fill in source, medium, and campaign — the tagged URL builds itself. Dropdown menus for common sources and mediums prevent typos.
+        </p>
+      </div>
+
+      <div class="card-glow p-6">
+        <div class="w-10 h-10 rounded-xl bg-brand-amber/10 border border-brand-amber/20 flex items-center justify-center text-brand-amber text-lg mb-4">2</div>
+        <h3 class="font-display font-semibold text-lg text-white mb-2">Naming Convention</h3>
+        <p class="text-sm text-zinc-400 leading-relaxed">
+          A complete framework with 6 golden rules and 14 channel-specific examples covering Google Ads, Facebook, LinkedIn, TikTok, email, and more.
+        </p>
+      </div>
+
+      <div class="card-glow p-6">
+        <div class="w-10 h-10 rounded-xl bg-brand-coral/10 border border-brand-coral/20 flex items-center justify-center text-brand-coral text-lg mb-4">3</div>
+        <h3 class="font-display font-semibold text-lg text-white mb-2">GA4 Channel Mapping</h3>
+        <p class="text-sm text-zinc-400 leading-relaxed">
+          Know exactly which <code class="text-zinc-300">utm_medium</code> values map to each GA4 channel group. No more traffic landing in "Other."
+        </p>
+      </div>
+
+      <div class="card-glow p-6">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-lg mb-4">4</div>
+        <h3 class="font-display font-semibold text-lg text-white mb-2">Bulk URL Builder</h3>
+        <p class="text-sm text-zinc-400 leading-relaxed">
+          Launching across 10 channels? Enter your base URL once and generate all tagged URLs simultaneously with pre-configured channels.
+        </p>
+      </div>
+
+      <div class="card-glow p-6">
+        <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 text-lg mb-4">5</div>
+        <h3 class="font-display font-semibold text-lg text-white mb-2">Quick Start Guide</h3>
+        <p class="text-sm text-zinc-400 leading-relaxed">
+          Get up and running in under 5 minutes with step-by-step instructions, parameter explanations, and pro tips for your whole team.
+        </p>
+      </div>
+
+      <div class="card-glow p-6 border-dashed !border-surface-600">
+        <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 text-lg mb-4">+</div>
+        <h3 class="font-display font-semibold text-lg text-white mb-2">Link Shortener Ready</h3>
+        <p class="text-sm text-zinc-400 leading-relaxed">
+          Includes integration notes for Bitly, Rebrandly, Short.io, and more. Shorten your tagged URLs without losing tracking data.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Link Shortener Integration -->
+  <section class="max-w-5xl mx-auto px-6 py-16">
+    <div class="card-glow p-8 md:p-12">
+      <div class="flex flex-col md:flex-row gap-8">
+        <div class="md:w-1/2">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/20 bg-blue-500/5 text-xs text-blue-400 mb-4">
+            Bonus: Link Shortener Guide
+          </div>
+          <h2 class="font-display font-bold text-2xl md:text-3xl text-white mb-4">
+            Shorten your tagged URLs without breaking tracking
+          </h2>
+          <p class="text-zinc-400 leading-relaxed mb-6">
+            Long UTM-tagged URLs look messy in social posts and emails. The template includes notes on integrating with popular link shorteners so you get clean, branded links that still pass full UTM data to GA4.
+          </p>
+        </div>
+        <div class="md:w-1/2">
+          <div class="space-y-3">
+            <div class="flex items-start gap-3 p-3 rounded-lg bg-surface-900/80 border border-surface-700/30">
+              <span class="text-brand-teal font-bold text-sm mt-0.5">Bitly</span>
+              <p class="text-xs text-zinc-400">Most popular. Free plan includes 10 links/month. Preserves all UTM parameters on redirect. Offers custom back-halves on paid plans.</p>
+            </div>
+            <div class="flex items-start gap-3 p-3 rounded-lg bg-surface-900/80 border border-surface-700/30">
+              <span class="text-brand-amber font-bold text-sm mt-0.5">Rebrandly</span>
+              <p class="text-xs text-zinc-400">Best for branded domains. Use your own domain (e.g., go.yourco.com). Free plan includes 25 links. UTM parameters pass through cleanly.</p>
+            </div>
+            <div class="flex items-start gap-3 p-3 rounded-lg bg-surface-900/80 border border-surface-700/30">
+              <span class="text-brand-coral font-bold text-sm mt-0.5">Short.io</span>
+              <p class="text-xs text-zinc-400">Generous free tier with custom domains. Built-in UTM builder. Great for teams with a shared workspace feature.</p>
+            </div>
+            <div class="flex items-start gap-3 p-3 rounded-lg bg-surface-900/80 border border-surface-700/30">
+              <span class="text-purple-400 font-bold text-sm mt-0.5">YOURLS</span>
+              <p class="text-xs text-zinc-400">Self-hosted and free forever. Full control over your data. Requires a server but offers complete link ownership.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who It's For -->
+  <section class="max-w-5xl mx-auto px-6 py-16">
+    <div class="text-center mb-12">
+      <h2 class="font-display font-bold text-3xl md:text-4xl text-white mb-3">
+        Built for marketing professionals
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
+      {[
+        { role: "Marketing Managers", desc: "Consistent UTM tracking across teams" },
+        { role: "PPC Specialists", desc: "Clean campaign naming in reports" },
+        { role: "Email Marketers", desc: "Accurate attribution in GA4" },
+        { role: "Agency Teams", desc: "Scalable conventions across clients" },
+        { role: "Freelancers", desc: "Professional tracking from day one" },
+        { role: "Growth Marketers", desc: "Multi-channel campaign launches" },
+      ].map(({ role, desc }) => (
+        <div class="flex items-start gap-3 p-4 rounded-xl bg-surface-900/50 border border-surface-700/30">
+          <div class="w-2 h-2 rounded-full bg-brand-teal mt-1.5 shrink-0"></div>
+          <div>
+            <div class="text-sm font-medium text-white">{role}</div>
+            <div class="text-xs text-zinc-500">{desc}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- How to Use / Export Instructions -->
+  <section class="max-w-5xl mx-auto px-6 py-16">
+    <div class="text-center mb-12">
+      <h2 class="font-display font-bold text-3xl md:text-4xl text-white mb-3">
+        Working in under 5 minutes
+      </h2>
+      <p class="text-zinc-500 text-lg">Works in Google Sheets (free) or Excel</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-2xl bg-brand-teal/10 border border-brand-teal/20 flex items-center justify-center text-brand-teal font-display font-bold text-lg mx-auto mb-4">1</div>
+        <h3 class="font-display font-semibold text-white mb-2">Download & Open</h3>
+        <p class="text-sm text-zinc-400">Purchase on Gumroad, download the .xlsx file. Open in Google Sheets (upload to Drive) or Excel.</p>
+      </div>
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-2xl bg-brand-amber/10 border border-brand-amber/20 flex items-center justify-center text-brand-amber font-display font-bold text-lg mx-auto mb-4">2</div>
+        <h3 class="font-display font-semibold text-white mb-2">Fill in Parameters</h3>
+        <p class="text-sm text-zinc-400">Use the dropdowns and yellow input cells. Enter your URL, source, medium, and campaign name.</p>
+      </div>
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 font-display font-bold text-lg mx-auto mb-4">3</div>
+        <h3 class="font-display font-semibold text-white mb-2">Copy & Launch</h3>
+        <p class="text-sm text-zinc-400">Your tagged URL generates automatically. Copy it into your ads, emails, or social posts. Done.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="max-w-3xl mx-auto px-6 py-20 text-center">
+    <div class="card-glow p-8 md:p-12">
+      <h2 class="font-display font-bold text-3xl md:text-4xl text-white mb-4">
+        Stop losing traffic to "Other"
+      </h2>
+      <p class="text-zinc-400 text-lg mb-2 max-w-xl mx-auto">
+        One purchase. Use forever. No subscription.
+      </p>
+      <ul class="text-sm text-zinc-500 space-y-1 mb-8">
+        <li>Saves 15-30 minutes per campaign launch</li>
+        <li>Eliminates UTM typos and inconsistencies</li>
+        <li>Aligns with GA4 default channel groups</li>
+      </ul>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <GumroadOverlay productCode="utm-builder" text="Buy Template — $19" />
+      </div>
+    </div>
+  </section>
+
+</Layout>

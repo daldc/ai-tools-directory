@@ -38,6 +38,9 @@ Launching across multiple channels? Enter your base URL once and generate tagged
 **🚀 Quick Start Guide**
 Get up and running in under 5 minutes with step-by-step instructions, parameter explanations, and pro tips.
 
+**🔗 Link Shortener Integration Notes**
+Includes guidance on pairing your tagged URLs with Bitly, Rebrandly, Short.io, and YOURLS — so you get clean, branded links without breaking UTM tracking.
+
 ### Who This Is For
 
 - **Marketing managers** who need consistent UTM tracking across teams
