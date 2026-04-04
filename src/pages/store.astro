@@ -1,0 +1,309 @@
+---
+import Layout from "../layouts/Layout.astro";
+import GumroadButton from "../components/GumroadButton.astro";
+import NewsletterSignup from "../components/NewsletterSignup.astro";
+---
+
+<Layout 
+  title="Store" 
+  description="Premium AI marketing resources, templates, and guides from experienced practitioners. Get the tools you need to level up your marketing stack."
+  canonicalUrl="https://marketingstackai.com/store"
+>
+  <!-- Hero Section -->
+  <section class="relative min-h-[70vh] flex items-center overflow-hidden">
+    <div class="gradient-mesh w-[500px] h-[500px] -top-32 -right-32 bg-brand-teal/6" style="animation: float 8s ease-in-out infinite;" aria-hidden="true"></div>
+    <div class="gradient-mesh w-[300px] h-[300px] top-1/2 -left-32 bg-brand-amber/4" style="animation: float 10s ease-in-out infinite 2s;" aria-hidden="true"></div>
+
+    <div class="max-w-7xl mx-auto px-6 py-24 relative z-10">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-teal/20 bg-brand-teal/5 text-xs text-brand-teal mb-8">
+          <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          The AI Marketing Stack Store
+        </div>
+
+        <h1 class="font-display font-bold text-5xl md:text-6xl lg:text-7xl text-white leading-[0.95] mb-8 tracking-tight">
+          Resources that<br />
+          <span class="text-gradient">actually work</span>
+        </h1>
+
+        <p class="text-xl md:text-2xl text-zinc-400 max-w-2xl leading-relaxed mb-10 font-light">
+          Practical templates, guides, and frameworks built by marketing practitioners 
+          with 11+ years of experience. No fluff, just what works.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#products" class="btn-primary text-base px-8 py-4">
+            Browse Products →
+          </a>
+          <a href="#newsletter" class="btn-secondary text-base px-8 py-4">
+            Get Free Updates
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section id="products" class="max-w-7xl mx-auto px-6 py-20">
+    <div class="text-center mb-16">
+      <h2 class="font-display font-bold text-3xl md:text-4xl text-white mb-4">
+        Templates & Resources
+      </h2>
+      <p class="text-zinc-500 text-lg max-w-2xl mx-auto">
+        Battle-tested resources to streamline your marketing operations and improve campaign performance
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
+      
+      <!-- Free Lead Magnet -->
+      <div class="card-glow p-8 flex flex-col relative group hover:scale-[1.02] transition-transform duration-200">
+        <div class="absolute top-4 right-4 z-10">
+          <span class="badge badge-free">Free</span>
+        </div>
+        
+        <div class="mb-6">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-teal to-brand-amber/80 flex items-center justify-center mb-4">
+            <svg class="w-8 h-8 text-surface-950" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14,2 14,8 20,8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10,9 9,9 8,9"></polyline>
+            </svg>
+          </div>
+          
+          <h3 class="font-display font-semibold text-2xl text-white mb-3">
+            Marketing AI Tools Cheat Sheet
+          </h3>
+          <p class="text-zinc-400 leading-relaxed mb-6">
+            The ultimate quick-reference guide for marketing professionals exploring AI tools. 
+            50+ tools across 11 categories with pricing, use cases, and honest recommendations.
+          </p>
+        </div>
+
+        <div class="space-y-3 mb-8 text-sm text-zinc-300">
+          <div class="flex items-center gap-3">
+            <svg class="w-4 h-4 text-brand-teal flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>50+ AI tools ranked & reviewed</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <svg class="w-4 h-4 text-brand-teal flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Pricing tiers at a glance</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <svg class="w-4 h-4 text-brand-teal flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Best-for-use-case recommendations</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <svg class="w-4 h-4 text-brand-teal flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Updated for 2026</span>
+          </div>
+        </div>
+
+        <div class="mt-auto">
+          <GumroadButton 
+            productId="cheatsheet"
+            variant="primary" 
+            utmCampaign="store_cheatsheet_download"
+            utmContent="store_page_card"
+          />
+          <p class="text-xs text-zinc-600 mt-2 text-center">No signup required • Instant download</p>
+        </div>
+      </div>
+
+      <!-- UTM Builder Template -->
+      <div class="card-glow p-8 flex flex-col relative group hover:scale-[1.02] transition-transform duration-200">
+        <div class="absolute top-4 right-4 z-10 flex gap-2">
+          <span class="badge badge-paid">$19</span>
+          <span class="badge badge-neutral">Popular</span>
+        </div>
+        
+        <div class="mb-6">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-coral to-brand-amber flex items-center justify-center mb-4">
+            <svg class="w-8 h-8 text-surface-950" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14,2 14,8 20,8"></polyline>
+              <rect x="8" y="13" width="8" height="1"></rect>
+              <rect x="8" y="17" width="8" height="1"></rect>
+              <rect x="8" y="9" width="2" height="1"></rect>
+            </svg>
+          </div>
+          
+          <h3 class="font-display font-semibold text-2xl text-white mb-3">
+            UTM Builder & Campaign Naming Convention
+          </h3>
+          <p class="text-zinc-400 leading-relaxed mb-6">
+            Professional Google Sheets template with auto-generating UTM tagged URLs, 
+            standardized campaign naming, GA4 channel group alignment, and bulk builder.
+          </p>
+        </div>
+
+        <div class="space-y-3 mb-8 text-sm text-zinc-300">
+          <div class="flex items-center gap-3">
+            <svg class="w-4 h-4 text-brand-coral flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Auto-generating UTM tagged URLs</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <svg class="w-4 h-4 text-brand-coral flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Campaign naming with 14 channel examples</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <svg class="w-4 h-4 text-brand-coral flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>GA4 channel group alignment guide</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <svg class="w-4 h-4 text-brand-coral flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span>Bulk URL builder & quick start guide</span>
+          </div>
+        </div>
+
+        <div class="mt-auto space-y-3">
+          <GumroadButton 
+            productId="utmBuilder"
+            variant="coral" 
+            utmCampaign="store_utm_purchase"
+            utmContent="store_page_card"
+          />
+          <a href="/products/utm-builder" class="block text-center text-sm text-zinc-400 hover:text-brand-coral transition-colors">
+            View details & preview →
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Value Proposition -->
+    <div class="text-center max-w-3xl mx-auto">
+      <div class="card-glow p-8">
+        <h3 class="font-display font-semibold text-xl text-white mb-4">
+          Why Our Resources Are Different
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+          <div class="text-center">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-teal/20 to-brand-teal/40 flex items-center justify-center mx-auto mb-3">
+              <svg class="w-6 h-6 text-brand-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 11l3 3l8-8"></path>
+                <path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9s4.03-9 9-9c1.08 0 2.12.19 3.08.56"></path>
+              </svg>
+            </div>
+            <h4 class="font-medium text-white mb-2">Practitioner-Built</h4>
+            <p class="text-zinc-400">11+ years in marketing analytics, not theory</p>
+          </div>
+          <div class="text-center">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-amber/20 to-brand-amber/40 flex items-center justify-center mx-auto mb-3">
+              <svg class="w-6 h-6 text-brand-amber" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+              </svg>
+            </div>
+            <h4 class="font-medium text-white mb-2">Ready to Use</h4>
+            <p class="text-zinc-400">No setup time, just copy and customize</p>
+          </div>
+          <div class="text-center">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-coral/20 to-brand-coral/40 flex items-center justify-center mx-auto mb-3">
+              <svg class="w-6 h-6 text-brand-coral" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"></path>
+                <path d="m9 12 2 2 4-4"></path>
+              </svg>
+            </div>
+            <h4 class="font-medium text-white mb-2">Battle-Tested</h4>
+            <p class="text-zinc-400">Used in real campaigns and client work</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Integration -->
+  <section id="newsletter" class="max-w-4xl mx-auto px-6 py-20">
+    <div class="text-center mb-8">
+      <h2 class="font-display font-bold text-3xl md:text-4xl text-white mb-4">
+        Get Free Updates
+      </h2>
+      <p class="text-zinc-500 text-lg">
+        Join The AI Marketing Stack newsletter for weekly tool reviews, 
+        exclusive guides, and early access to new resources.
+      </p>
+    </div>
+
+    <NewsletterSignup 
+      utmSource="store" 
+      utmCampaign="store_newsletter_signup"
+      heading="Stay ahead of the curve"
+      subheading="Get weekly updates on the best new AI tools, exclusive templates, and marketing insights delivered to your inbox."
+    />
+
+    <div class="text-center mt-8">
+      <p class="text-zinc-600 text-sm">
+        📧 <strong>Free forever</strong> • 🚫 <strong>No spam</strong> • ✉️ <strong>Unsubscribe anytime</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- Social Proof / FAQ -->
+  <section class="max-w-4xl mx-auto px-6 py-20">
+    <div class="card-glow p-8">
+      <h3 class="font-display font-semibold text-xl text-white mb-6 text-center">
+        Frequently Asked Questions
+      </h3>
+      
+      <div class="space-y-6 text-sm">
+        <div class="border-b border-surface-800 pb-4">
+          <h4 class="font-medium text-white mb-2">What formats do you offer?</h4>
+          <p class="text-zinc-400">Templates are provided in Google Sheets/Excel format with detailed instructions. Guides are available as PDFs. All files work on Mac, PC, and mobile devices.</p>
+        </div>
+        
+        <div class="border-b border-surface-800 pb-4">
+          <h4 class="font-medium text-white mb-2">Can I customize the templates?</h4>
+          <p class="text-zinc-400">Absolutely! These templates are designed to be starting points. You can modify colors, add columns, adjust formulas, and adapt them to your specific workflow.</p>
+        </div>
+        
+        <div class="border-b border-surface-800 pb-4">
+          <h4 class="font-medium text-white mb-2">Do you offer refunds?</h4>
+          <p class="text-zinc-400">Yes, we offer a 30-day money-back guarantee. If a resource doesn't meet your expectations, just email us and we'll refund your purchase, no questions asked.</p>
+        </div>
+        
+        <div>
+          <h4 class="font-medium text-white mb-2">Do you provide support?</h4>
+          <p class="text-zinc-400">Each resource includes detailed documentation. For specific questions, you can reach us via the newsletter or our contact page—we typically respond within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .badge {
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium;
+  }
+  .badge-free {
+    @apply bg-brand-teal/10 text-brand-teal border border-brand-teal/20;
+  }
+  .badge-paid {
+    @apply bg-brand-coral/10 text-brand-coral border border-brand-coral/20;
+  }
+  .badge-neutral {
+    @apply bg-brand-amber/10 text-brand-amber border border-brand-amber/20;
+  }
+</style>

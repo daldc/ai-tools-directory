@@ -20,7 +20,7 @@ const variantClasses = variant === "primary"
 ---
 
 <a
-  href={productUrl}
+  href={finalUrl}
   class={`${baseClasses} ${variantClasses} ${className}`}
   data-gumroad-product-id
   target="_blank"
@@ -31,7 +31,7 @@ const variantClasses = variant === "primary"
     <line x1="3" y1="6" x2="21" y2="6"></line>
     <path d="M16 10a4 4 0 0 1-8 0"></path>
   </svg>
-  {text}
+  {finalText}
 </a>
 
 <!-- 

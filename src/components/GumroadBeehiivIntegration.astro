@@ -1,0 +1,208 @@
+---
+import GumroadButton from "./GumroadButton.astro";
+import NewsletterSignup from "./NewsletterSignup.astro";
+
+interface Props {
+  variant?: "home" | "store" | "compact";
+  utmCampaign?: string;
+  showNewsletter?: boolean;
+  showProducts?: boolean;
+}
+
+const {
+  variant = "home",
+  utmCampaign = "integrated_cta",
+  showNewsletter = true,
+  showProducts = true,
+} = Astro.props;
+
+const isCompact = variant === "compact";
+const isStore = variant === "store";
+---
+
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-br from-brand-teal/5 via-transparent to-brand-amber/5 rounded-3xl"></div>
+  
+  <div class="relative border border-surface-700/50 rounded-3xl p-8 md:p-12">
+    <div class="max-w-4xl mx-auto">
+      
+      <!-- Header -->
+      {!isCompact && (
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-teal/20 bg-brand-teal/5 text-xs text-brand-teal mb-6">
+            <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            The AI Marketing Stack
+          </div>
+          <h2 class="font-display font-bold text-3xl md:text-4xl text-white mb-4">
+            {isStore ? "Join the Community" : "Get Started Today"}
+          </h2>
+          <p class="text-zinc-400 text-lg max-w-2xl mx-auto leading-relaxed">
+            {isStore 
+              ? "Start with our free resources, then upgrade to premium templates when you're ready to level up your marketing operations."
+              : "Access curated AI tool insights and proven templates from a marketing analytics practitioner with 11+ years of experience."
+            }
+          </p>
+        </div>
+      )}
+
+      <!-- Integrated Flow -->
+      <div class={`grid ${isCompact ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1 lg:grid-cols-2"} gap-8 items-start`}>
+        
+        <!-- Newsletter Signup -->
+        {showNewsletter && (
+          <div class="space-y-6">
+            {isCompact && (
+              <div>
+                <h3 class="font-display font-semibold text-xl text-white mb-2">
+                  Weekly AI Insights
+                </h3>
+                <p class="text-zinc-400 text-sm">
+                  Get the latest AI tool reviews and marketing strategies delivered to your inbox.
+                </p>
+              </div>
+            )}
+            
+            <NewsletterSignup 
+              compact={isCompact}
+              utmSource="gumroad_beehiiv_integration"
+              utmCampaign={`${utmCampaign}_newsletter`}
+              heading={isCompact ? "" : "Weekly AI Tool Insights"}
+              subheading={isCompact ? "" : "Get exclusive tool reviews, marketing strategies, and early access to new resources."}
+            />
+            
+            {!isCompact && (
+              <div class="flex items-center justify-center gap-4 text-xs text-zinc-600">
+                <span class="flex items-center gap-1">
+                  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  Free forever
+                </span>
+                <span class="flex items-center gap-1">
+                  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  No spam
+                </span>
+                <span class="flex items-center gap-1">
+                  <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                  Unsubscribe anytime
+                </span>
+              </div>
+            )}
+          </div>
+        )}
+
+        <!-- Products -->
+        {showProducts && (
+          <div class="space-y-6">
+            {isCompact && (
+              <div>
+                <h3 class="font-display font-semibold text-xl text-white mb-2">
+                  Premium Resources
+                </h3>
+                <p class="text-zinc-400 text-sm">
+                  Professional templates and guides to level up your marketing stack.
+                </p>
+              </div>
+            )}
+            
+            <div class="space-y-4">
+              <!-- Free Cheat Sheet -->
+              <div class="border border-surface-700/50 rounded-2xl p-6 bg-surface-900/30">
+                <div class="flex items-start justify-between mb-3">
+                  <div class="flex-1">
+                    <div class="flex items-center gap-2 mb-2">
+                      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-brand-teal/10 text-brand-teal border border-brand-teal/20">
+                        Free
+                      </span>
+                      <span class="text-xs text-zinc-500">PDF Download</span>
+                    </div>
+                    <h4 class="font-display font-medium text-white text-sm mb-1">
+                      AI Tools Cheat Sheet
+                    </h4>
+                    <p class="text-zinc-400 text-xs leading-relaxed">
+                      50+ tools ranked & reviewed across 11 categories
+                    </p>
+                  </div>
+                </div>
+                <GumroadButton 
+                  productId="cheatsheet"
+                  variant="primary"
+                  utmCampaign={`${utmCampaign}_cheatsheet`}
+                  utmContent="integration_card"
+                  class="w-full text-xs py-2"
+                />
+              </div>
+
+              <!-- UTM Template -->
+              <div class="border border-surface-700/50 rounded-2xl p-6 bg-surface-900/30">
+                <div class="flex items-start justify-between mb-3">
+                  <div class="flex-1">
+                    <div class="flex items-center gap-2 mb-2">
+                      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-brand-coral/10 text-brand-coral border border-brand-coral/20">
+                        $19
+                      </span>
+                      <span class="text-xs text-zinc-500">Google Sheets</span>
+                    </div>
+                    <h4 class="font-display font-medium text-white text-sm mb-1">
+                      UTM Builder Template
+                    </h4>
+                    <p class="text-zinc-400 text-xs leading-relaxed">
+                      Auto-generating URLs + GA4 alignment guide
+                    </p>
+                  </div>
+                </div>
+                <GumroadButton 
+                  productId="utmBuilder"
+                  variant="coral"
+                  utmCampaign={`${utmCampaign}_utm`}
+                  utmContent="integration_card"
+                  class="w-full text-xs py-2"
+                />
+              </div>
+            </div>
+
+            {!isCompact && (
+              <div class="text-center">
+                <a href="/store" class="inline-flex items-center gap-1 text-xs text-zinc-500 hover:text-brand-teal transition-colors">
+                  View all products
+                  <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="m9 18 6-6-6-6"></path>
+                  </svg>
+                </a>
+              </div>
+            )}
+          </div>
+        )}
+
+      </div>
+
+      <!-- Bottom CTA -->
+      {!isCompact && !isStore && (
+        <div class="text-center mt-12 pt-8 border-t border-surface-800/50">
+          <p class="text-zinc-500 text-sm mb-4">
+            Start with the free cheat sheet, upgrade when you're ready for more advanced resources.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <GumroadButton 
+              productId="cheatsheet"
+              variant="primary"
+              utmCampaign={`${utmCampaign}_bottom_cta`}
+              utmContent="free_start"
+              class="flex-1 text-sm"
+            />
+            <a href="/store" class="btn-secondary text-sm px-6">
+              Browse All →
+            </a>
+          </div>
+        </div>
+      )}
+
+    </div>
+  </div>
+</section>
