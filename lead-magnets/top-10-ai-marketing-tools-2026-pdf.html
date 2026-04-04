@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top 10 AI Marketing Tools for 2026</title>
+  <style>
+    /* ── Reset & Base ────────────────────────────────────────── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --teal: #0ff0e0;
+      --teal-dark: #0cc8b8;
+      --amber: #f5a623;
+      --amber-light: #ffd580;
+      --coral: #ff6b6b;
+      --surface-950: #09090b;
+      --surface-900: #18181b;
+      --surface-850: #1e1e22;
+      --surface-800: #27272a;
+      --surface-700: #3f3f46;
+      --surface-600: #52525b;
+      --white: #fafafa;
+      --gray-100: #f4f4f5;
+      --gray-200: #e4e4e7;
+      --gray-300: #d4d4d8;
+      --gray-400: #a1a1aa;
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', system-ui, sans-serif;
+      background: var(--surface-950);
+      color: var(--gray-100);
+      line-height: 1.6;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* ── Page structure ──────────────────────────────────────── */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 0;
+      page-break-after: always;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page:last-child {
+      page-break-after: avoid;
+    }
+
+    /* ── Cover Page ──────────────────────────────────────────── */
+    .cover {
+      background: var(--surface-950);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 50px;
+      position: relative;
+    }
+
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(15, 240, 224, 0.12) 0%, rgba(245, 166, 35, 0.06) 40%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(245, 166, 35, 0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .cover-brand {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 60px;
+    }
+
+    .cover-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--gray-100);
+      letter-spacing: -0.02em;
+    }
+
+    .cover-logo .logo-box {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--teal), var(--amber));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--surface-950);
+    }
+
+    .cover-content {
+      position: relative;
+      z-index: 1;
+      max-width: 520px;
+    }
+
+    .cover-badge {
+      display: inline-block;
+      padding: 6px 20px;
+      background: rgba(15, 240, 224, 0.1);
+      border: 1px solid rgba(15, 240, 224, 0.25);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 32px;
+    }
+
+    .cover h1 {
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+
+    .cover h1 .gradient {
+      background: linear-gradient(135deg, var(--teal), var(--amber));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .cover .subtitle {
+      font-size: 18px;
+      color: var(--gray-400);
+      line-height: 1.6;
+      margin-bottom: 48px;
+    }
+
+    .cover-meta {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .cover-meta-item {
+      text-align: center;
+    }
+
+    .cover-meta-item .number {
+      font-size: 28px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--teal), var(--amber));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .cover-meta-item .label {
+      font-size: 12px;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 4px;
+    }
+
+    .cover-footer {
+      position: absolute;
+      bottom: 40px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .cover-footer p {
+      font-size: 13px;
+      color: var(--surface-600);
+    }
+
+    .cover-footer a {
+      color: var(--teal-dark);
+      text-decoration: none;
+    }
+
+    /* ── Tool Pages ──────────────────────────────────────────── */
+    .tool-page {
+      background: var(--surface-950);
+      padding: 44px 50px;
+    }
+
+    .tool-page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--surface-800);
+    }
+
+    .tool-page-header .page-title {
+      font-size: 11px;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+
+    .tool-page-header .page-logo {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--surface-600);
+    }
+
+    /* Tool Card */
+    .tool-card {
+      background: var(--surface-900);
+      border: 1px solid var(--surface-800);
+      border-radius: 16px;
+      padding: 36px;
+      margin-bottom: 24px;
+    }
+
+    .tool-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .tool-card-identity {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .tool-number {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--surface-950);
+      flex-shrink: 0;
+    }
+
+    .tool-card-title {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--white);
+    }
+
+    .tool-card-category {
+      font-size: 13px;
+      color: var(--teal);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .tool-card-badges {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .badge-pricing {
+      padding: 5px 14px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .badge-free {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .badge-freemium {
+      background: rgba(245, 166, 35, 0.15);
+      color: var(--amber-light);
+      border: 1px solid rgba(245, 166, 35, 0.3);
+    }
+
+    .badge-paid {
+      background: rgba(255, 107, 107, 0.15);
+      color: var(--coral);
+      border: 1px solid rgba(255, 107, 107, 0.3);
+    }
+
+    .badge-price {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gray-300);
+    }
+
+    .tool-card-rating {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--amber);
+    }
+
+    .tool-card-rating .stars {
+      color: var(--amber);
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    .tool-description {
+      font-size: 15px;
+      color: var(--gray-300);
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+
+    .tool-details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .detail-section {
+      background: var(--surface-850);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .detail-section h4 {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+
+    .detail-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .detail-section ul li {
+      font-size: 13px;
+      color: var(--gray-300);
+      padding: 4px 0;
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .detail-section ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--teal-dark);
+      font-weight: 600;
+    }
+
+    .best-for-section {
+      background: rgba(15, 240, 224, 0.05);
+      border: 1px solid rgba(15, 240, 224, 0.15);
+    }
+
+    .best-for-section ul li::before {
+      content: '✓';
+      color: var(--teal);
+    }
+
+    .tool-verdict {
+      background: linear-gradient(135deg, rgba(15, 240, 224, 0.08), rgba(245, 166, 35, 0.05));
+      border: 1px solid rgba(15, 240, 224, 0.15);
+      border-radius: 12px;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .verdict-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .verdict-text {
+      font-size: 14px;
+      color: var(--gray-200);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    /* ── Comparison Table Page ───────────────────────────────── */
+    .comparison-page {
+      background: var(--surface-950);
+      padding: 44px 36px;
+    }
+
+    .comparison-page h2 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .comparison-page .section-subtitle {
+      font-size: 14px;
+      color: var(--gray-400);
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .comparison-table th {
+      background: var(--surface-900);
+      color: var(--teal);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 12px 10px;
+      text-align: left;
+      border-bottom: 2px solid var(--surface-800);
+    }
+
+    .comparison-table td {
+      padding: 11px 10px;
+      border-bottom: 1px solid var(--surface-850);
+      color: var(--gray-300);
+      vertical-align: top;
+    }
+
+    .comparison-table tr:nth-child(even) td {
+      background: rgba(255, 255, 255, 0.015);
+    }
+
+    .comparison-table .tool-name-cell {
+      font-weight: 700;
+      color: var(--white);
+      white-space: nowrap;
+    }
+
+    .comparison-table .rating-cell {
+      color: var(--amber);
+      font-weight: 700;
+    }
+
+    /* ── Back Page / CTA ─────────────────────────────────────── */
+    .back-page {
+      background: var(--surface-950);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 50px;
+      position: relative;
+    }
+
+    .back-page::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(15, 240, 224, 0.08) 0%, rgba(245, 166, 35, 0.04) 40%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .back-content {
+      position: relative;
+      z-index: 1;
+      max-width: 460px;
+    }
+
+    .back-content h2 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .back-content h2 .gradient {
+      background: linear-gradient(135deg, var(--teal), var(--amber));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .back-content p {
+      font-size: 16px;
+      color: var(--gray-400);
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+
+    .cta-box {
+      background: var(--surface-900);
+      border: 1px solid var(--surface-800);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 32px;
+    }
+
+    .cta-box h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .cta-box p {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .cta-link {
+      display: inline-block;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+      color: var(--surface-950);
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .cta-secondary {
+      background: transparent;
+      border: 1px solid var(--surface-700);
+      color: var(--gray-300);
+      margin-top: 12px;
+    }
+
+    .back-links {
+      margin-top: 40px;
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+    }
+
+    .back-links a {
+      color: var(--gray-400);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .back-links a:hover {
+      color: var(--teal);
+    }
+
+    .back-footer {
+      position: absolute;
+      bottom: 40px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .back-footer p {
+      font-size: 12px;
+      color: var(--surface-600);
+    }
+
+    /* ── Print adjustments ───────────────────────────────────── */
+    @media print {
+      body { background: var(--surface-950); }
+      .page { box-shadow: none; margin: 0; }
+    }
+
+    /* ── Screen preview ──────────────────────────────────────── */
+    @media screen {
+      body {
+        padding: 20px 0;
+      }
+      .page {
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════════════════════
+       PAGE 1: COVER
+       ════════════════════════════════════════════════════════════ -->
+  <div class="page cover">
+    <div class="cover-brand">
+      <div class="cover-logo">
+        <div class="logo-box">AI</div>
+        Marketing Stack AI
+      </div>
+    </div>
+
+    <div class="cover-content">
+      <div class="cover-badge">2026 Edition</div>
+      <h1>Top 10<br><span class="gradient">AI Marketing Tools</span></h1>
+      <p class="subtitle">
+        Ratings, pricing, key features, and expert verdicts &mdash; everything you need to build the perfect AI-powered marketing stack.
+      </p>
+    </div>
+
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <div class="number">103+</div>
+        <div class="label">Tools Reviewed</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="number">11</div>
+        <div class="label">Categories</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="number">Top 10</div>
+        <div class="label">Curated Picks</div>
+      </div>
+    </div>
+
+    <div class="cover-footer">
+      <p>marketingstackai.com</p>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       PAGE 2: TOOLS #1–2
+       ════════════════════════════════════════════════════════════ -->
+  <div class="page tool-page">
+    <div class="tool-page-header">
+      <span class="page-title">Top 10 AI Marketing Tools for 2026</span>
+      <span class="page-logo">Marketing Stack AI</span>
+    </div>
+
+    <!-- TOOL 1: Jasper -->
+    <div class="tool-card">
+      <div class="tool-card-top">
+        <div class="tool-card-identity">
+          <div class="tool-number">1</div>
+          <div>
+            <div class="tool-card-title">Jasper</div>
+            <div class="tool-card-category">Writing &amp; Content</div>
+          </div>
+        </div>
+        <div class="tool-card-badges">
+          <span class="badge-pricing badge-paid">Paid</span>
+          <span class="badge-price">From $49/mo</span>
+          <span class="tool-card-rating">
+            <span class="stars">★★★★☆</span> 4.3
+          </span>
+        </div>
+      </div>
+      <p class="tool-description">
+        An enterprise AI content platform for marketing teams that maintains brand voice consistency. Offers templates, campaigns, and collaborative workflows for scaling content production across channels.
+      </p>
+      <div class="tool-details-grid">
+        <div class="detail-section">
+          <h4>Key Features</h4>
+          <ul>
+            <li>Brand voice and style guide</li>
+            <li>50+ content templates</li>
+            <li>Campaign content workflows</li>
+            <li>Team collaboration features</li>
+            <li>Multi-channel content creation</li>
+          </ul>
+        </div>
+        <div class="detail-section best-for-section">
+          <h4>Best For</h4>
+          <ul>
+            <li>Marketing teams scaling content production</li>
+            <li>Maintaining brand consistency across channels</li>
+            <li>Enterprise content operations</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tool-verdict">
+        <span class="verdict-label">Verdict</span>
+        <span class="verdict-text">The go-to choice for enterprise marketing teams who need brand-consistent content at scale &mdash; powerful templates and workflows justify the price.</span>
+      </div>
+    </div>
+
+    <!-- TOOL 2: HubSpot AI -->
+    <div class="tool-card">
+      <div class="tool-card-top">
+        <div class="tool-card-identity">
+          <div class="tool-number">2</div>
+          <div>
+            <div class="tool-card-title">HubSpot AI</div>
+            <div class="tool-card-category">Marketing</div>
+          </div>
+        </div>
+        <div class="tool-card-badges">
+          <span class="badge-pricing badge-freemium">Freemium</span>
+          <span class="badge-price">From $20/mo</span>
+          <span class="tool-card-rating">
+            <span class="stars">★★★★☆</span> 4.4
+          </span>
+        </div>
+      </div>
+      <p class="tool-description">
+        AI features embedded across HubSpot's CRM platform including content generation, email writing, lead scoring, and chatbot creation. Leverages your CRM data for personalized marketing automation.
+      </p>
+      <div class="tool-details-grid">
+        <div class="detail-section">
+          <h4>Key Features</h4>
+          <ul>
+            <li>AI content and email writer</li>
+            <li>Predictive lead scoring</li>
+            <li>AI chatbot builder</li>
+            <li>Social media caption generator</li>
+            <li>Campaign assistant</li>
+          </ul>
+        </div>
+        <div class="detail-section best-for-section">
+          <h4>Best For</h4>
+          <ul>
+            <li>Teams already using HubSpot CRM</li>
+            <li>Full-funnel marketing automation</li>
+            <li>Data-driven lead scoring and nurturing</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tool-verdict">
+        <span class="verdict-label">Verdict</span>
+        <span class="verdict-text">If you're already in the HubSpot ecosystem, their AI features are a no-brainer upgrade that turns your CRM data into a marketing superpower.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       PAGE 3: TOOLS #3–4
+       ════════════════════════════════════════════════════════════ -->
+  <div class="page tool-page">
+    <div class="tool-page-header">
+      <span class="page-title">Top 10 AI Marketing Tools for 2026</span>
+      <span class="page-logo">Marketing Stack AI</span>
+    </div>
+
+    <!-- TOOL 3: Surfer SEO -->
+    <div class="tool-card">
+      <div class="tool-card-top">
+        <div class="tool-card-identity">
+          <div class="tool-number">3</div>
+          <div>
+            <div class="tool-card-title">Surfer SEO</div>
+            <div class="tool-card-category">Marketing</div>
+          </div>
+        </div>
+        <div class="tool-card-badges">
+          <span class="badge-pricing badge-paid">Paid</span>
+          <span class="badge-price">From $89/mo</span>
+          <span class="tool-card-rating">
+            <span class="stars">★★★★★</span> 4.5
+          </span>
+        </div>
+      </div>
+      <p class="tool-description">
+        An AI-powered SEO tool that helps you write content optimized for search rankings. Analyzes top-ranking pages, provides real-time optimization scores, and generates SEO-optimized articles.
+      </p>
+      <div class="tool-details-grid">
+        <div class="detail-section">
+          <h4>Key Features</h4>
+          <ul>
+            <li>Real-time content optimization</li>
+            <li>SERP analysis and benchmarking</li>
+            <li>AI article generation</li>
+            <li>Keyword research and clustering</li>
+            <li>Content audit and planning</li>
+          </ul>
+        </div>
+        <div class="detail-section best-for-section">
+          <h4>Best For</h4>
+          <ul>
+            <li>Content marketers focused on organic traffic</li>
+            <li>SEO teams optimizing at scale</li>
+            <li>Bloggers and content creators targeting rankings</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tool-verdict">
+        <span class="verdict-label">Verdict</span>
+        <span class="verdict-text">The most actionable SEO writing tool available &mdash; real-time scoring takes the guesswork out of on-page optimization.</span>
+      </div>
+    </div>
+
+    <!-- TOOL 4: Semrush AI -->
+    <div class="tool-card">
+      <div class="tool-card-top">
+        <div class="tool-card-identity">
+          <div class="tool-number">4</div>
+          <div>
+            <div class="tool-card-title">Semrush AI</div>
+            <div class="tool-card-category">Marketing</div>
+          </div>
+        </div>
+        <div class="tool-card-badges">
+          <span class="badge-pricing badge-paid">Paid</span>
+          <span class="badge-price">From $130/mo</span>
+          <span class="tool-card-rating">
+            <span class="stars">★★★★★</span> 4.5
+          </span>
+        </div>
+      </div>
+      <p class="tool-description">
+        AI-powered features within Semrush's comprehensive marketing toolkit, including AI writing assistant, keyword clustering, and competitive analysis automation for SEO and content marketing.
+      </p>
+      <div class="tool-details-grid">
+        <div class="detail-section">
+          <h4>Key Features</h4>
+          <ul>
+            <li>AI SEO writing assistant</li>
+            <li>Automated keyword clustering</li>
+            <li>Competitive gap analysis</li>
+            <li>Content marketing platform</li>
+            <li>Backlink analytics</li>
+          </ul>
+        </div>
+        <div class="detail-section best-for-section">
+          <h4>Best For</h4>
+          <ul>
+            <li>Full-stack SEO and marketing teams</li>
+            <li>Competitive intelligence and research</li>
+            <li>Agencies managing multiple clients</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tool-verdict">
+        <span class="verdict-label">Verdict</span>
+        <span class="verdict-text">The Swiss Army knife of digital marketing &mdash; if you can only afford one comprehensive marketing tool, Semrush's AI features make it hard to beat.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       PAGE 4: TOOLS #5–6
+       ════════════════════════════════════════════════════════════ -->
+  <div class="page tool-page">
+    <div class="tool-page-header">
+      <span class="page-title">Top 10 AI Marketing Tools for 2026</span>
+      <span class="page-logo">Marketing Stack AI</span>
+    </div>
+
+    <!-- TOOL 5: AdCreative.ai -->
+    <div class="tool-card">
+      <div class="tool-card-top">
+        <div class="tool-card-identity">
+          <div class="tool-number">5</div>
+          <div>
+            <div class="tool-card-title">AdCreative.ai</div>
+            <div class="tool-card-category">Marketing</div>
+          </div>
+        </div>
+        <div class="tool-card-badges">
+          <span class="badge-pricing badge-paid">Paid</span>
+          <span class="badge-price">From $29/mo</span>
+          <span class="tool-card-rating">
+            <span class="stars">★★★★☆</span> 4.2
+          </span>
+        </div>
+      </div>
+      <p class="tool-description">
+        An AI platform that generates conversion-focused ad creatives and copy. Uses machine learning trained on high-performing ads to predict which designs will convert best for your campaigns.
+      </p>
+      <div class="tool-details-grid">
+        <div class="detail-section">
+          <h4>Key Features</h4>
+          <ul>
+            <li>AI ad creative generation</li>
+            <li>Performance score predictions</li>
+            <li>Multi-platform ad formats</li>
+            <li>Competitor creative analysis</li>
+            <li>Brand-consistent outputs</li>
+          </ul>
+        </div>
+        <div class="detail-section best-for-section">
+          <h4>Best For</h4>
+          <ul>
+            <li>Performance marketers running paid ads</li>
+            <li>Teams needing high-volume ad variations</li>
+            <li>E-commerce brands with frequent creative needs</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tool-verdict">
+        <span class="verdict-label">Verdict</span>
+        <span class="verdict-text">A game-changer for paid media teams &mdash; predictive scoring means fewer wasted ad dollars and faster creative iteration.</span>
+      </div>
+    </div>
+
+    <!-- TOOL 6: Copy.ai -->
+    <div class="tool-card">
+      <div class="tool-card-top">
+        <div class="tool-card-identity">
+          <div class="tool-number">6</div>
+          <div>
+            <div class="tool-card-title">Copy.ai</div>
+            <div class="tool-card-category">Writing &amp; Content</div>
+          </div>
+        </div>
+        <div class="tool-card-badges">
+          <span class="badge-pricing badge-freemium">Freemium</span>
+          <span class="badge-price">From $49/mo</span>
+          <span class="tool-card-rating">
+            <span class="stars">★★★★☆</span> 4.2
+          </span>
+        </div>
+      </div>
+      <p class="tool-description">
+        An AI-powered copywriting tool that generates marketing copy, blog posts, social media content, and product descriptions. Features workflow automation for scaling content across the entire go-to-market funnel.
+      </p>
+      <div class="tool-details-grid">
+        <div class="detail-section">
+          <h4>Key Features</h4>
+          <ul>
+            <li>90+ copywriting templates</li>
+            <li>GTM workflow automation</li>
+            <li>Blog post and article generation</li>
+            <li>Social media content creation</li>
+            <li>Product description generator</li>
+          </ul>
+        </div>
+        <div class="detail-section best-for-section">
+          <h4>Best For</h4>
+          <ul>
+            <li>Startups and SMBs needing quick copy</li>
+            <li>Go-to-market teams scaling outbound</li>
+            <li>Marketers who need volume and variety</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tool-verdict">
+        <span class="verdict-label">Verdict</span>
+        <span class="verdict-text">The best entry point for AI copywriting &mdash; generous free tier and 90+ templates make it easy to start generating quality marketing copy fast.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       PAGE 5: TOOLS #7–8
+       ════════════════════════════════════════════════════════════ -->
+  <div class="page tool-page">
+    <div class="tool-page-header">
+      <span class="page-title">Top 10 AI Marketing Tools for 2026</span>
+      <span class="page-logo">Marketing Stack AI</span>
+    </div>
+
+    <!-- TOOL 7: Canva AI -->
+    <div class="tool-card">
+      <div class="tool-card-top">
+        <div class="tool-card-identity">
+          <div class="tool-number">7</div>
+          <div>
+            <div class="tool-card-title">Canva AI</div>
+            <div class="tool-card-category">Image &amp; Design</div>
+          </div>
+        </div>
+        <div class="tool-card-badges">
+          <span class="badge-pricing badge-freemium">Freemium</span>
+          <span class="badge-price">From $13/mo</span>
+          <span class="tool-card-rating">
+            <span class="stars">★★★★★</span> 4.5
+          </span>
+        </div>
+      </div>
+      <p class="tool-description">
+        Canva's suite of AI-powered design tools including Magic Design, text-to-image, background removal, and content generation. Makes professional design accessible to non-designers.
+      </p>
+      <div class="tool-details-grid">
+        <div class="detail-section">
+          <h4>Key Features</h4>
+          <ul>
+            <li>Magic Design auto-layout</li>
+            <li>AI image generation</li>
+            <li>Background remover</li>
+            <li>Magic Write for copy</li>
+            <li>Brand kit integration</li>
+          </ul>
+        </div>
+        <div class="detail-section best-for-section">
+          <h4>Best For</h4>
+          <ul>
+            <li>Non-designers creating marketing visuals</li>
+            <li>Social media managers needing fast graphics</li>
+            <li>Small teams without a dedicated designer</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tool-verdict">
+        <span class="verdict-label">Verdict</span>
+        <span class="verdict-text">The ultimate design democratizer &mdash; AI features turn anyone into a capable visual content creator at an unbeatable price point.</span>
+      </div>
+    </div>
+
+    <!-- TOOL 8: Clearscope -->
+    <div class="tool-card">
+      <div class="tool-card-top">
+        <div class="tool-card-identity">
+          <div class="tool-number">8</div>
+          <div>
+            <div class="tool-card-title">Clearscope</div>
+            <div class="tool-card-category">Marketing</div>
+          </div>
+        </div>
+        <div class="tool-card-badges">
+          <span class="badge-pricing badge-paid">Paid</span>
+          <span class="badge-price">From $170/mo</span>
+          <span class="tool-card-rating">
+            <span class="stars">★★★★☆</span> 4.4
+          </span>
+        </div>
+      </div>
+      <p class="tool-description">
+        An enterprise SEO content optimization platform that uses AI to analyze search intent and recommend content improvements. Provides content grades and keyword suggestions based on top-ranking competitors.
+      </p>
+      <div class="tool-details-grid">
+        <div class="detail-section">
+          <h4>Key Features</h4>
+          <ul>
+            <li>AI content grading system</li>
+            <li>Competitor content analysis</li>
+            <li>Keyword and topic recommendations</li>
+            <li>Google Docs integration</li>
+            <li>Content inventory management</li>
+          </ul>
+        </div>
+        <div class="detail-section best-for-section">
+          <h4>Best For</h4>
+          <ul>
+            <li>Enterprise content teams with SEO goals</li>
+            <li>Content strategists optimizing existing pages</li>
+            <li>Teams that live in Google Docs</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tool-verdict">
+        <span class="verdict-label">Verdict</span>
+        <span class="verdict-text">Premium-priced but delivers premium results &mdash; the content grading system is the gold standard for enterprise SEO optimization.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       PAGE 6: TOOLS #9–10
+       ════════════════════════════════════════════════════════════ -->
+  <div class="page tool-page">
+    <div class="tool-page-header">
+      <span class="page-title">Top 10 AI Marketing Tools for 2026</span>
+      <span class="page-logo">Marketing Stack AI</span>
+    </div>
+
+    <!-- TOOL 9: Anyword -->
+    <div class="tool-card">
+      <div class="tool-card-top">
+        <div class="tool-card-identity">
+          <div class="tool-number">9</div>
+          <div>
+            <div class="tool-card-title">Anyword</div>
+            <div class="tool-card-category">Writing &amp; Content</div>
+          </div>
+        </div>
+        <div class="tool-card-badges">
+          <span class="badge-pricing badge-paid">Paid</span>
+          <span class="badge-price">From $49/mo</span>
+          <span class="tool-card-rating">
+            <span class="stars">★★★★☆</span> 4.1
+          </span>
+        </div>
+      </div>
+      <p class="tool-description">
+        An AI copywriting platform with predictive performance scoring that rates your content before publishing. Uses historical data to predict which copy variations will perform best for your audience.
+      </p>
+      <div class="tool-details-grid">
+        <div class="detail-section">
+          <h4>Key Features</h4>
+          <ul>
+            <li>Predictive performance scoring</li>
+            <li>A/B copy variation generation</li>
+            <li>Channel-specific optimization</li>
+            <li>Brand voice customization</li>
+            <li>Analytics integration</li>
+          </ul>
+        </div>
+        <div class="detail-section best-for-section">
+          <h4>Best For</h4>
+          <ul>
+            <li>Data-driven marketers who A/B test copy</li>
+            <li>Ad teams needing performance predictions</li>
+            <li>Brands optimizing across multiple channels</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tool-verdict">
+        <span class="verdict-label">Verdict</span>
+        <span class="verdict-text">Unique in the market with its predictive scoring &mdash; if you live and breathe conversion rates, Anyword gives you a data edge before you publish.</span>
+      </div>
+    </div>
+
+    <!-- TOOL 10: Seventh Sense -->
+    <div class="tool-card">
+      <div class="tool-card-top">
+        <div class="tool-card-identity">
+          <div class="tool-number">10</div>
+          <div>
+            <div class="tool-card-title">Seventh Sense</div>
+            <div class="tool-card-category">Marketing</div>
+          </div>
+        </div>
+        <div class="tool-card-badges">
+          <span class="badge-pricing badge-paid">Paid</span>
+          <span class="badge-price">From $80/mo</span>
+          <span class="tool-card-rating">
+            <span class="stars">★★★★☆</span> 4.0
+          </span>
+        </div>
+      </div>
+      <p class="tool-description">
+        An AI email delivery optimization platform for HubSpot and Marketo that sends emails at the perfect time for each recipient. Uses behavioral data to maximize open rates and engagement.
+      </p>
+      <div class="tool-details-grid">
+        <div class="detail-section">
+          <h4>Key Features</h4>
+          <ul>
+            <li>AI send-time optimization</li>
+            <li>Individual recipient timing</li>
+            <li>Email throttling and pacing</li>
+            <li>Engagement analytics</li>
+            <li>HubSpot and Marketo integration</li>
+          </ul>
+        </div>
+        <div class="detail-section best-for-section">
+          <h4>Best For</h4>
+          <ul>
+            <li>Email marketers on HubSpot or Marketo</li>
+            <li>Teams with large email lists (10K+)</li>
+            <li>B2B marketers optimizing nurture sequences</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tool-verdict">
+        <span class="verdict-label">Verdict</span>
+        <span class="verdict-text">A set-and-forget optimization layer for email &mdash; proven to lift open rates by personalizing send times for every single recipient.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       PAGE 7: COMPARISON TABLE
+       ════════════════════════════════════════════════════════════ -->
+  <div class="page comparison-page">
+    <div class="tool-page-header">
+      <span class="page-title">Top 10 AI Marketing Tools for 2026</span>
+      <span class="page-logo">Marketing Stack AI</span>
+    </div>
+
+    <h2 style="margin-top: 20px;">Side-by-Side Comparison</h2>
+    <p class="section-subtitle">All 10 tools at a glance &mdash; find the right fit for your team and budget.</p>
+
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Tool</th>
+          <th>Category</th>
+          <th>Pricing</th>
+          <th>Starting At</th>
+          <th>Rating</th>
+          <th>Best For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td class="tool-name-cell">Jasper</td>
+          <td>Writing &amp; Content</td>
+          <td>Paid</td>
+          <td>$49/mo</td>
+          <td class="rating-cell">4.3</td>
+          <td>Enterprise content at scale</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td class="tool-name-cell">HubSpot AI</td>
+          <td>Marketing</td>
+          <td>Freemium</td>
+          <td>$20/mo</td>
+          <td class="rating-cell">4.4</td>
+          <td>Full-funnel CRM marketing</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td class="tool-name-cell">Surfer SEO</td>
+          <td>Marketing</td>
+          <td>Paid</td>
+          <td>$89/mo</td>
+          <td class="rating-cell">4.5</td>
+          <td>SEO content optimization</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td class="tool-name-cell">Semrush AI</td>
+          <td>Marketing</td>
+          <td>Paid</td>
+          <td>$130/mo</td>
+          <td class="rating-cell">4.5</td>
+          <td>All-in-one digital marketing</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td class="tool-name-cell">AdCreative.ai</td>
+          <td>Marketing</td>
+          <td>Paid</td>
+          <td>$29/mo</td>
+          <td class="rating-cell">4.2</td>
+          <td>Paid ad creative generation</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td class="tool-name-cell">Copy.ai</td>
+          <td>Writing &amp; Content</td>
+          <td>Freemium</td>
+          <td>$49/mo</td>
+          <td class="rating-cell">4.2</td>
+          <td>Quick marketing copywriting</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td class="tool-name-cell">Canva AI</td>
+          <td>Image &amp; Design</td>
+          <td>Freemium</td>
+          <td>$13/mo</td>
+          <td class="rating-cell">4.5</td>
+          <td>Visual content for non-designers</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td class="tool-name-cell">Clearscope</td>
+          <td>Marketing</td>
+          <td>Paid</td>
+          <td>$170/mo</td>
+          <td class="rating-cell">4.4</td>
+          <td>Enterprise SEO optimization</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td class="tool-name-cell">Anyword</td>
+          <td>Writing &amp; Content</td>
+          <td>Paid</td>
+          <td>$49/mo</td>
+          <td class="rating-cell">4.1</td>
+          <td>Predictive copy performance</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td class="tool-name-cell">Seventh Sense</td>
+          <td>Marketing</td>
+          <td>Paid</td>
+          <td>$80/mo</td>
+          <td class="rating-cell">4.0</td>
+          <td>Email send-time optimization</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Stack Recommendations -->
+    <div style="margin-top: 36px;">
+      <h2 style="font-size: 22px; margin-bottom: 20px; text-align: center;">Recommended Stacks</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+
+        <div style="background: var(--surface-900); border: 1px solid var(--surface-800); border-radius: 14px; padding: 24px;">
+          <div style="font-size: 11px; font-weight: 700; color: var(--teal); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Solo Marketer</div>
+          <div style="font-size: 15px; font-weight: 700; margin-bottom: 4px;">~$91/mo</div>
+          <div style="font-size: 13px; color: var(--gray-400); margin-bottom: 14px;">Best bang for your buck</div>
+          <ul style="list-style: none; padding: 0;">
+            <li style="font-size: 13px; color: var(--gray-300); padding: 3px 0;">Copy.ai <span style="color: var(--gray-400);">— Content</span></li>
+            <li style="font-size: 13px; color: var(--gray-300); padding: 3px 0;">Canva AI <span style="color: var(--gray-400);">— Design</span></li>
+            <li style="font-size: 13px; color: var(--gray-300); padding: 3px 0;">AdCreative.ai <span style="color: var(--gray-400);">— Ads</span></li>
+          </ul>
+        </div>
+
+        <div style="background: var(--surface-900); border: 1px solid rgba(15, 240, 224, 0.2); border-radius: 14px; padding: 24px;">
+          <div style="font-size: 11px; font-weight: 700; color: var(--amber); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Growth Team</div>
+          <div style="font-size: 15px; font-weight: 700; margin-bottom: 4px;">~$287/mo</div>
+          <div style="font-size: 13px; color: var(--gray-400); margin-bottom: 14px;">Scale with data</div>
+          <ul style="list-style: none; padding: 0;">
+            <li style="font-size: 13px; color: var(--gray-300); padding: 3px 0;">Jasper <span style="color: var(--gray-400);">— Content</span></li>
+            <li style="font-size: 13px; color: var(--gray-300); padding: 3px 0;">Surfer SEO <span style="color: var(--gray-400);">— SEO</span></li>
+            <li style="font-size: 13px; color: var(--gray-300); padding: 3px 0;">Anyword <span style="color: var(--gray-400);">— Copy</span></li>
+            <li style="font-size: 13px; color: var(--gray-300); padding: 3px 0;">HubSpot AI <span style="color: var(--gray-400);">— CRM</span></li>
+          </ul>
+        </div>
+
+        <div style="background: var(--surface-900); border: 1px solid var(--surface-800); border-radius: 14px; padding: 24px;">
+          <div style="font-size: 11px; font-weight: 700; color: var(--coral); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px;">Enterprise</div>
+          <div style="font-size: 15px; font-weight: 700; margin-bottom: 4px;">~$498/mo</div>
+          <div style="font-size: 13px; color: var(--gray-400); margin-bottom: 14px;">Full coverage</div>
+          <ul style="list-style: none; padding: 0;">
+            <li style="font-size: 13px; color: var(--gray-300); padding: 3px 0;">Jasper <span style="color: var(--gray-400);">— Content</span></li>
+            <li style="font-size: 13px; color: var(--gray-300); padding: 3px 0;">Semrush AI <span style="color: var(--gray-400);">— SEO</span></li>
+            <li style="font-size: 13px; color: var(--gray-300); padding: 3px 0;">Clearscope <span style="color: var(--gray-400);">— Optimization</span></li>
+            <li style="font-size: 13px; color: var(--gray-300); padding: 3px 0;">Seventh Sense <span style="color: var(--gray-400);">— Email</span></li>
+            <li style="font-size: 13px; color: var(--gray-300); padding: 3px 0;">Canva AI <span style="color: var(--gray-400);">— Design</span></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       PAGE 8: BACK PAGE / CTA
+       ════════════════════════════════════════════════════════════ -->
+  <div class="page back-page">
+    <div class="back-content">
+      <div class="cover-logo" style="margin-bottom: 48px; justify-content: center;">
+        <div class="logo-box">AI</div>
+        Marketing Stack AI
+      </div>
+
+      <h2>Stay Ahead of<br>the <span class="gradient">AI Curve</span></h2>
+      <p>
+        The AI marketing landscape changes fast. Get weekly tool reviews, strategy breakdowns, and exclusive guides delivered to your inbox.
+      </p>
+
+      <div class="cta-box">
+        <h3>Subscribe to the Newsletter</h3>
+        <p>Join marketers who use AI to work smarter. Free, no spam, unsubscribe anytime.</p>
+        <a href="https://marketingstackai.com" class="cta-link">Subscribe at marketingstackai.com</a>
+      </div>
+
+      <div class="cta-box" style="margin-bottom: 0;">
+        <h3>Explore All 103+ Tools</h3>
+        <p>Browse our full directory with ratings, features, and comparisons across 11 categories.</p>
+        <a href="https://marketingstackai.com/browse" class="cta-link cta-secondary">Browse the Directory</a>
+      </div>
+
+      <div class="back-links">
+        <a href="https://marketingstackai.com">marketingstackai.com</a>
+      </div>
+    </div>
+
+    <div class="back-footer">
+      <p>&copy; 2026 Marketing Stack AI. All rights reserved.</p>
+    </div>
+  </div>
+
+</body>
+</html>
