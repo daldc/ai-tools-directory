@@ -86,6 +86,38 @@ Using the wrong `utm_medium` is why your traffic shows up as "Other" in GA4. The
 
 ---
 
+## Link Shortener Integration
+
+Long UTM-tagged URLs can look messy in social media posts, emails, and ads. Use a link shortener to create clean, branded links while preserving full UTM tracking.
+
+### Recommended Link Shorteners
+
+| Service | Free Tier | Best For | UTM Preservation |
+|---------|-----------|----------|-----------------|
+| **Bitly** | 10 links/month | General use, most popular | Full pass-through |
+| **Rebrandly** | 25 links/month | Branded domains (e.g., go.yourco.com) | Full pass-through |
+| **Short.io** | 1,000 links | Teams, custom domains | Full pass-through + built-in UTM builder |
+| **YOURLS** | Unlimited (self-hosted) | Full data ownership | Full pass-through |
+| **TinyURL** | Unlimited | Quick, no-signup links | Full pass-through |
+
+### Best Practices for Shortened UTM Links
+
+1. **Always test first** — Shorten a tagged URL, click it, and verify all UTM parameters appear in GA4 Realtime
+2. **Use custom back-halves** — Instead of `bit.ly/3xR7kq`, use `bit.ly/spring-sale-2026` for readability
+3. **Keep a log** — Record both the full tagged URL and the shortened version in this spreadsheet (add a column if needed)
+4. **Use branded domains** — `go.yourcompany.com/spring-sale` builds trust and improves click-through rates
+5. **Don't double-shorten** — Never run a shortened URL through a second shortener; it can break redirect chains
+
+### How to Shorten
+
+1. Build your tagged URL in the **UTM Builder** tab
+2. Copy the tagged URL from column G
+3. Paste into your link shortener of choice
+4. Replace the long URL in your campaign with the shortened version
+5. UTM parameters are preserved through the redirect — GA4 will see them normally
+
+---
+
 ## Tips for Teams
 
 1. **Share this template** with your entire marketing team
