@@ -3,6 +3,8 @@ import Layout from "../layouts/Layout.astro";
 import ToolCard from "../components/ToolCard.astro";
 import CategoryCard from "../components/CategoryCard.astro";
 import Newsletter from "../components/Newsletter.astro";
+import GumroadButton from "../components/GumroadButton.astro";
+import GumroadBeehiivIntegration from "../components/GumroadBeehiivIntegration.astro";
 import { tools, categories, getToolsByCategory } from "../data/tools";
 
 const featuredTools = tools.filter((t) => t.rating >= 4.6).slice(0, 8);
@@ -136,9 +138,13 @@ const categoryData = categories.map((cat) => ({
         <p class="text-zinc-400 text-sm leading-relaxed mb-6 flex-1">
           15 essential AI tools every marketer should know — with pricing, use cases, and honest recommendations across 6 categories.
         </p>
-        <a href="https://dallasc.gumroad.com/l/ai-tools-cheatsheet" class="btn-primary text-sm text-center" target="_blank" rel="noopener">
-          Download Free →
-        </a>
+        <GumroadButton 
+          productId="cheatsheet"
+          variant="primary" 
+          utmCampaign="homepage_cheatsheet_download"
+          utmContent="product_card"
+          class="text-sm text-center w-full"
+        />
       </div>
 
       <!-- UTM Builder -->
@@ -151,16 +157,28 @@ const categoryData = categories.map((cat) => ({
         <p class="text-zinc-400 text-sm leading-relaxed mb-6 flex-1">
           5-tab template to build UTM-tagged URLs, standardize campaign naming, and align with GA4 channel groups. Includes bulk builder and link shortener guide.
         </p>
-        <a href="/products/utm-builder" class="btn-secondary text-sm text-center">
-          View Template →
-        </a>
+        <div class="flex gap-2">
+          <GumroadButton 
+            productId="utmBuilder"
+            variant="coral" 
+            utmCampaign="homepage_utm_purchase"
+            utmContent="product_card"
+            class="text-sm flex-1 text-center"
+          />
+          <a href="/products/utm-builder" class="btn-secondary text-sm px-4 whitespace-nowrap">
+            Details
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Newsletter -->
-  <section class="max-w-4xl mx-auto px-6 py-20">
-    <Newsletter />
+  <!-- Newsletter & Store Integration -->
+  <section class="max-w-5xl mx-auto px-6 py-20">
+    <GumroadBeehiivIntegration 
+      variant="home" 
+      utmCampaign="homepage_integrated_cta" 
+    />
   </section>
 
 </Layout>

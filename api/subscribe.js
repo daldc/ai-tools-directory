@@ -52,7 +52,7 @@ export default async function handler(req, res) {
     }
 
     const apiKey = process.env.BEEHIIV_API_KEY;
-    const pubId = process.env.BEEHIIV_PUBLICATION_ID;
+    const pubId = process.env.BEEHIIV_PUBLICATION_ID || 'pub_2b74f984-deaa-4e23-899c-cab1936fb1e7';
 
     if (!apiKey || !pubId) {
       console.error('Missing BEEHIIV env vars');
