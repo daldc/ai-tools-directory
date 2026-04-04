@@ -4,6 +4,7 @@ import ToolCard from "../components/ToolCard.astro";
 import CategoryCard from "../components/CategoryCard.astro";
 import Newsletter from "../components/Newsletter.astro";
 import { tools, categories, getToolsByCategory } from "../data/tools";
+import { STORE_BRAND, GUMROAD_STORE_URL } from "../config/store";
 
 const featuredTools = tools.filter((t) => t.rating >= 4.6).slice(0, 8);
 const categoryData = categories.map((cat) => ({
@@ -111,21 +112,21 @@ const categoryData = categories.map((cat) => ({
     </div>
   </section>
 
-  <!-- Products -->
+  <!-- Store + Newsletter Landing Section -->
   <section class="max-w-7xl mx-auto px-6 py-20">
     <div class="text-center mb-12">
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-teal/20 bg-brand-teal/5 text-xs text-brand-teal mb-4">
         Templates & Resources
       </div>
       <h2 class="font-display font-bold text-3xl md:text-4xl text-white mb-3">
-        Level up your marketing stack
+        {STORE_BRAND.name}
       </h2>
       <p class="text-zinc-500 text-lg max-w-xl mx-auto">
-        Battle-tested templates built by a marketing analytics practitioner with 11 years of experience
+        {STORE_BRAND.tagline}
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
       <!-- Free Cheat Sheet -->
       <div class="card-glow p-6 flex flex-col">
         <div class="inline-flex items-center gap-2 mb-4">
@@ -136,7 +137,7 @@ const categoryData = categories.map((cat) => ({
         <p class="text-zinc-400 text-sm leading-relaxed mb-6 flex-1">
           15 essential AI tools every marketer should know — with pricing, use cases, and honest recommendations across 6 categories.
         </p>
-        <a href="https://dallasc.gumroad.com/l/ai-tools-cheatsheet" class="btn-primary text-sm text-center" target="_blank" rel="noopener">
+        <a href="https://dallasc.gumroad.com/l/ai-tools-cheatsheet" class="gumroad-button btn-primary text-sm text-center" data-gumroad-overlay target="_blank" rel="noopener">
           Download Free →
         </a>
       </div>
@@ -151,16 +152,22 @@ const categoryData = categories.map((cat) => ({
         <p class="text-zinc-400 text-sm leading-relaxed mb-6 flex-1">
           6-tab Excel template to build, organize, and track UTM parameters across every marketing channel. Includes bulk URL builder and naming conventions.
         </p>
-        <a href="https://dallasc.gumroad.com/l/utm-builder" class="btn-secondary text-sm text-center" target="_blank" rel="noopener">
+        <a href="https://dallasc.gumroad.com/l/utm-builder" class="gumroad-button btn-secondary text-sm text-center" data-gumroad-overlay target="_blank" rel="noopener">
           Get Template →
         </a>
       </div>
     </div>
-  </section>
 
-  <!-- Newsletter -->
-  <section class="max-w-4xl mx-auto px-6 py-20">
-    <Newsletter />
+    <div class="text-center mb-16">
+      <a href="/store" class="text-sm text-zinc-400 hover:text-brand-teal transition-colors font-medium">
+        Browse all resources →
+      </a>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="max-w-4xl mx-auto">
+      <Newsletter utmSource="homepage" utmCampaign="homepage_signup" />
+    </div>
   </section>
 
 </Layout>

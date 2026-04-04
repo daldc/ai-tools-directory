@@ -1,0 +1,100 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Newsletter from "../components/Newsletter.astro";
+import { products, getProductUrl, GUMROAD_STORE_URL, STORE_BRAND } from "../config/store";
+---
+
+<Layout
+  title="Store"
+  description={`${STORE_BRAND.tagline}. Templates, cheat sheets, and resources for marketing professionals.`}
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="gradient-mesh w-[500px] h-[500px] -top-32 -right-32 bg-brand-amber/8" style="animation: float 9s ease-in-out infinite;" aria-hidden="true"></div>
+
+    <div class="max-w-5xl mx-auto px-6 py-24 text-center relative z-10">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-amber/20 bg-brand-amber/5 text-xs text-brand-amber mb-6">
+        <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+        Templates &amp; Resources
+      </div>
+
+      <h1 class="font-display font-bold text-4xl md:text-6xl text-white mb-4 leading-tight">
+        {STORE_BRAND.name}
+      </h1>
+      <p class="text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-2">
+        {STORE_BRAND.tagline}
+      </p>
+      <p class="text-zinc-500 text-sm max-w-xl mx-auto">
+        {STORE_BRAND.description}
+      </p>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section class="max-w-5xl mx-auto px-6 pb-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {products.map((product) => (
+        <div class="card-glow p-6 flex flex-col">
+          <div class="inline-flex items-center gap-2 mb-4">
+            <span class={`badge badge-${product.badge}`}>
+              {product.price}
+            </span>
+            <span class="text-xs text-zinc-500">{product.format}</span>
+          </div>
+
+          <h2 class="font-display font-semibold text-xl text-white mb-2">
+            {product.name}
+          </h2>
+          <p class="text-zinc-400 text-sm leading-relaxed mb-4 flex-1">
+            {product.description}
+          </p>
+
+          <!-- Features -->
+          <ul class="space-y-1.5 mb-6">
+            {product.features.map((feat) => (
+              <li class="flex items-center gap-2 text-xs text-zinc-300">
+                <svg class="w-3.5 h-3.5 text-brand-teal flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                {feat}
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href={getProductUrl(product.code)}
+            class={`gumroad-button text-sm text-center rounded-xl px-6 py-3 font-medium transition-all duration-200 ${
+              product.badge === "free"
+                ? "btn-primary"
+                : "btn-secondary"
+            }`}
+            data-gumroad-overlay
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {product.badge === "free" ? "Download Free →" : "Get Template →"}
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <!-- Full store link -->
+    <div class="text-center mt-10">
+      <a
+        href={GUMROAD_STORE_URL}
+        class="text-sm text-zinc-500 hover:text-brand-teal transition-colors"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        View all products on Gumroad →
+      </a>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="max-w-4xl mx-auto px-6 py-20">
+    <Newsletter utmSource="store_page" utmCampaign="store_signup" />
+  </section>
+</Layout>
